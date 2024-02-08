@@ -1,5 +1,7 @@
 package datenmodelle;
-//@author Maurice Hennig
+/**
+ * @author Maurice Hennig
+ */
 public class Timeslot
 {
     private String von;

@@ -2,16 +2,14 @@ package datenmodelle;
 
 /**
  * @author Julia Hemkendreis & Jo Duras
- *
  */
 public class Unternehmen {
     private int id;
     private String name;
     private String fachrichtung;
     private Kategorie kategorie;
-    private Timeslot timeslot;
+    private Timeslot timeslot = new Timeslot("08:00", "16:00");
     private int maxSchueler = 20;
-
     public int getId() {
         return id;
     }

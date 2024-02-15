@@ -8,7 +8,7 @@ public class Unternehmen {
     private String name;
     private String fachrichtung;
     private Kategorie kategorie;
-    private Timeslot timeslot = new Timeslot("08:00", "16:00");
+    private Timeslot_Enum fruehesterBeginn = Timeslot_Enum.A;
     private int maxSchueler = 20;
     public int getId() {
         return id;
@@ -42,12 +42,12 @@ public class Unternehmen {
         this.kategorie = kategorie;
     }
 
-    public Timeslot getTimeslot() {
-        return timeslot;
+    public Timeslot_Enum getFruehesterBeginn() {
+        return fruehesterBeginn;
     }
 
-    public void setTimeslot(Timeslot timeslot) {
-        this.timeslot = timeslot;
+    public void setFruehesterBeginn(Timeslot_Enum fruehesterBeginn) {
+        this.fruehesterBeginn = fruehesterBeginn;
     }
 
     public int getMaxSchueler() {

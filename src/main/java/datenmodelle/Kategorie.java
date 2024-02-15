@@ -24,16 +24,16 @@ public enum Kategorie {
      * @param kategorie ; String, der in der Excel-Datei ausgelesen wird
      * @return Enum für die Objekterstellung
      */
-    public static Kategorie ermittleKategorie(String kategorie) {
+    public static Kategorie ermittleKategorie(String kategorie) throws IllegalArgumentException{
         switch (kategorie) {
             case "kaufmännisch":
-                return Kategorie.KAUFMAENNISCH;
+                return KAUFMAENNISCH;
             case "Verwaltung":
-                return Kategorie.VERWALTUNG;
+                return VERWALTUNG;
             case "Studium":
-                return Kategorie.STUDIUM;
+                return STUDIUM;
             case "Studierende":
-                return Kategorie.STUDIERENDE;
+                return STUDIERENDE;
             default:
                 throw new IllegalArgumentException("Diese Kategorie gibt es nicht.");
         }

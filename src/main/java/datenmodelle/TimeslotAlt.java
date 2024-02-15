@@ -2,12 +2,12 @@ package datenmodelle;
 /**
  * @author Maurice Hennig
  */
-public class Timeslot
+public class TimeslotAlt
 {
     private String von;
     private String bis;
 
-    public Timeslot(String von, String bis)
+    public TimeslotAlt(String von, String bis)
     {
         this.von = von;
         this.bis = bis;

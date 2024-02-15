@@ -34,7 +34,7 @@ public class TeilnehmendeUnternehmen {
 
     /** Diese Methode erstellt für die Zeilen in der Excel-Datei eine entsprechenden Unternehmensobjekte
      * und speichert diese in einer Liste, die für die weitere Verarbeitung zurückgegeben wird.
-     *
+     * @TODO Anpassungen für den frühesten Beginn und maximale Schüleranzahl sobald Excel-Datei vorhanden ist.
      * @param data ; Die ausgelesene Liste aus der Excel-Datei
      * @return Liste an Unternehmensobjekten
      */

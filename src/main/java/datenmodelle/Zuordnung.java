@@ -8,7 +8,7 @@ import java.util.List;
 public class Zuordnung {
     private List<Schueler> schuelerListe;
     private Unternehmen unternehmen;
-    private Timeslot zeitpunkt;
+    private Timeslot_Enum zeitpunkt;
     private int raumNr;
 
     public List<Schueler> getSchuelerListe() {
@@ -27,11 +27,11 @@ public class Zuordnung {
         this.unternehmen = unternehmen;
     }
 
-    public Timeslot getZeitpunkt() {
+    public Timeslot_Enum getZeitpunkt() {
         return zeitpunkt;
     }
 
-    public void setZeitpunkt(Timeslot zeitpunkt) {
+    public void setZeitpunkt(Timeslot_Enum zeitpunkt) {
         this.zeitpunkt = zeitpunkt;
     }
 

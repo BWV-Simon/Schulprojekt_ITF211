@@ -20,5 +20,25 @@ public enum Kategorie {
         return text;
     }
 
+    /** Diese Methode ermittelt die entsprechende Kategorie
+     * @param kategorie ; String, der in der Excel-Datei ausgelesen wird
+     * @return Enum für die Objekterstellung
+     */
+    public static Kategorie ermittleKategorie(String kategorie) {
+        switch (kategorie) {
+            case "kaufmännisch":
+                return Kategorie.KAUFMAENNISCH;
+            case "Verwaltung":
+                return Kategorie.VERWALTUNG;
+            case "Studium":
+                return Kategorie.STUDIUM;
+            case "Studierende":
+                return Kategorie.STUDIERENDE;
+            default:
+                throw new IllegalArgumentException("Diese Kategorie gibt es nicht.");
+        }
+    }
+
+
 
 }

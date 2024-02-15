@@ -20,47 +20,37 @@ public class TeilnehmendeUnternehmen {
 
     private static final String pfadCSV = "eingabe/Unternehmen.csv";
 
-    public static List<Unternehmen> auslesen() throws IOException {
+    /** Diese Methode liest aus der angegebenen Datei (pfadExcel) die enthaltenen Unternehmen aus
+     *  und speichert die Zeilen in einer String-Liste
+     * @return Eine Liste von Unternehmensobjekten
+     * @throws IOException
+     */
+    public static List<String> auslesenUnternehm() throws IOException {
         DateiKonvertieren.excelToCSV(pfadExcel, pfadCSV);
         Path file = Paths.get(pfadCSV);
-        List<Unternehmen> unternehmen = new ArrayList<>();
-        String[] dataobject;
-        String id_temp;
-        String name_temp;
-        String fachrichtung_temp;
-        String kategorie_temp;
         List<String> data = Files.readAllLines(file, StandardCharsets.ISO_8859_1);
+        return data;
+    }
 
+    /** Diese Methode erstellt für die Zeilen in der Excel-Datei eine entsprechenden Unternehmensobjekte
+     * und speichert diese in einer Liste, die für die weitere Verarbeitung zurückgegeben wird.
+     *
+     * @param data ; Die ausgelesene Liste aus der Excel-Datei
+     * @return Liste an Unternehmensobjekten
+     */
+    public List<Unternehmen> erstellenUnternehmen(List<String> data) {
+        List<Unternehmen> unternehmen = new ArrayList<>();
+        String[] data_temp;
         for (int i = 1; i < data.size(); i++) {
             Unternehmen unternehmen_temp = new Unternehmen();
-            dataobject = data.get(i).split(";");
-            id_temp = dataobject[0];
-            name_temp = dataobject[1];
-            fachrichtung_temp = dataobject[2];
-            kategorie_temp = dataobject[3];
-            unternehmen_temp.setId(Integer.parseInt(id_temp));
-            unternehmen_temp.setName(name_temp);
-            unternehmen_temp.setFachrichtung(fachrichtung_temp);
-            unternehmen_temp.setKategorie(ermittleKategorie(kategorie_temp));
-            System.out.println(unternehmen_temp.getName());
+            data_temp = data.get(i).split(";");
+            unternehmen_temp.setId(Integer.parseInt(data_temp[0]));
+            unternehmen_temp.setName(data_temp[1]);
+            unternehmen_temp.setFachrichtung(data_temp[2]);
+            unternehmen_temp.setKategorie(Kategorie.ermittleKategorie(data_temp[3]));
             unternehmen.add(unternehmen_temp);
         }
         return unternehmen;
-    }
-
-    private static Kategorie ermittleKategorie(String kategorie) {
-        switch (kategorie) {
-            case "kaufmännisch":
-                return Kategorie.KAUFMAENNISCH;
-            case "Verwaltung":
-                return Kategorie.VERWALTUNG;
-            case "Studium":
-                return Kategorie.STUDIUM;
-            case "Studierende":
-                return Kategorie.STUDIERENDE;
-            default:
-                throw new IllegalArgumentException("Diese Kategorie gibt es nicht.");
-        }
     }
 
 

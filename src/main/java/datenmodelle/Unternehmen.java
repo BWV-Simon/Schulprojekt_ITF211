@@ -10,6 +10,7 @@ public class Unternehmen {
     private Kategorie kategorie;
     private Timeslot_Enum fruehesterBeginn = Timeslot_Enum.A;
     private int maxSchueler = 20;
+    private int maxVeranstaltungen;
     public int getId() {
         return id;
     }
@@ -56,5 +57,13 @@ public class Unternehmen {
 
     public void setMaxSchueler(int maxSchueler) {
         this.maxSchueler = maxSchueler;
+    }
+
+    public int getMaxVeranstaltungen() {
+        return maxVeranstaltungen;
+    }
+
+    public void setMaxVeranstaltungen(int maxVeranstaltungen) {
+        this.maxVeranstaltungen = maxVeranstaltungen;
     }
 }

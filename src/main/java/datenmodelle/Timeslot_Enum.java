@@ -24,21 +24,21 @@ public enum Timeslot_Enum {
 
     /** Diese Methode ermittelt den Zeitpunkt/Timeslot über den übergebenen String
      *
-     * @param von_bis
+     * @param beginn; Beginn des Zeitslots
      * @return Zeitpunkt
      * @throws IllegalArgumentException
      */
-    public Timeslot_Enum ermittleTimeslot(String von_bis) throws IllegalArgumentException{
-        switch (von_bis) {
-            case "08:45-09:30":
+    public Timeslot_Enum ermittleTimeslot(String beginn) throws IllegalArgumentException{
+        switch (beginn) {
+            case "08:45":
                 return A;
-            case "09:50-10:35":
+            case "09:50":
                 return B;
-            case "10:35-11:20":
+            case "10:35":
                 return C;
-            case "11:40-12:25":
+            case "11:40":
                 return D;
-            case "12:25-13:10":
+            case "12:25":
                 return E;
             default:
                 throw new IllegalArgumentException("Diesen Zeitslot gibt es nicht.");

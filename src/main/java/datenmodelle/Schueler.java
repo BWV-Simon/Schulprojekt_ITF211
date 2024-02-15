@@ -9,6 +9,9 @@ public class Schueler {
     private String klasse;
     private int[] wahl;
 
+    public Schueler (){
+
+    }
     public Schueler(String vorname, String nachname, String klasse, int[] wahl) {
         this.vorname = vorname;
         this.nachname = nachname;
@@ -55,5 +58,25 @@ public class Schueler {
         } else {
             this.wahl[wahlNr] = wahl;
         }
+    }
+
+    /**
+     * @author Jo Duras
+     * @return aufbereiteter String zu Testzwecken
+     */
+    @Override
+    public String toString() {
+        return
+                "Klasse: " + klasse +
+                "; Name: " + nachname +
+                "; Vorname: " + vorname +
+                "; wahl: "
+                        + wahl[0] + ","
+                        + wahl[1] + ","
+                        + wahl[2] + ","
+                        + wahl[3] + ","
+                        + wahl[4] + ","
+                        + wahl[5]
+                ;
     }
 }

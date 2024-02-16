@@ -39,36 +39,38 @@ public class SchuelerWuensche {
         List<String> data = Files.readAllLines(file, StandardCharsets.ISO_8859_1);
         boolean titelzeile = true;
 
-        for(String line : data){
+        for(String line : data) {
             //erste Zeile ueberspringen, da Titelzeile im Dokument
-            if(titelzeile){
+            if (titelzeile) {
                 titelzeile = false;
                 continue;
             }
             Schueler s = new Schueler();
             String[] info = line.split(";");
-            s.setKlasse(info[0]);
-            s.setNachname(info[1]);
-            s.setVorname(info[2]);
+            if (!info[0].isBlank()) {
+                s.setKlasse(info[0]);
+                s.setNachname(info[1]);
+                s.setVorname(info[2]);
 
-            int[] wuensche = new int[6];
-            for(int i = 0; i < 6 ; i++){
-                //Wenn kein Wunsch angegeben ist wird eine 0 in das Array eingetragen
+                int[] wuensche = new int[6];
+                for (int i = 0; i < 6; i++) {
+                    //Wenn kein Wunsch angegeben ist wird eine 0 in das Array eingetragen
 
                     try {
-                        if(info[3 + i] == ""){
+                        if (info[3 + i].isBlank()) {
                             wuensche[i] = 0;
-                    } else {
+                        } else {
                             wuensche[i] = Integer.parseInt(info[3 + i]);
                         }
                     } catch (IndexOutOfBoundsException e) {
                         //Wenn kein Wunsch angegeben ist wird eine 0 in das Array eingetragen
                         wuensche[i] = 0;
                     }
-            }
-            s.setWahl(wuensche);
+                }
+                s.setWahl(wuensche);
 
-            schuelerListe.add(s);
+                schuelerListe.add(s);
+            }
         }
 
         return schuelerListe;

@@ -5,11 +5,11 @@ package datenmodelle;
  */
 public class Veranstaltung {
     private int id;
-    private String name;
+    private String unternehmen;
     private String fachrichtung;
     private Timeslot_Enum fruehesterBeginn = Timeslot_Enum.A;
     private int maxSchueler = 20;
-    private int maxVeranstaltungen;
+    private int maxVeranstaltungen = 1;
     public int getId() {
         return id;
     }
@@ -18,12 +18,12 @@ public class Veranstaltung {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUnternehmen() {
+        return unternehmen;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUnternehmen(String unternehmen) {
+        this.unternehmen = unternehmen;
     }
 
     public String getFachrichtung() {

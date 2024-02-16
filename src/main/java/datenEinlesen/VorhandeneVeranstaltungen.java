@@ -45,7 +45,7 @@ public class VorhandeneVeranstaltungen {
             data_temp = data.get(i).split(";");
             if(!data_temp[0].isBlank()) {
                 unternehmen_temp.setId(Integer.parseInt(data_temp[0]));
-                unternehmen_temp.setName(data_temp[1]);
+                unternehmen_temp.setUnternehmen(data_temp[1]);
                 unternehmen_temp.setFachrichtung(data_temp[2]);
                 if (!data_temp[3].isBlank()) {
                     unternehmen_temp.setMaxSchueler(Integer.parseInt(data_temp[3]));

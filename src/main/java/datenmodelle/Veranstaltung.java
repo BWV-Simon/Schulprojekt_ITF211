@@ -3,11 +3,10 @@ package datenmodelle;
 /**
  * @author Julia Hemkendreis & Jo Duras
  */
-public class Unternehmen {
+public class Veranstaltung {
     private int id;
     private String name;
     private String fachrichtung;
-    private Kategorie kategorie;
     private Timeslot_Enum fruehesterBeginn = Timeslot_Enum.A;
     private int maxSchueler = 20;
     private int maxVeranstaltungen;
@@ -33,14 +32,6 @@ public class Unternehmen {
 
     public void setFachrichtung(String fachrichtung) {
         this.fachrichtung = fachrichtung;
-    }
-
-    public Kategorie getKategorie() {
-        return kategorie;
-    }
-
-    public void setKategorie(Kategorie kategorie) {
-        this.kategorie = kategorie;
     }
 
     public Timeslot_Enum getFruehesterBeginn() {

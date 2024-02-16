@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class Zuordnung {
     private List<Schueler> schuelerListe;
-    private Unternehmen unternehmen;
+    private Veranstaltung unternehmen;
     private Timeslot_Enum zeitpunkt;
     private int raumNr;
 
@@ -19,11 +19,11 @@ public class Zuordnung {
         this.schuelerListe = schuelerListe;
     }
 
-    public Unternehmen getUnternehmen() {
+    public Veranstaltung getUnternehmen() {
         return unternehmen;
     }
 
-    public void setUnternehmen(Unternehmen unternehmen) {
+    public void setUnternehmen(Veranstaltung unternehmen) {
         this.unternehmen = unternehmen;
     }
 

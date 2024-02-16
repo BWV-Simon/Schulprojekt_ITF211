@@ -1,7 +1,6 @@
 package datenEinlesen;
 
-import datenmodelle.Kategorie;
-import datenmodelle.Unternehmen;
+import datenmodelle.Veranstaltung;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -38,11 +37,11 @@ public class TeilnehmendeUnternehmen {
      * @param data ; Die ausgelesene Liste aus der Excel-Datei
      * @return Liste an Unternehmensobjekten
      */
-    public List<Unternehmen> erstellenUnternehmen(List<String> data) {
-        List<Unternehmen> unternehmen = new ArrayList<>();
+    public List<Veranstaltung> erstellenUnternehmen(List<String> data) {
+        List<Veranstaltung> unternehmen = new ArrayList<>();
         String[] data_temp;
         for (int i = 1; i < data.size(); i++) {
-            Unternehmen unternehmen_temp = new Unternehmen();
+            Veranstaltung unternehmen_temp = new Veranstaltung();
             data_temp = data.get(i).split(";");
             unternehmen_temp.setId(Integer.parseInt(data_temp[0]));
             unternehmen_temp.setName(data_temp[1]);

@@ -1,22 +1,26 @@
 package datenmodelle;
 
+import java.util.List;
+
 /**
- * @author Jan Tochtenhagen
+ * @author Jan Tochtenhagen & Maurice Hennig
  */
 public class Schueler {
     private String vorname;
     private String nachname;
     private String klasse;
     private int[] wahl;
+    private List<Zuordnung> stundenplan;
 
     public Schueler (){
 
     }
-    public Schueler(String vorname, String nachname, String klasse, int[] wahl) {
+    public Schueler(String vorname, String nachname, String klasse, int[] wahl, List<Zuordnung> stundenplan) {
         this.vorname = vorname;
         this.nachname = nachname;
         this.klasse = klasse;
         this.wahl = wahl;
+        this.stundenplan = stundenplan;
     }
 
     public String getVorname() {
@@ -58,6 +62,16 @@ public class Schueler {
         } else {
             this.wahl[wahlNr] = wahl;
         }
+    }
+
+    public List<Zuordnung> getStundenplan()
+    {
+        return stundenplan;
+    }
+
+    public void setStundenplan(List<Zuordnung> stundenplan)
+    {
+        this.stundenplan = stundenplan;
     }
 
     /**

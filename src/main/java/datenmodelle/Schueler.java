@@ -11,6 +11,7 @@ public class Schueler {
     private String klasse;
     private int[] wahl;
     private List<Zuordnung> stundenplan;
+    private boolean wuenscheerfuellt=false;
 
     public Schueler (){
 
@@ -72,6 +73,16 @@ public class Schueler {
     public void setStundenplan(List<Zuordnung> stundenplan)
     {
         this.stundenplan = stundenplan;
+    }
+
+    public boolean isWuenscheerfuellt()
+    {
+        return wuenscheerfuellt;
+    }
+
+    public void setWuenscheerfuellt(boolean wuenscheerfuellt)
+    {
+        this.wuenscheerfuellt = wuenscheerfuellt;
     }
 
     /**

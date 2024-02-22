@@ -6,18 +6,9 @@ import java.util.List;
  * @author Jo Duras & Julia Hemkendreis
  */
 public class Zuordnung {
-    private List<Schueler> schuelerListe;
     private Veranstaltung unternehmen;
     private Timeslot_Enum zeitpunkt;
     private int raumNr;
-
-    public List<Schueler> getSchuelerListe() {
-        return schuelerListe;
-    }
-
-    public void setSchuelerListe(List<Schueler> schuelerListe) {
-        this.schuelerListe = schuelerListe;
-    }
 
     public Veranstaltung getUnternehmen() {
         return unternehmen;

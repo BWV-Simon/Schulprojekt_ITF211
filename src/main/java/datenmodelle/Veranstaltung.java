@@ -1,5 +1,8 @@
 package datenmodelle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Julia Hemkendreis & Jo Duras
  */
@@ -10,6 +13,9 @@ public class Veranstaltung {
     private Timeslot_Enum fruehesterBeginn = Timeslot_Enum.A;
     private int maxSchueler = 20;
     private int maxVeranstaltungen = 1;
+    //Fuer einfachere Implementierung, nicht unbedingt notwendig
+    private List<Timeslot_Enum> timeslotReservierung;
+
     public int getId() {
         return id;
     }
@@ -55,6 +61,18 @@ public class Veranstaltung {
     }
 
     public void setMaxVeranstaltungen(int maxVeranstaltungen) {
+        List<Timeslot_Enum> list = new ArrayList<>();
+        //ToDo Timeslot in Liste fuellen
         this.maxVeranstaltungen = maxVeranstaltungen;
+    }
+
+    public List<Timeslot_Enum> getTimeslotReservierung()
+    {
+        return timeslotReservierung;
+    }
+
+    public void setTimeslotReservierung(List<Timeslot_Enum> timeslotReservierung)
+    {
+        this.timeslotReservierung = timeslotReservierung;
     }
 }

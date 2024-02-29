@@ -12,9 +12,11 @@ import java.util.ArrayList;
 public class ListeAbarbeiten {
     private ArrayList<Schueler> schueler;
     private ArrayList<Veranstaltung> unternehmen;
+    private double wunschQuote;
 
     ListeAbarbeiten(ArrayList<Schueler> schueler, ArrayList<Veranstaltung> unternehmen){
-
+        this.schueler=schueler;
+        this.unternehmen=unternehmen;
     }
 
     public ArrayList<Schueler> getSchueler() {
@@ -33,4 +35,12 @@ public class ListeAbarbeiten {
         this.unternehmen = unternehmen;
     }
 
+    //ToDo Methoden implementieren
+    //maxScore = 20 am Ende hinzufuegen
+    //Score bei Autofill-Abarbeitung addieren
+    //Berechnung der Wunschquote: SchuelerScores / (AnzahlSchueler*20)
+
+    public void ErsteWuenscheAbarbeiten(){
+
+    }
 }

@@ -12,6 +12,7 @@ public class Schueler {
     private int[] wahl;
     private List<Zuordnung> stundenplan;
     private boolean wuenscheerfuellt=false;
+    private int wunschScore=0;
 
     public Schueler (){
 
@@ -83,6 +84,21 @@ public class Schueler {
     public void setWuenscheerfuellt(boolean wuenscheerfuellt)
     {
         this.wuenscheerfuellt = wuenscheerfuellt;
+    }
+
+    public int getWunschScore() {
+        return wunschScore;
+    }
+
+    public void setWunschScore(int wunschScore) {
+        this.wunschScore = wunschScore;
+    }
+
+    /**
+     * @author Maurice Hennig & Jan Tochtenhagen
+     */
+    public void addScore(int aktScore){
+        wunschScore=wunschScore+aktScore;
     }
 
     /**

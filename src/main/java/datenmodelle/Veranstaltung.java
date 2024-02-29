@@ -84,8 +84,6 @@ public class Veranstaltung {
      * Die Erstellung der Map erfolgt anhand des fruehsten Beginns und der maximalen Anzahl an Veranstaltungen
      */
     public void createTimeSlotMap() {
-        //ToDo erstellung der Map
-
         timeslotReservierung = new HashMap<>();
         Timeslot_Enum aktuellerSlot = fruehesterBeginn;
 

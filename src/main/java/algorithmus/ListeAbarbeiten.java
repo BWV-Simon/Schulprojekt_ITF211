@@ -1,8 +1,7 @@
-package Algorithmus;
+package algorithmus;
 
 import datenmodelle.Schueler;
 import datenmodelle.Veranstaltung;
-import datenmodelle.Zuordnung;
 
 import java.util.ArrayList;
 

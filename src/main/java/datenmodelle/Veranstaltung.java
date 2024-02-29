@@ -44,7 +44,6 @@ public class Veranstaltung {
 
     public void setFruehesterBeginn(Timeslot_Enum fruehesterBeginn) {
         this.fruehesterBeginn = fruehesterBeginn;
-        createTimeSlotMap();
     }
 
     public int getMaxSchueler() {
@@ -79,11 +78,36 @@ public class Veranstaltung {
     }
 
     /**
-     * @author Maurice & Jan
-     * Erstellt eine Map<TimeSlot, Integer> die Fruehester beginn und Max anzahl Veranstaltungen verknuepft.
-     * Um die Aktuellen anzahl von Schuelern zu Speichern zu diesem TimeSlot.
+     * @author Maurice & Jan & Jo
+     * Erstellt eine Map<TimeSlot, Integer> die Fruehester beginn und Teilnehmeranzahl .
+     * Die Map wird genutzt, m die Aktuellen anzahl von Schuelern zu Speichern zu diesem TimeSlot.
+     * Die Erstellung der Map erfolgt anhand des fruehsten Beginns und der maximalen Anzahl an Veranstaltungen
      */
-    private void createTimeSlotMap() {
+    public void createTimeSlotMap() {
         //ToDo erstellung der Map
+
+        timeslotReservierung = new HashMap<>();
+        Timeslot_Enum aktuellerSlot = fruehesterBeginn;
+
+        for(int i = 0; i < maxVeranstaltungen; i++){
+            timeslotReservierung.put(aktuellerSlot, 0);
+            switch (aktuellerSlot){
+                case A :
+                    aktuellerSlot = Timeslot_Enum.B;
+                    break;
+                case B :
+                    aktuellerSlot = Timeslot_Enum.C;
+                    break;
+                case C :
+                    aktuellerSlot = Timeslot_Enum.D;
+                    break;
+                case D :
+                    aktuellerSlot = Timeslot_Enum.E;
+                    break;
+                case E :
+                    break;
+            }
+
+        }
     }
 }

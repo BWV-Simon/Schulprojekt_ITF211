@@ -31,14 +31,18 @@ public class SchuelerWuensche {
      * @throws IOException
      */
     public static List<Schueler> auslesen() throws IOException {
-        List<Schueler> schuelerListe = new ArrayList<>();
-
         //Datei auslesen
         DateiKonvertieren.excelToCSV(pfadExcel, pfadCSV);
         Path file = Paths.get(pfadCSV);
         List<String> data = Files.readAllLines(file, StandardCharsets.ISO_8859_1);
-        boolean titelzeile = true;
 
+        return schuelerGenerieren(data);
+
+    }
+
+    protected static List<Schueler> schuelerGenerieren(List<String> data){
+        List<Schueler> schuelerListe = new ArrayList<>();
+        boolean titelzeile = true;
         for(String line : data) {
             //erste Zeile ueberspringen, da Titelzeile im Dokument
             if (titelzeile) {
@@ -55,7 +59,6 @@ public class SchuelerWuensche {
                 int[] wuensche = new int[6];
                 for (int i = 0; i < 6; i++) {
                     //Wenn kein Wunsch angegeben ist wird eine 0 in das Array eingetragen
-
                     try {
                         if (info[3 + i].isBlank()) {
                             wuensche[i] = 0;
@@ -74,6 +77,7 @@ public class SchuelerWuensche {
         }
 
         return schuelerListe;
+
     }
 
 

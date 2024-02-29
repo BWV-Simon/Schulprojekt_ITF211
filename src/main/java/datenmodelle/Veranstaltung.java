@@ -9,7 +9,7 @@ public class Veranstaltung {
     private String fachrichtung;
     private Timeslot_Enum fruehesterBeginn = Timeslot_Enum.A;
     private int maxSchueler = 20;
-    private int maxVeranstaltungen = 1;
+    private int maxVeranstaltungen = 5;
     public int getId() {
         return id;
     }

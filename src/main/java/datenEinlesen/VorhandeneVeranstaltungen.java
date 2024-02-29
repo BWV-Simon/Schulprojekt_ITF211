@@ -36,8 +36,21 @@ public class VorhandeneVeranstaltungen {
      * und speichert diese in einer Liste, die für die weitere Verarbeitung zurückgegeben wird.
      * @return Liste an Unternehmensobjekten
      */
-    public List<Veranstaltung> erstellenVeranstaltungen() throws IOException {
+    public static List<Veranstaltung> erstellenVeranstaltungen() throws IOException {
         List<String> data = auslesenVeranstaltungen();
+        return veranstaltungenGenerieren(data);
+    }
+
+    /**
+     * Ausgelagerte Methode fuer Testzwecke
+     * EingabeParameter kann durch testdaten ersetzt werden ohne die Verwendung eines Mocking-Frameworks
+     * Aufruf von außen bleibt unveraendert
+     *
+     * @author Jo Duras
+     * @param data; Daten aus den die Veranstaltungen generiert werden
+     * @return Liste der Veranstaltungen
+     */
+    protected static List<Veranstaltung> veranstaltungenGenerieren(List<String> data) {
         List<Veranstaltung> unternehmen = new ArrayList<>();
         String[] data_temp;
         for (int i = 1; i < data.size(); i++) {
@@ -47,13 +60,15 @@ public class VorhandeneVeranstaltungen {
                 unternehmen_temp.setId(Integer.parseInt(data_temp[0]));
                 unternehmen_temp.setUnternehmen(data_temp[1]);
                 unternehmen_temp.setFachrichtung(data_temp[2]);
-                if (!data_temp[3].isBlank()) {
+                if (data_temp.length > 3  && !data_temp[3].isBlank()) {
                     unternehmen_temp.setMaxSchueler(Integer.parseInt(data_temp[3]));
                 }
-                if (!data_temp[4].isBlank()) {
+                if (data_temp.length > 4 && !data_temp[4].isBlank()) {
                     unternehmen_temp.setMaxVeranstaltungen(Integer.parseInt(data_temp[4]));
                 }
-                unternehmen_temp.setFruehesterBeginn(Timeslot_Enum.valueOf(data_temp[5]));
+                if (data_temp.length > 5 && !data_temp[5].isBlank()){
+                    unternehmen_temp.setFruehesterBeginn(Timeslot_Enum.valueOf(data_temp[5]));
+                }
                 unternehmen.add(unternehmen_temp);
             }
         }

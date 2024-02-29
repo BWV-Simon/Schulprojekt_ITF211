@@ -32,4 +32,5 @@ public class ListeAbarbeiten {
     public void setUnternehmen(ArrayList<Veranstaltung> unternehmen) {
         this.unternehmen = unternehmen;
     }
+
 }

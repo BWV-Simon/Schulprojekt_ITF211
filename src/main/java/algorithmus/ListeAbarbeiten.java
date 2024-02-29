@@ -43,7 +43,19 @@ public class ListeAbarbeiten {
      * @author Maurice & Jan
      */
     public void ErsteWuenscheAbarbeiten(){
-
+        //Jedes unternehmen durchgehen
+        for (Veranstaltung unternehmen : this.unternehmen) {
+            //Alle wünsche durchgehen
+            for(int i = 0; i < 5; i++) {
+                //Alle Schueler durchgehen
+                for(Schueler schueler : this.schueler) {
+                    //Check ob der schueler bei diesem wunsch das Unternehmen hat.
+                    if(schueler.getWahl()[i] == unternehmen.getId()) {
+                        //ToDo Hinzufuegen eines Schuelers beim unternehmen
+                    }
+                }
+            }
+        }
     }
 
     /**

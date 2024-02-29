@@ -101,6 +101,10 @@ public class Schueler {
         wunschScore=wunschScore+aktScore;
     }
 
+    public void addToStundenplan(Zuordnung zuordnung) {
+        this.stundenplan.add(zuordnung);
+    }
+
     /**
      * @author Jo Duras
      * @return aufbereiteter String zu Testzwecken

@@ -10,6 +10,15 @@ public class Zuordnung {
     private Timeslot_Enum zeitpunkt;
     private int raumNr;
 
+    public Zuordnung() {
+
+    }
+
+    public Zuordnung(Veranstaltung unternehmen, Timeslot_Enum zeitpunkt) {
+        this.unternehmen = unternehmen;
+        this.zeitpunkt = zeitpunkt;
+    }
+
     public Veranstaltung getUnternehmen() {
         return unternehmen;
     }

@@ -36,11 +36,29 @@ public class ListeAbarbeiten {
     }
 
     //ToDo Methoden implementieren
-    //maxScore = 20 am Ende hinzufuegen
-    //Score bei Autofill-Abarbeitung addieren
-    //Berechnung der Wunschquote: SchuelerScores / (AnzahlSchueler*20)
+    //maxScore = 20 am Ende hinzufuegen -> Einbringen nach Algorithmus
+    //Score bei Autofill-Abarbeitung addieren -> Einbringen nach Algorithmus
+    //Berechnung der Wunschquote: SchuelerScores / (AnzahlSchueler*20) -> Einbringen nach Algorithmus
 
+    /**
+     * @author Maurice & Jan
+     */
     public void ErsteWuenscheAbarbeiten(){
+
+    }
+
+    /**
+     * @author Maurice & Jan
+     */
+    public void letzteWuenscheAbarbeiten(){
+
+    }
+
+    /**
+     * @author Maurice & Jan
+     * ToDo Zukuenftig Score berechnung bei Autofill hinzufuegen
+     */
+    public void autoFillAbarbeiten(){
 
     }
 }

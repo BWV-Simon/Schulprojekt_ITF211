@@ -1,7 +1,6 @@
 package datenmodelle;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author Julia Hemkendreis & Jo Duras
@@ -14,7 +13,7 @@ public class Veranstaltung {
     private int maxSchueler = 20;
     private int minSchueler = 15;
     private int maxVeranstaltungen = 1;
-    private List<Timeslot_Enum> timeslotReservierung;
+    private Map<Timeslot_Enum, Integer> timeslotReservierung;
     public int getId() {
         return id;
     }
@@ -45,6 +44,7 @@ public class Veranstaltung {
 
     public void setFruehesterBeginn(Timeslot_Enum fruehesterBeginn) {
         this.fruehesterBeginn = fruehesterBeginn;
+        createTimeSlotMap();
     }
 
     public int getMaxSchueler() {
@@ -67,16 +67,23 @@ public class Veranstaltung {
     }
 
     public void setMaxVeranstaltungen(int maxVeranstaltungen) {
-        List<Timeslot_Enum> list = new ArrayList<>();
-        //ToDo Timeslot in Liste fuellen
         this.maxVeranstaltungen = maxVeranstaltungen;
     }
 
-    public List<Timeslot_Enum> getTimeslotReservierung() {
+    public Map<Timeslot_Enum, Integer> getTimeslotReservierung() {
         return timeslotReservierung;
     }
 
-    public void setTimeslotReservierung(List<Timeslot_Enum> timeslotReservierung) {
+    public void setTimeslotReservierung(Map<Timeslot_Enum, Integer> timeslotReservierung) {
         this.timeslotReservierung = timeslotReservierung;
+    }
+
+    /**
+     * @author Maurice & Jan
+     * Erstellt eine Map<TimeSlot, Integer> die Fruehester beginn und Max anzahl Veranstaltungen verknuepft.
+     * Um die Aktuellen anzahl von Schuelern zu Speichern zu diesem TimeSlot.
+     */
+    private void createTimeSlotMap() {
+        //ToDo erstellung der Map
     }
 }

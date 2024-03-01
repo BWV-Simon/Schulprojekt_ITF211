@@ -10,6 +10,8 @@ public class Veranstaltung {
     private Timeslot_Enum fruehesterBeginn = Timeslot_Enum.A;
     private int maxSchueler = 20;
     private int maxVeranstaltungen = 5;
+    private int minSchueler = 15;
+
     public int getId() {
         return id;
     }
@@ -56,5 +58,13 @@ public class Veranstaltung {
 
     public void setMaxVeranstaltungen(int maxVeranstaltungen) {
         this.maxVeranstaltungen = maxVeranstaltungen;
+    }
+
+    public int getMinSchueler() {
+        return minSchueler;
+    }
+
+    public void setMinSchueler(int minSchueler) {
+        this.minSchueler = minSchueler;
     }
 }

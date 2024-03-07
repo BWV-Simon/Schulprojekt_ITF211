@@ -4,8 +4,10 @@ import java.util.List;
 
 /**
  * @author Jo Duras & Julia Hemkendreis
+ * Endergebnis des Algorithmus - Struktur der Ausgabe der CSV-Datei
  */
 public class Zuordnung {
+
     private Veranstaltung unternehmen;
     private Timeslot_Enum zeitpunkt;
     private int raumNr;

@@ -6,13 +6,13 @@ import java.util.List;
  * @author Jan Tochtenhagen & Maurice Hennig
  */
 public class Schueler {
+    //Anfang: wird eingelesen
     private String vorname;
     private String nachname;
     private String klasse;
     private int[] wahl;
+    //Ende: wird eingelesen
     private List<Zuordnung> stundenplan;
-    private boolean wuenscheerfuellt=false;
-    private int wunschScore=0;
 
     public Schueler (){
 
@@ -74,31 +74,6 @@ public class Schueler {
     public void setStundenplan(List<Zuordnung> stundenplan)
     {
         this.stundenplan = stundenplan;
-    }
-
-    public boolean isWuenscheerfuellt()
-    {
-        return wuenscheerfuellt;
-    }
-
-    public void setWuenscheerfuellt(boolean wuenscheerfuellt)
-    {
-        this.wuenscheerfuellt = wuenscheerfuellt;
-    }
-
-    public int getWunschScore() {
-        return wunschScore;
-    }
-
-    public void setWunschScore(int wunschScore) {
-        this.wunschScore = wunschScore;
-    }
-
-    /**
-     * @author Maurice Hennig & Jan Tochtenhagen
-     */
-    public void addScore(int aktScore){
-        wunschScore=wunschScore+aktScore;
     }
 
     public void addToStundenplan(Zuordnung zuordnung) {

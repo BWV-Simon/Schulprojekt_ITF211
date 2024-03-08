@@ -71,14 +71,6 @@ public class ListeAbarbeiten {
     }
 
     /**
-     * @author Maurice & Jan & Simon
-     * ToDo Zukuenftig Score berechnung bei Autofill hinzufuegen
-     */
-    public void autoFillAbarbeiten(){
-
-    }
-
-    /**
      * @author Simon & Maurice
      * diese Methode erstellt initial die Hashmap und befüllt diese mit allen Schülern und einem zugehörigen leeren Array der Länge 5
      * in diesem Array soll die Zuordnung eines Schülers zu einer Veranstaltung festgehalten werden

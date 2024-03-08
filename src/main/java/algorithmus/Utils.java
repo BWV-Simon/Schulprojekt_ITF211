@@ -4,13 +4,43 @@ import datenmodelle.Schueler;
 import datenmodelle.Veranstaltung;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.HashMap;
 
 /**
- * @author Simon, Jo, Julia
+ * @author Simon, Jo, Julia, Jan, Maurice
  */
 public class Utils {
+    /**
+     * @author Maurice, Jan
+     * @param unternehmen
+     *
+     * Wird nach dem Counter ausgeführt.
+     * Passt die anzahl der Timeslots an für ein Unternehmen. Aufgrund der Mindestanzahl an Schuelern für einen Timeslot wird
+     * festgestellt ob der Timeslot entfernt wird oder nicht. Im fall das ein Timeslot entfernt wird, werden die bisherigen Schueler
+     * wieder mit dem Autofill behandelt.
+     */
+    public void manageTimeslots(Veranstaltung unternehmen) {
+        List<Schueler> autofillListe = new ArrayList<>();
+        //Geht einmal jeden möglichen Timeslot des Unternehmens durch
+        unternehmen.getTimeslotReservierung()
+                .forEach((timeslotEnum, schueler) -> {
+                    //Checkt ob für diesen Timeslot genug Schueler vorhanden sind
+                    if(schueler.size() > unternehmen.getMinSchueler()) {
+                        //Behandlung der schueler vor der Aufloesung des Timeslots -> Schueler wunsch neu vergeben
+                        unternehmen.getTimeslotReservierung()
+                                .get(timeslotEnum)
+                                .forEach(s -> {
+                                    s.getStundenplan()
+                                            .stream()
+                                            .filter(z -> z.getZeitpunkt().equals(timeslotEnum));
+                                    autofillListe.add(s);
+                                });
+
+//                        unternehmen.getTimeslotReservierung().remove(timeslotEnum); -> TODO Außerhalb der foreach.
+                    }
+                });
+    }
 
 
     /**
@@ -40,5 +70,14 @@ public class Utils {
         }
 
         return resultMap;
+    }
+    /**
+     * @author
+     */
+    //@TODO mit funktion füllen.
+    public void autoFillAbarbeiten(List<Schueler> schueler){
+        for(Schueler s : schueler) {
+
+        }
     }
 }

@@ -1,5 +1,6 @@
 package datenmodelle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ public class Schueler {
     private String klasse;
     private int[] wahl;
     //Ende: wird eingelesen
-    private List<Zuordnung> stundenplan;
+    private List<Zuordnung> stundenplan = new ArrayList<>();
 
     public Schueler (){
 

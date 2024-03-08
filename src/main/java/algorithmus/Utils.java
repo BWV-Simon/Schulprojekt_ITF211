@@ -22,7 +22,7 @@ public class Utils {
      *     diese Methode zählt, wie viele Schueler sich die Teilnahme an einer bestimmten Veranstaltung gewünscht haben
      *     Schuelerwuensche, bei denen die maximale Kapazität erreicht wurde, werden ignoriert
      */
-    public HashMap<Veranstaltung, List<Schueler>> counter(List<Schueler> schuelerListe, List<Veranstaltung> veranstaltungsListe){
+    public static HashMap<Veranstaltung, List<Schueler>> counter(List<Schueler> schuelerListe, List<Veranstaltung> veranstaltungsListe){
         HashMap<Veranstaltung, List<Schueler>> resultMap = new HashMap<>();
 
         for(int i = 0; i < 6; i++){
@@ -33,7 +33,9 @@ public class Utils {
                         tempSchuelerList.add(schueler);
                     }
                 }
-                resultMap.put(veranstaltung, tempSchuelerList);
+                if(tempSchuelerList.size() > 0){
+                    resultMap.put(veranstaltung, tempSchuelerList);
+                }
             }
         }
 

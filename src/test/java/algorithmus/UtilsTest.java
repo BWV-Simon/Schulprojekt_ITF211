@@ -114,4 +114,60 @@ public class UtilsTest {
             assertEquals(1, resultMap.get(v).size());
         }
     }
+
+    /**
+     * @author Simon, Jo, Julia
+     * Unit-Test für die Methode ermittleSchuelerOhneWuensche in der Klasse Utils
+     */
+    @Test
+    public void ermittleSchuelerOhneWuenscheTest(){
+        //given
+        Schueler schueler1 = new Schueler();
+        schueler1.setWahl(new int[]{0, 0, 0, 0, 0, 0});
+
+        Schueler schueler2 = new Schueler();
+        schueler2.setWahl(new int[]{0, 1, 3, 4, 5, 6});
+
+        Schueler schueler3 = new Schueler();
+        schueler3.setWahl(new int[]{3, 2, 1, 4, 5, 6});
+
+        ArrayList<Schueler> schuelerListe = new ArrayList<>();
+        schuelerListe.add(schueler1);
+        schuelerListe.add(schueler2);
+        schuelerListe.add(schueler3);
+
+        //when
+        List<Schueler> result = Utils.ermittleSchuelerOhneWuensche(schuelerListe);
+
+        //then
+        assertEquals(result.size() ,1);
+    }
+
+    /**
+     * @author Simon, Jo, Julia
+     * Unit-Test für die Methode ermittleSchuelerMitTeilwuenschen in der Klasse Utils
+     */
+    @Test
+    public void ermittleSchuelerMitTeilWuenschenTest(){
+        //given
+        Schueler schueler1 = new Schueler();
+        schueler1.setWahl(new int[]{0, 0, 0, 0, 0, 0});
+
+        Schueler schueler2 = new Schueler();
+        schueler2.setWahl(new int[]{0, 1, 3, 4, 5, 6});
+
+        Schueler schueler3 = new Schueler();
+        schueler3.setWahl(new int[]{3, 2, 1, 4, 5, 6});
+
+        ArrayList<Schueler> schuelerListe = new ArrayList<>();
+        schuelerListe.add(schueler1);
+        schuelerListe.add(schueler2);
+        schuelerListe.add(schueler3);
+
+        //when
+        List<Schueler> result = Utils.ermittleSchuelerMitTeilwuenschen(schuelerListe);
+
+        //then
+        assertEquals(result.size() ,2);
+    }
 }

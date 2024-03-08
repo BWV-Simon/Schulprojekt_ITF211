@@ -80,4 +80,48 @@ public class Utils {
 
         }
     }
+
+    /**
+     * @author Simon, Jo, Julia
+     * @param schuelerListe
+     * @return List<Schueler>
+     * Diese Methode prueft alle Schueler und ermittelt jene Schueler, die keine Wuensche haben
+     */
+    public static List<Schueler> ermittleSchuelerOhneWuensche(List<Schueler> schuelerListe){
+        boolean wunschGefunden = false;
+        ArrayList<Schueler> result = new ArrayList<>();
+
+        for (Schueler s : schuelerListe){
+            for (int wunsch : s.getWahl()){
+                if(wunsch != 0){
+                    wunschGefunden = true;
+                }
+            }
+            if(!wunschGefunden){
+                result.add(s);
+            }
+            wunschGefunden = false;
+        }
+        return result;
+    }
+
+    /**
+     * @author Simon, Jo, Julia
+     * @param schuelerListe
+     * @return
+     * Diese Methode ermittelt alle Schueler, weniger als 6 Wuensche geaeussert haben
+     */
+    public static List<Schueler> ermittleSchuelerMitTeilwuenschen(List<Schueler> schuelerListe){
+        ArrayList<Schueler> result = new ArrayList<>();
+
+        for (Schueler s : schuelerListe){
+            for (int wunsch : s.getWahl()){
+                if(wunsch == 0){
+                    result.add(s);
+                    break;
+                }
+            }
+        }
+        return result;
+    }
 }

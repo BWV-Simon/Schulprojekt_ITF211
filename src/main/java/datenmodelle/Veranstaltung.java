@@ -85,6 +85,17 @@ public class Veranstaltung {
     }
 
     /**
+     * @author Simon, Jo, Julia
+     * @return int
+     *
+     * Methode ermittelt die maximale Kapazität anhand der maximalen Anzahl an Veranstaltungen
+     * und der maximalen Anzahl an Schuelern pro Veranstaltung
+     */
+    public int ermittleMaxkapazitaet(){
+        return this.maxSchueler * this.maxVeranstaltungen;
+    }
+
+    /**
      * @author Maurice & Jan & Jo
      * Erstellt eine Map<TimeSlot, ArrayList<Schueler>> die Fruehester beginn und Schueler .
      * Die Map wird genutzt, um die aktuellen Schueler zu Speichern zu diesem TimeSlot.

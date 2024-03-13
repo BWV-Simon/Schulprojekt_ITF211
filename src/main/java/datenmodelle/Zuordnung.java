@@ -1,5 +1,6 @@
 package datenmodelle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,25 +9,26 @@ import java.util.List;
  */
 public class Zuordnung {
 
-    private Veranstaltung unternehmen;
+    private Veranstaltung veranstaltung;
     private Timeslot_Enum zeitpunkt;
+
+    private List<Schueler> schuelerList = new ArrayList<>();
     private int raumNr;
+    private int kapazität;
 
-    public Zuordnung() {
-
+    public Zuordnung(Timeslot_Enum zeitpunkt, Veranstaltung veranstaltung) {
+        setZeitpunkt(zeitpunkt);
+        setVeranstaltung(veranstaltung);
+        setKapazität(veranstaltung.getMaxSchueler());
+        schuelerList = new ArrayList<>();
     }
 
-    public Zuordnung(Veranstaltung unternehmen, Timeslot_Enum zeitpunkt) {
-        this.unternehmen = unternehmen;
-        this.zeitpunkt = zeitpunkt;
+    public Veranstaltung getVeranstaltung() {
+        return veranstaltung;
     }
 
-    public Veranstaltung getUnternehmen() {
-        return unternehmen;
-    }
-
-    public void setUnternehmen(Veranstaltung unternehmen) {
-        this.unternehmen = unternehmen;
+    public void setVeranstaltung(Veranstaltung veranstaltung) {
+        this.veranstaltung = veranstaltung;
     }
 
     public Timeslot_Enum getZeitpunkt() {
@@ -37,11 +39,32 @@ public class Zuordnung {
         this.zeitpunkt = zeitpunkt;
     }
 
+    public int getKapazität() {
+        return kapazität;
+    }
+
+    public void setKapazität(int kapazität) {
+        this.kapazität = kapazität;
+    }
+
     public int getRaumNr() {
         return raumNr;
     }
 
     public void setRaumNr(int raumNr) {
         this.raumNr = raumNr;
+    }
+
+    public List<Schueler> getSchuelerList() {
+        return schuelerList;
+    }
+    public void setSchuelerList(List<Schueler> schuelerList) {
+        this.schuelerList = schuelerList;
+    }
+
+    public void addSchueler(Schueler schueler) {
+        if(!schuelerList.contains(schueler)) {
+            schuelerList.add(schueler);
+        }
     }
 }

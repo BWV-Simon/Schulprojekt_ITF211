@@ -3,6 +3,7 @@ package algorithmus;
 import datenmodelle.Schueler;
 import datenmodelle.Timeslot_Enum;
 import datenmodelle.Veranstaltung;
+import datenmodelle.Zuordnung;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,48 +13,28 @@ import java.util.HashMap;
  * @author Simon, Jo, Julia, Jan, Maurice
  */
 public class Utils {
+
+
     /**
-     * @author Maurice, Jan
-     * @param unternehmenList
-     *
-     * Wird nach dem Counter ausgeführt.
-     * Passt die anzahl der Timeslots an für ein Unternehmen. Aufgrund der Mindestanzahl an Schuelern für einen Timeslot wird
-     * festgestellt ob der Timeslot entfernt wird oder nicht. Im fall das ein Timeslot entfernt wird, werden die bisherigen Schueler
-     * wieder mit dem Autofill behandelt.
-     *
-     * @TODO Muss noch mit richtigen Daten getestet werden.
+     * author Julia
+     * @param List<Veranstaltungen> veranstaltungen
+     * @return HashMap<Veranstaltung, List<Zuordnung>>
+     *     Diese Methode erstellt eine HashMap, bei der zu jedem Unternehmen die Liste aller möglichen Zuordnungen (Zeitslots, Veranstaltung)
+     *     gespeichert werden
      */
-    public void manageTimeslots(List<Veranstaltung> unternehmenList) {
-        List<Schueler> autofillListe = new ArrayList<>();
-        List<Timeslot_Enum> removableTimeslots = new ArrayList<>();
-
-        for (Veranstaltung unternehmen : unternehmenList) {
-        //Geht einmal jeden möglichen Timeslot des Unternehmens durch
-            unternehmen.getTimeslotReservierung()
-                .forEach((timeslotEnum, schueler) -> {
-                    //Checkt ob für diesen Timeslot genug Schueler vorhanden sind
-                    if(schueler.size() < unternehmen.getMinSchueler()) {
-                        //Behandlung der schueler vor der Aufloesung des Timeslots -> Schueler wunsch neu vergeben
-                        unternehmen.getTimeslotReservierung()
-                                .get(timeslotEnum)
-                                .forEach(s -> {
-                                    s.getStundenplan()
-                                            .stream()
-                                            .filter(z -> z.getZeitpunkt().equals(timeslotEnum));
-                                    autofillListe.add(s);
-                                });
-                        removableTimeslots.add(timeslotEnum);
-                    }
-                });
-            //Entfernt die nicht gebrauchten timeslots von dem Unternehmen
-            for(Timeslot_Enum timeslot : removableTimeslots) {
-                unternehmen.getTimeslotReservierung().remove(timeslot);
+    public static HashMap<Veranstaltung, List<Zuordnung>> ermittleAlleSlotsZuVeranstaltung(List<Veranstaltung> veranstaltungen) {
+        HashMap<Veranstaltung, List<Zuordnung>> result = new HashMap<>();
+        for(Veranstaltung v : veranstaltungen) {
+            List<Zuordnung> temp = new ArrayList<>();
+            List<Timeslot_Enum> slots = v.createTimeSlotListe();
+            for(Timeslot_Enum e : slots) {
+                Zuordnung zo = new Zuordnung(e, v);
+                temp.add(zo);
             }
-            //Leert die zu entfernenden Timeslots für das nächste Unternehmen
-            removableTimeslots.clear();
+            result.put(v, temp);
         }
+        return result;
     }
-
 
     /**
      * @author Simon, Jo, Julia
@@ -64,9 +45,8 @@ public class Utils {
      *     diese Methode zählt, wie viele Schueler sich die Teilnahme an einer bestimmten Veranstaltung gewünscht haben
      *     Schuelerwuensche, bei denen die maximale Kapazität erreicht wurde, werden ignoriert
      */
-    public static HashMap<Veranstaltung, List<Schueler>> counter(List<Schueler> schuelerListe, List<Veranstaltung> veranstaltungsListe){
+    public static HashMap<Veranstaltung, List<Schueler>> ermittleSchuelerZuVeranstaltung(List<Schueler> schuelerListe, List<Veranstaltung> veranstaltungsListe){
         HashMap<Veranstaltung, List<Schueler>> resultMap = new HashMap<>();
-
         for(int i = 0; i < 6; i++){
             for(Veranstaltung veranstaltung : veranstaltungsListe){
                 ArrayList<Schueler> tempSchuelerList = new ArrayList<>();
@@ -80,17 +60,7 @@ public class Utils {
                 }
             }
         }
-
         return resultMap;
-    }
-    /**
-     * @author
-     */
-    //@TODO mit funktion füllen.
-    public void autoFillAbarbeiten(List<Schueler> schueler){
-        for(Schueler s : schueler) {
-
-        }
     }
 
     /**

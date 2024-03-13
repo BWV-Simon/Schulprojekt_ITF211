@@ -4,26 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Jan Tochtenhagen & Maurice Hennig
+ * @author Jan Tochtenhagen, Maurice Hennig, Jo Duras & Julia Hemkendreis
  */
 public class Schueler {
-    //Anfang: wird eingelesen
     private String vorname;
     private String nachname;
     private String klasse;
     private int[] wahl;
-    //Ende: wird eingelesen
-    private List<Zuordnung> stundenplan = new ArrayList<>();
+
+    private List<Timeslot_Enum> stunden = new ArrayList<>();
 
     public Schueler (){
 
     }
-    public Schueler(String vorname, String nachname, String klasse, int[] wahl, List<Zuordnung> stundenplan) {
+    public Schueler(String vorname, String nachname, String klasse, int[] wahl) {
         this.vorname = vorname;
         this.nachname = nachname;
         this.klasse = klasse;
         this.wahl = wahl;
-        this.stundenplan = stundenplan;
+        stunden = new ArrayList<>();
     }
 
     public String getVorname() {
@@ -67,18 +66,21 @@ public class Schueler {
         }
     }
 
-    public List<Zuordnung> getStundenplan()
-    {
-        return stundenplan;
+    public List<Timeslot_Enum> getStunden() {
+        return stunden;
     }
 
-    public void setStundenplan(List<Zuordnung> stundenplan)
-    {
-        this.stundenplan = stundenplan;
+    public void setStunden(List<Timeslot_Enum> stunden) {
+        this.stunden = stunden;
     }
 
-    public void addToStundenplan(Zuordnung zuordnung) {
-        this.stundenplan.add(zuordnung);
+    public void addStunden(Timeslot_Enum stunde) {
+        if(stunden == null) {
+            stunden = new ArrayList<>();
+            stunden.add(stunde);
+        } else if(!stunden.contains(stunde)) {
+            stunden.add(stunde);
+        }
     }
 
     /**

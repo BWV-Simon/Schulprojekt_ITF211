@@ -57,7 +57,7 @@ public class UtilsTest {
         schuelerListe.add(schueler3);
 
         //when
-        HashMap<Veranstaltung, List<Schueler>> resultMap= Utils.counter(schuelerListe, veranstaltungsListe);
+        HashMap<Veranstaltung, List<Schueler>> resultMap= Utils.ermittleSchuelerZuVeranstaltung(schuelerListe, veranstaltungsListe);
 
         //then
         for(Veranstaltung v : resultMap.keySet()){
@@ -107,7 +107,7 @@ public class UtilsTest {
         schuelerListe.add(schueler3);
 
         //when
-        HashMap<Veranstaltung, List<Schueler>> resultMap= Utils.counter(schuelerListe, veranstaltungsListe);
+        HashMap<Veranstaltung, List<Schueler>> resultMap= Utils.ermittleSchuelerZuVeranstaltung(schuelerListe, veranstaltungsListe);
 
         //then
         for(Veranstaltung v : resultMap.keySet()){

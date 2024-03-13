@@ -6,20 +6,14 @@ import java.util.*;
  * @author Julia Hemkendreis & Jo Duras
  */
 public class Veranstaltung {
-    //Anfang: wird eingelesen
+
     private int id;
     private String unternehmen;
     private String fachrichtung;
-    private Timeslot_Enum fruehesterBeginn = Timeslot_Enum.A;
-    private int maxSchueler = 20;
-    private int maxVeranstaltungen = 5;
+    private static Timeslot_Enum fruehesterBeginn = Timeslot_Enum.A;
+    private int maxSchueler = 20 ;
+    private static int maxVeranstaltungen = 5;
     private int minSchueler = 15;
-    //Ende: wird eingelesen
-    /**
-     * @author Simon, Jan, Jo, Maurice
-     * Variable in der die Zuweisung gespeichert werden soll
-     */
-    private Map<Timeslot_Enum, ArrayList<Schueler>> timeslotReservierung;
 
     public int getId() {
         return id;
@@ -76,14 +70,6 @@ public class Veranstaltung {
         this.maxVeranstaltungen = maxVeranstaltungen;
     }
 
-    public Map<Timeslot_Enum, ArrayList<Schueler>> getTimeslotReservierung() {
-        return timeslotReservierung;
-    }
-
-    public void setTimeslotReservierung(Map<Timeslot_Enum, ArrayList<Schueler>> timeslotReservierung) {
-        this.timeslotReservierung = timeslotReservierung;
-    }
-
     /**
      * @author Simon, Jo, Julia
      * @return int
@@ -95,18 +81,15 @@ public class Veranstaltung {
         return this.maxSchueler * this.maxVeranstaltungen;
     }
 
-    /**
-     * @author Maurice & Jan & Jo
-     * Erstellt eine Map<TimeSlot, ArrayList<Schueler>> die Fruehester beginn und Schueler .
-     * Die Map wird genutzt, um die aktuellen Schueler zu Speichern zu diesem TimeSlot.
-     * Die Erstellung der Map erfolgt anhand des fruehsten Beginns und der maximalen Anzahl an Veranstaltungen
+    /** Erstellt eine Liste an möglichen Zeitpunkten/Slots, wo ein Unternehmen eine Veranstaltung anbieten kann
+     * @author Julia
+     * @return List<Timeslot_Enum> TimeSlotListe (Zeitpunkte)
      */
-    public void createTimeSlotMap() {
-        timeslotReservierung = new HashMap<>();
+    public static List<Timeslot_Enum> createTimeSlotListe() {
+        ArrayList<Timeslot_Enum> timeslots = new ArrayList<>();
         Timeslot_Enum aktuellerSlot = fruehesterBeginn;
-
         for(int i = 0; i < maxVeranstaltungen; i++){
-            timeslotReservierung.put(aktuellerSlot, new ArrayList<>());
+            timeslots.add(aktuellerSlot);
             switch (aktuellerSlot){
                 case A :
                     aktuellerSlot = Timeslot_Enum.B;
@@ -123,7 +106,20 @@ public class Veranstaltung {
                 case E :
                     break;
             }
-
         }
+        return  timeslots;
+    }
+
+    @Override
+    public String toString() {
+        return "Veranstaltung{" +
+                "id=" + id +
+                ", unternehmen='" + unternehmen + '\'' +
+                ", fachrichtung='" + fachrichtung + '\'' +
+                ", fruehesterBeginn=" + fruehesterBeginn +
+                ", maxSchueler=" + maxSchueler +
+                ", maxVeranstaltungen=" + maxVeranstaltungen +
+                ", minSchueler=" + minSchueler +
+                '}';
     }
 }

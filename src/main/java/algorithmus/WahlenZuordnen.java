@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class WahlenZuordnen {
 
-    public static void zuordnungWahlen(List<Schueler> schuelerWahlen, List<Veranstaltung> veranstaltungList) {
+    public static HashMap<Veranstaltung,List<Zuordnung>> zuordnungWahlen(List<Schueler> schuelerWahlen, List<Veranstaltung> veranstaltungList) {
         List<Schueler> tempSchueler = new ArrayList<>();
         //Alle moeglichen Veranstaltungsslots zu den teilnehmenden Unternehmen anlegen und zwischenspeichern
         HashMap<Veranstaltung,List<Zuordnung>> veranstaltungenSlots = Utils.ermittleAlleSlotsZuVeranstaltung(veranstaltungList);
@@ -28,7 +28,7 @@ public class WahlenZuordnen {
                 tempSchueler.add(s);
             }
         }
-        System.out.println(tempSchueler.size());
+        System.out.println("Start");
         // Zuordnung der Schueler nach Wuenschen und zufaellig angeordnet
         for( int i = 0; i < 6 ; i++) {
             Collections.shuffle(tempSchueler);
@@ -37,19 +37,14 @@ public class WahlenZuordnen {
                     int schuelerwunsch = s.getWahl()[i];
                     for(Veranstaltung v : veranstaltungList) {
                         if(v.getId() == schuelerwunsch) {
-                            /** TODO Liste an Zuordnungen auf oberster Methodenebene anlegen, damit wir diese ueberpruefen
-                             *  koennen und die Schueler hinzufuegen koennen
-                             */
-                            List<Zuordnung> moeglichkeiten = veranstaltungenSlots.get(v);
-                            for(int x = 0; x < moeglichkeiten.size(); x++) {
-                                Zuordnung zo = moeglichkeiten.get(x);
+                            for(int x = 0; x < veranstaltungenSlots.get(v).size(); x++) {
                                 if( i == 0) {
-                                    zuordnenSchueler(zo, s, i, schuelerwunsch);
+                                    zuordnenSchueler(veranstaltungenSlots.get(v).get(x), s, i, schuelerwunsch);
                                     break;
-                                } else if((!s.getStunden().contains(zo.getZeitpunkt())) && zo.getKapazität() > 0) {
-                                    zuordnenSchueler(zo, s, i, schuelerwunsch);
+                                } else if((!s.getStunden().contains(veranstaltungenSlots.get(v).get(x).getZeitpunkt())) && veranstaltungenSlots.get(v).get(x).getKapazität() > 0) {
+                                    zuordnenSchueler(veranstaltungenSlots.get(v).get(x), s, i, schuelerwunsch);
                                     break;
-                                } else if(x == moeglichkeiten.size() - 1) {
+                                } else if(x == veranstaltungenSlots.get(v).size() - 1) {
                                         schuelerAutofill.add(s);
                                         System.err.println(s.getNachname() + " konnte nicht zugeordnet werden " + i);
                                         break;
@@ -66,13 +61,15 @@ public class WahlenZuordnen {
                 }
             }
         }
-    }
+        System.out.println("Ende");
+        return veranstaltungenSlots;
 
+    }
     private static void zuordnenSchueler(Zuordnung zo, Schueler s, int wahlSlot, int schuelerwunsch) {
         zo.setKapazität(zo.getKapazität() - 1);
+        zo.addSchueler(s);
         s.addStunden(zo.getZeitpunkt());
         s.setWahl(wahlSlot, schuelerwunsch);
         System.out.println(s.getNachname() + " wurde für " + zo.getZeitpunkt() + " bei " + zo.getVeranstaltung().getUnternehmen() + " für den Wunsch: " + wahlSlot + " zugeordnet.");
-
     }
 }

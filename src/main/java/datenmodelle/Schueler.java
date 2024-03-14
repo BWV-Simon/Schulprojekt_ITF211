@@ -22,7 +22,6 @@ public class Schueler {
         this.nachname = nachname;
         this.klasse = klasse;
         this.wahl = wahl;
-        stunden = new ArrayList<>();
     }
 
     public String getVorname() {
@@ -75,10 +74,7 @@ public class Schueler {
     }
 
     public void addStunden(Timeslot_Enum stunde) {
-        if(stunden == null) {
-            stunden = new ArrayList<>();
-            stunden.add(stunde);
-        } else if(!stunden.contains(stunde)) {
+        if(!stunden.contains(stunde)) {
             stunden.add(stunde);
         }
     }

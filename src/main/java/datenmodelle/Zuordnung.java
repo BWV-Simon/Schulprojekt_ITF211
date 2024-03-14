@@ -20,7 +20,6 @@ public class Zuordnung {
         setZeitpunkt(zeitpunkt);
         setVeranstaltung(veranstaltung);
         setKapazität(veranstaltung.getMaxSchueler());
-        schuelerList = new ArrayList<>();
     }
 
     public Veranstaltung getVeranstaltung() {

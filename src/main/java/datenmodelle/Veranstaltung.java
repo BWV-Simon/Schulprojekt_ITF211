@@ -82,7 +82,7 @@ public class Veranstaltung {
     }
 
     /** Erstellt eine Liste an möglichen Zeitpunkten/Slots, wo ein Unternehmen eine Veranstaltung anbieten kann
-     * @author Julia
+     * @author Jo, Julia
      * @return List<Timeslot_Enum> TimeSlotListe (Zeitpunkte)
      */
     public static List<Timeslot_Enum> createTimeSlotListe() {

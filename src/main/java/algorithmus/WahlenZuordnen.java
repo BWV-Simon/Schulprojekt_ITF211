@@ -17,12 +17,11 @@ public class WahlenZuordnen {
 
     public static void zuordnungWahlen(List<Schueler> schuelerWahlen, List<Veranstaltung> veranstaltungList) {
         List<Schueler> tempSchueler = new ArrayList<>();
-
         //Alle moeglichen Veranstaltungsslots zu den teilnehmenden Unternehmen anlegen und zwischenspeichern
         HashMap<Veranstaltung,List<Zuordnung>> veranstaltungenSlots = Utils.ermittleAlleSlotsZuVeranstaltung(veranstaltungList);
-
         // Liste an Schueler fuer die zufaellige Zuordnung anhand der Schueler ohne Wuensche erstellen
         List<Schueler> schuelerAutofill = Utils.ermittleSchuelerOhneWuensche(schuelerWahlen);
+
         //Liste der Schueler von den Schuelern, die keine Wuensche haben bereinigen
         for (Schueler s : schuelerWahlen) {
             if(!schuelerAutofill.contains(s)) {
@@ -30,9 +29,9 @@ public class WahlenZuordnen {
             }
         }
         System.out.println(tempSchueler.size());
-
         // Zuordnung der Schueler nach Wuenschen und zufaellig angeordnet
         int debug = 0;
+
         for( int i = 0; i < 6 ; i++) {
             Collections.shuffle(tempSchueler);
             for(Schueler s : tempSchueler) {
@@ -46,11 +45,11 @@ public class WahlenZuordnen {
                                     zuordnenSchueler(zo, s, i, schuelerwunsch);
                                     debug++;
                                     break;
-                                } else if((!s.getStunden().contains(zo.getZeitpunkt())) && zo.getKapazität() > 0 && s.getStunden().size() < 5) {
+                                } else if((!s.getStunden().contains(zo.getZeitpunkt())) && zo.getKapazität() > 0) {
                                     zuordnenSchueler(zo, s, i, schuelerwunsch);
                                     debug++;
                                     break;
-                                } else {
+                                } else { // TODO Letzte Zuordnung klappt auch nicht -> Autofill hinzufuegen
                                     System.err.println(s.getNachname() + " konnte nicht zugeordnet werden " + i);
                                     break;
                                 }

@@ -18,42 +18,42 @@ public class WahlenZuordnen {
     public static void zuordnungWahlen(List<Schueler> schuelerWahlen, List<Veranstaltung> veranstaltungList) {
         List<Schueler> tempSchueler = new ArrayList<>();
         //Alle moeglichen Veranstaltungsslots zu den teilnehmenden Unternehmen anlegen und zwischenspeichern
-        HashMap<Veranstaltung,List<Zuordnung>> veranstaltungenSlots = Utils.ermittleAlleSlotsZuVeranstaltung(veranstaltungList);
+        HashMap<Veranstaltung, List<Zuordnung>> veranstaltungenSlots = Utils.ermittleAlleSlotsZuVeranstaltung(veranstaltungList);
         // Liste an Schueler fuer die zufaellige Zuordnung anhand der Schueler ohne Wuensche erstellen
         List<Schueler> schuelerAutofill = Utils.ermittleSchuelerOhneWuensche(schuelerWahlen);
 
         //Liste der Schueler von den Schuelern, die keine Wuensche haben bereinigen
         for (Schueler s : schuelerWahlen) {
-            if(!schuelerAutofill.contains(s)) {
+            if (!schuelerAutofill.contains(s)) {
                 tempSchueler.add(s);
             }
         }
         System.out.println(tempSchueler.size());
         // Zuordnung der Schueler nach Wuenschen und zufaellig angeordnet
-        for( int i = 0; i < 6 ; i++) {
+        for (int i = 0; i < 6; i++) {
             Collections.shuffle(tempSchueler);
-            for(Schueler s : tempSchueler) {
-                if(s.getStunden().size() < 5) {
+            for (Schueler s : tempSchueler) {
+                if (s.getStunden().size() < 5) {
                     int schuelerwunsch = s.getWahl()[i];
-                    for(Veranstaltung v : veranstaltungList) {
-                        if(v.getId() == schuelerwunsch) {
+                    for (Veranstaltung v : veranstaltungList) {
+                        if (v.getId() == schuelerwunsch) {
                             List<Zuordnung> moeglichkeiten = veranstaltungenSlots.get(v);
-                            for(int x = 0; x < moeglichkeiten.size(); x++) {
+                            for (int x = 0; x < moeglichkeiten.size(); x++) {
                                 Zuordnung zo = moeglichkeiten.get(x);
-                                if( i == 0) {
+                                if (i == 0) {
                                     zuordnenSchueler(zo, s, i, schuelerwunsch);
                                     break;
-                                } else if((!s.getStunden().contains(zo.getZeitpunkt())) && zo.getKapazität() > 0) {
+                                } else if ((!s.getStunden().contains(zo.getZeitpunkt())) && zo.getKapazität() > 0) {
                                     zuordnenSchueler(zo, s, i, schuelerwunsch);
                                     break;
-                                } else if(x == moeglichkeiten.size() - 1) {
-                                        schuelerAutofill.add(s);
-                                        System.err.println(s.getNachname() + " konnte nicht zugeordnet werden " + i);
-                                        break;
-                                    }
+                                } else if (x == moeglichkeiten.size() - 1) {
+                                    schuelerAutofill.add(s);
+                                    System.err.println(s.getNachname() + " konnte nicht zugeordnet werden " + i);
+                                    break;
                                 }
-                            } else if(schuelerwunsch == 0) {
-                            if(!schuelerAutofill.contains(s)) {
+                            }
+                        } else if (schuelerwunsch == 0) {
+                            if (!schuelerAutofill.contains(s)) {
                                 System.out.println(s.getNachname() + " hat keinen Wunsch angegeben " + i);
                                 schuelerAutofill.add(s);
                             }
@@ -71,5 +71,22 @@ public class WahlenZuordnen {
         s.setWahl(wahlSlot, schuelerwunsch);
         System.out.println(s.getNachname() + " wurde für " + zo.getZeitpunkt() + " bei " + zo.getVeranstaltung().getUnternehmen() + " für den Wunsch: " + wahlSlot + " zugeordnet.");
 
+    }
+
+    /**
+     * @author Jan & Maurice
+     * Autofill-Behandlung der noch offenen Schuelerslots
+     */
+    public static void autofillBehandlung(List<Schueler> schuelerList, HashMap<Veranstaltung, List<Zuordnung>> veranstaltungenSlots) {
+        for (Schueler s : schuelerList) {
+            for (Veranstaltung v : veranstaltungenSlots.keySet()) {
+                for (Zuordnung zo : veranstaltungenSlots.get(v)) {
+                    if(zo.getKapazität()>0){
+                        zuordnenSchueler(zo, s, zo.getZeitpunkt(), );
+                    }
+                }
+            }
+            break;
+        }
     }
 }

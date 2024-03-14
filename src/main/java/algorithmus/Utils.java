@@ -118,7 +118,7 @@ public class Utils {
     public static HashMap<Zuordnung, Boolean> ueberpruefeAuslastungZuordnungen(List<Zuordnung> zuordnungen) {
         HashMap<Zuordnung, Boolean> result = new HashMap<>();
         for(Zuordnung zo : zuordnungen) {
-            if(zo.getKapazität() < zo.getVeranstaltung().getMinSchueler()) {
+            if(zo.getKapazitaet() < zo.getVeranstaltung().getMinSchueler()) {
                 result.put(zo, false);
             } else {
                 result.put(zo, true);

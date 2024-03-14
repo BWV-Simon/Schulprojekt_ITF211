@@ -14,12 +14,12 @@ public class Zuordnung {
 
     private List<Schueler> schuelerList = new ArrayList<>();
     private int raumNr;
-    private int kapazität;
+    private int kapazitaet;
 
     public Zuordnung(Timeslot_Enum zeitpunkt, Veranstaltung veranstaltung) {
         setZeitpunkt(zeitpunkt);
         setVeranstaltung(veranstaltung);
-        setKapazität(veranstaltung.getMaxSchueler());
+        setKapazitaet(veranstaltung.getMaxSchueler());
     }
 
     public Veranstaltung getVeranstaltung() {
@@ -38,12 +38,12 @@ public class Zuordnung {
         this.zeitpunkt = zeitpunkt;
     }
 
-    public int getKapazität() {
-        return kapazität;
+    public int getKapazitaet() {
+        return kapazitaet;
     }
 
-    public void setKapazität(int kapazität) {
-        this.kapazität = kapazität;
+    public void setKapazitaet(int kapazitaet) {
+        this.kapazitaet = kapazitaet;
     }
 
     public int getRaumNr() {

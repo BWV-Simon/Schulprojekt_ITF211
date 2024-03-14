@@ -1,7 +1,6 @@
 package algorithmus;
 
 import datenmodelle.Schueler;
-import datenmodelle.Timeslot_Enum;
 import datenmodelle.Veranstaltung;
 import datenmodelle.Zuordnung;
 
@@ -43,7 +42,7 @@ public class WahlenZuordnen {
                                 if (i == 0) {
                                     zuordnenSchueler(zo, s, i, schuelerwunsch);
                                     break;
-                                } else if ((!s.getStunden().contains(zo.getZeitpunkt())) && zo.getKapazität() > 0) {
+                                } else if ((!s.getStunden().contains(zo.getZeitpunkt())) && zo.getKapazitaet() > 0) {
                                     zuordnenSchueler(zo, s, i, schuelerwunsch);
                                     break;
                                 } else if (x == moeglichkeiten.size() - 1) {
@@ -63,30 +62,41 @@ public class WahlenZuordnen {
                 }
             }
         }
+        autofillSchueler(schuelerAutofill, veranstaltungenSlots);
     }
 
     private static void zuordnenSchueler(Zuordnung zo, Schueler s, int wahlSlot, int schuelerwunsch) {
-        zo.setKapazität(zo.getKapazität() - 1);
+        zo.setKapazitaet(zo.getKapazitaet() - 1);
         s.addStunden(zo.getZeitpunkt());
         s.setWahl(wahlSlot, schuelerwunsch);
         System.out.println(s.getNachname() + " wurde für " + zo.getZeitpunkt() + " bei " + zo.getVeranstaltung().getUnternehmen() + " für den Wunsch: " + wahlSlot + " zugeordnet.");
 
     }
 
+    private static void zuordnenSchueler(Zuordnung zo, Schueler s, int schuelerwunsch) {
+        zo.setKapazitaet(zo.getKapazitaet() - 1);
+        s.addStunden(zo.getZeitpunkt());
+        System.out.println(s.getNachname() + " wurde für " + zo.getZeitpunkt() + " bei " + zo.getVeranstaltung().getUnternehmen() + " zugeordnet. via Autofill");
+    }
+
+
     /**
      * @author Jan & Maurice
      * Autofill-Behandlung der noch offenen Schuelerslots
      */
-    public static void autofillBehandlung(List<Schueler> schuelerList, HashMap<Veranstaltung, List<Zuordnung>> veranstaltungenSlots) {
+    public static void autofillSchueler(List<Schueler> schuelerList, HashMap<Veranstaltung, List<Zuordnung>> veranstaltungenSlots) {
         for (Schueler s : schuelerList) {
             for (Veranstaltung v : veranstaltungenSlots.keySet()) {
                 for (Zuordnung zo : veranstaltungenSlots.get(v)) {
-                    if(zo.getKapazität()>0){
-                        zuordnenSchueler(zo, s, zo.getZeitpunkt(), );
+                    if(zo.getKapazitaet()>0 && (!s.getStunden().contains(zo.getZeitpunkt()))){
+                        zuordnenSchueler(zo, s, -1);
+                        break;
                     }
                 }
+                if(s.getStunden().size()>=5){
+                    break;
+                }
             }
-            break;
         }
     }
 }

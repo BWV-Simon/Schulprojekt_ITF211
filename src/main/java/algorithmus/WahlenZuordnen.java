@@ -30,8 +30,6 @@ public class WahlenZuordnen {
         }
         System.out.println(tempSchueler.size());
         // Zuordnung der Schueler nach Wuenschen und zufaellig angeordnet
-        int debug = 0;
-
         for( int i = 0; i < 6 ; i++) {
             Collections.shuffle(tempSchueler);
             for(Schueler s : tempSchueler) {
@@ -40,22 +38,21 @@ public class WahlenZuordnen {
                     for(Veranstaltung v : veranstaltungList) {
                         if(v.getId() == schuelerwunsch) {
                             List<Zuordnung> moeglichkeiten = veranstaltungenSlots.get(v);
-                            for(Zuordnung zo: moeglichkeiten) {
+                            for(int x = 0; x < moeglichkeiten.size(); x++) {
+                                Zuordnung zo = moeglichkeiten.get(x);
                                 if( i == 0) {
                                     zuordnenSchueler(zo, s, i, schuelerwunsch);
-                                    debug++;
                                     break;
                                 } else if((!s.getStunden().contains(zo.getZeitpunkt())) && zo.getKapazität() > 0) {
                                     zuordnenSchueler(zo, s, i, schuelerwunsch);
-                                    debug++;
                                     break;
-                                } else { // TODO Letzte Zuordnung klappt auch nicht -> Autofill hinzufuegen
-                                    System.err.println(s.getNachname() + " konnte nicht zugeordnet werden " + i);
-                                    break;
+                                } else if(x == moeglichkeiten.size() - 1) {
+                                        schuelerAutofill.add(s);
+                                        System.err.println(s.getNachname() + " konnte nicht zugeordnet werden " + i);
+                                        break;
+                                    }
                                 }
-                            }
-                            break;
-                        } else if(schuelerwunsch == 0) {
+                            } else if(schuelerwunsch == 0) {
                             if(!schuelerAutofill.contains(s)) {
                                 System.out.println(s.getNachname() + " hat keinen Wunsch angegeben " + i);
                                 schuelerAutofill.add(s);
@@ -66,14 +63,13 @@ public class WahlenZuordnen {
                 }
             }
         }
-        System.out.println(debug);
     }
 
     private static void zuordnenSchueler(Zuordnung zo, Schueler s, int wahlSlot, int schuelerwunsch) {
         zo.setKapazität(zo.getKapazität() - 1);
         s.addStunden(zo.getZeitpunkt());
         s.setWahl(wahlSlot, schuelerwunsch);
-        System.out.println(s.getNachname() + " wurde für " + zo.getZeitpunkt() + " bei " + zo.getVeranstaltung().getUnternehmen() + " zugeordnet.");
+        System.out.println(s.getNachname() + " wurde für " + zo.getZeitpunkt() + " bei " + zo.getVeranstaltung().getUnternehmen() + " für den Wunsch: " + wahlSlot + " zugeordnet.");
 
     }
 }

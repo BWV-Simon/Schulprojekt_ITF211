@@ -24,16 +24,16 @@ public class WahlenZuordnen {
 
         //Liste der Schueler von den Schuelern, die keine Wuensche haben bereinigen
         for (Schueler s : schuelerWahlen) {
-            if(!schuelerAutofill.contains(s)) {
+            if (!schuelerAutofill.contains(s)) {
                 tempSchueler.add(s);
             }
         }
         System.out.println("Start");
         // Zuordnung der Schueler nach Wuenschen und zufaellig angeordnet
-        for( int i = 0; i < 6 ; i++) {
+        for (int i = 0; i < 6; i++) {
             Collections.shuffle(tempSchueler);
-            for(Schueler s : tempSchueler) {
-                if(s.getStunden().size() < 5) {
+            for (Schueler s : tempSchueler) {
+                if (s.getStunden().size() < 5) {
                     int schuelerwunsch = s.getWahl()[i];
                     for(Veranstaltung v : veranstaltungList) {
                         if(v.getId() == schuelerwunsch) {
@@ -62,14 +62,36 @@ public class WahlenZuordnen {
             }
         }
         System.out.println("Ende");
+        autofillSchueler(schuelerAutofill, veranstaltungenSlots);
         return veranstaltungenSlots;
-
     }
+
     private static void zuordnenSchueler(Zuordnung zo, Schueler s, int wahlSlot, int schuelerwunsch) {
-        zo.setKapazität(zo.getKapazität() - 1);
+        zo.setKapazitaet(zo.getKapazitaet() - 1);
+        zo.setKapazitaet(zo.getKapazitaet() - 1);
         zo.addSchueler(s);
         s.addStunden(zo.getZeitpunkt());
         s.setWahl(wahlSlot, schuelerwunsch);
         System.out.println(s.getNachname() + " wurde für " + zo.getZeitpunkt() + " bei " + zo.getVeranstaltung().getUnternehmen() + " für den Wunsch: " + wahlSlot + " zugeordnet.");
+
+    }
+    /**
+     * @author Jan & Maurice
+     * Autofill-Behandlung der noch offenen Schuelerslots
+     */
+    public static void autofillSchueler(List<Schueler> schuelerList, HashMap<Veranstaltung, List<Zuordnung>> veranstaltungenSlots) {
+        for (Schueler s : schuelerList) {
+            for (Veranstaltung v : veranstaltungenSlots.keySet()) {
+                for (Zuordnung zo : veranstaltungenSlots.get(v)) {
+                    if(zo.getKapazitaet()>0 && (!s.getStunden().contains(zo.getZeitpunkt()))){
+                        zuordnenSchueler(zo, s, -1);
+                        break;
+                    }
+                }
+                if(s.getStunden().size()>=5){
+                    break;
+                }
+            }
+        }
     }
 }

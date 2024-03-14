@@ -106,4 +106,24 @@ public class Utils {
         }
         return result;
     }
+
+    /** Methode, die die Auslastung von Zuordnungen auf die Mindestanzahl an teilnehmenden Schuelern ueberprueft
+     * @author Simon, Julia
+     * @param List<Zuordnung> zuordnungen
+     * @return HashMap<Zuordnung, Boolean> result
+     * Wenn die Mindestkapazitaet (minSchueler der Veranstaltung der Zuordnung) nicht erfuellt ist,
+     * wird false gesetzt.
+     * Wenn die Mindestkapazität erfuellt ist, wird true gesetzt.
+     */
+    public static HashMap<Zuordnung, Boolean> ueberpruefeAuslastungZuordnungen(List<Zuordnung> zuordnungen) {
+        HashMap<Zuordnung, Boolean> result = new HashMap<>();
+        for(Zuordnung zo : zuordnungen) {
+            if(zo.getKapazität() < zo.getVeranstaltung().getMinSchueler()) {
+                result.put(zo, false);
+            } else {
+                result.put(zo, true);
+            }
+        }
+        return result;
+    }
 }

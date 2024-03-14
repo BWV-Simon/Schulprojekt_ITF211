@@ -37,6 +37,9 @@ public class WahlenZuordnen {
                     int schuelerwunsch = s.getWahl()[i];
                     for(Veranstaltung v : veranstaltungList) {
                         if(v.getId() == schuelerwunsch) {
+                            /** TODO Liste an Zuordnungen auf oberster Methodenebene anlegen, damit wir diese ueberpruefen
+                             *  koennen und die Schueler hinzufuegen koennen
+                             */
                             List<Zuordnung> moeglichkeiten = veranstaltungenSlots.get(v);
                             for(int x = 0; x < moeglichkeiten.size(); x++) {
                                 Zuordnung zo = moeglichkeiten.get(x);

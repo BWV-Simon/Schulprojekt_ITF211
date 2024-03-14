@@ -14,9 +14,10 @@ public class Schueler {
 
     private List<Timeslot_Enum> stunden = new ArrayList<>();
 
-    public Schueler (){
+    public Schueler() {
 
     }
+
     public Schueler(String vorname, String nachname, String klasse, int[] wahl) {
         this.vorname = vorname;
         this.nachname = nachname;
@@ -55,11 +56,12 @@ public class Schueler {
     public void setWahl(int[] wahl) {
         this.wahl = wahl;
     }
-    public void setWahl(int wahlNr, int wahl){
-        if(wahlNr > 6 || wahlNr < 0){
+
+    public void setWahl(int wahlNr, int wahl) {
+        if (wahlNr > 6 || wahlNr < 0) {
             throw new IllegalArgumentException("Die angegebene Nr kann nicht gesetzt werden, da sie zu hoch oder zu niedrig ist!");
         } else if (wahlNr == 6) {
-            this.wahl[wahlNr-1] = wahl;
+            this.wahl[wahlNr - 1] = wahl;
         } else {
             this.wahl[wahlNr] = wahl;
         }
@@ -74,22 +76,22 @@ public class Schueler {
     }
 
     public void addStunden(Timeslot_Enum stunde) {
-        if(!stunden.contains(stunde)) {
+        if (!stunden.contains(stunde)) {
             stunden.add(stunde);
         }
     }
 
     /**
-     * @author Jo Duras
      * @return aufbereiteter String zu Testzwecken
+     * @author Jo Duras
      */
     @Override
     public String toString() {
         return
                 "Klasse: " + klasse +
-                "; Name: " + nachname +
-                "; Vorname: " + vorname +
-                "; wahl: "
+                        "; Name: " + nachname +
+                        "; Vorname: " + vorname +
+                        "; wahl: "
                         + wahl[0] + ","
                         + wahl[1] + ","
                         + wahl[2] + ","
@@ -98,4 +100,16 @@ public class Schueler {
                         + wahl[5]
                 ;
     }
+
+    /**
+     * @return aufbereiteter String
+     * @author Jo
+     * Gibt die SchuelerInformationen als CSV String aus
+     */
+    public String toCSVString() {
+        return klasse + ";" +
+                nachname + ";" +
+                vorname + ";";
+    }
+
 }

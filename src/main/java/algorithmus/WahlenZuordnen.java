@@ -41,7 +41,7 @@ public class WahlenZuordnen {
                                 if( i == 0) {
                                     zuordnenSchueler(veranstaltungenSlots.get(v).get(x), s, i, schuelerwunsch);
                                     break;
-                                } else if((!s.getStunden().contains(veranstaltungenSlots.get(v).get(x).getZeitpunkt())) && veranstaltungenSlots.get(v).get(x).getKapazität() > 0) {
+                                } else if((!s.getStunden().contains(veranstaltungenSlots.get(v).get(x).getZeitpunkt())) && veranstaltungenSlots.get(v).get(x).getKapazitaet() > 0) {
                                     zuordnenSchueler(veranstaltungenSlots.get(v).get(x), s, i, schuelerwunsch);
                                     break;
                                 } else if(x == veranstaltungenSlots.get(v).size() - 1) {
@@ -74,6 +74,18 @@ public class WahlenZuordnen {
         s.setWahl(wahlSlot, schuelerwunsch);
         System.out.println(s.getNachname() + " wurde für " + zo.getZeitpunkt() + " bei " + zo.getVeranstaltung().getUnternehmen() + " für den Wunsch: " + wahlSlot + " zugeordnet.");
 
+    }
+
+    /** Ueberladene Methode zum Zuordnen von Schuelern via Autofill
+     * Jan & Maurice
+     * @param zo
+     * @param s
+     * @param schuelerwunsch
+     */
+    private static void zuordnenSchueler(Zuordnung zo, Schueler s, int schuelerwunsch) {
+        zo.setKapazitaet(zo.getKapazitaet() - 1);
+        s.addStunden(zo.getZeitpunkt());
+        System.out.println(s.getNachname() + " wurde für " + zo.getZeitpunkt() + " bei " + zo.getVeranstaltung().getUnternehmen() + " zugeordnet. via Autofill");
     }
     /**
      * @author Jan & Maurice

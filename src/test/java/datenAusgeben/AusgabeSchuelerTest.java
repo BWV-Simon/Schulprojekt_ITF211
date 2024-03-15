@@ -9,13 +9,18 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Jo Duras
+ */
 public class AusgabeSchuelerTest {
 
+    /**
+     * Testet die GetVeranstalktungFuerSchueler Methode
+     */
     @Test
     public void getVeranstaltungFuerSchuelerTest() {
         //Given
         Schueler s = new Schueler();
-        s.setNachname("Test");
 
         Zuordnung z1 = new Zuordnung();
         Zuordnung z2 = new Zuordnung();
@@ -33,6 +38,10 @@ public class AusgabeSchuelerTest {
 
         //Then
         assertTrue(testErgebnis.size() == 2);
+
+    }
+
+    public void erstelleListeFuerAusgabeTest() {
 
     }
 }

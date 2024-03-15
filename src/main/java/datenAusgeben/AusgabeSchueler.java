@@ -19,22 +19,42 @@ import java.util.List;
  */
 public class AusgabeSchueler {
 
-    private static final String AUSGABESCHUELER = "";
+    private static final String AUSGABESCHUELER = "ausgabe/schuelerListen";
 
+    /**
+     * Erstellt die Excel-Listen fuer alle Schueler mit den Veranstaltungen
+     *
+     * @param schuelerListe
+     * @param zuordnungen
+     * @throws IOException
+     */
     public static void SchuelerListenErstellen(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen) throws IOException {
         List<String> data = erstelleListeFuerAusgabe(schuelerListe, zuordnungen);
         schreibeInDatei(data);
     }
 
-    protected static List<String> erstelleListeFuerAusgabe(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen) throws IOException {
+    /**
+     * erstellt die Liste fuer die Ausgabe
+     *
+     * @param schuelerListe
+     * @param zuordnungen
+     * @return LIst<String> fuer Ausgabe
+     */
+    protected static List<String> erstelleListeFuerAusgabe(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen) {
         List<String> data = new ArrayList<>();
         int i = 1;
-
         for (Schueler s : schuelerListe) {
             data.add(s.getKlasse());
             data.add(s.getNachname() + ", " + s.getVorname());
             data.add(";Zeit;Raum;Veranstaltung;;");
+            List<Zuordnung> zuordnungSchueler = getVeranstaltungFuerSchueler(s, zuordnungen);
 
+            for (Zuordnung z : zuordnungSchueler) {
+                data.add(z.getZeitpunkt().name() + ";" + z.getZeitpunkt().toString()
+                        + ";" + z.getRaumNr()
+                        + ";" + z.getVeranstaltung().getUnternehmen()
+                        + ";" + z.getVeranstaltung().getFachrichtung());
+            }
 
             if (i == 4) {
                 data.add("");
@@ -50,6 +70,13 @@ public class AusgabeSchueler {
         return data;
     }
 
+    /**
+     * Isoliert die Veranstaltungen denen ein Schueler zugeordnet ist
+     *
+     * @param s
+     * @param zuordnungen
+     * @return List<Zuordnung> Zuordnungen fuer einen spezifischen Schueler
+     */
     protected static List<Zuordnung> getVeranstaltungFuerSchueler(Schueler s, List<Zuordnung> zuordnungen) {
         List<Zuordnung> temp = new ArrayList<>();
 
@@ -63,6 +90,12 @@ public class AusgabeSchueler {
         return temp;
     }
 
+    /**
+     * schreibt die Daten in die Datei
+     *
+     * @param data
+     * @throws IOException
+     */
     private static void schreibeInDatei(List<String> data) throws IOException {
         Path csvFile = Paths.get(AUSGABESCHUELER + ".csv");
         Files.deleteIfExists(csvFile);

@@ -126,4 +126,45 @@ public class Utils {
         }
         return result;
     }
+
+    //ToDo muss noch ausgibig getestet werden
+    /**
+     * @author Maurice, Jan
+     * @param schueler
+     * @param tempSchueler
+     */
+    public static double scoreBerechnung(List<Schueler> schueler, List<Schueler> tempSchueler) {
+        double maxScore = 0;
+        double wirklicherScore = 0;
+        for (Schueler s : schueler) {
+            //schuelerMaxPunktzahl nur zur Kontrolle der Wahlen da
+            int schuelerMaxPunktzahl = 0;
+            int aktuellerSchuelerScore = 0;
+            for(int i = 0; i < 6 && !(schuelerMaxPunktzahl >= 20) ; i++) {
+                //legt die Maximale Punktzahl fest
+                if(s.getWahl()[i] != 0) {
+                    maxScore = maxScore + 6-i;
+                    schuelerMaxPunktzahl = schuelerMaxPunktzahl + 6-i;
+                }
+            }
+            for(Schueler ts : tempSchueler) {
+                if(ts.getKlasse().equals(s.getKlasse()) &&
+                        ts.getNachname().equals(s.getNachname()) &&
+                        ts.getVorname().equals(s.getVorname())) {
+                    for(int i = 0; i < 6 && aktuellerSchuelerScore < schuelerMaxPunktzahl; i++) {
+                        //legt die Maximale Punktzahl fest
+                        if(s.getWahl()[i] == ts.getWahl()[i] && s.getWahl()[i] != 0) {
+                            wirklicherScore = wirklicherScore + 6-i;
+                            aktuellerSchuelerScore = aktuellerSchuelerScore + 6-i;
+                        }
+                    }
+                    System.out.println("Aktueller Score: " + wirklicherScore);
+                    System.out.println("Maximaler Score: " + maxScore);
+                    break;
+                }
+            }
+        }
+        System.out.println("Aktueller wirklicehr score: " + (wirklicherScore / maxScore) * 100 + "%");
+        return (wirklicherScore / maxScore) * 100;
+    }
 }

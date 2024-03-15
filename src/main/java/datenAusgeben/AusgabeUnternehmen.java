@@ -36,15 +36,17 @@ public class AusgabeUnternehmen {
         List<String> data = new ArrayList<>();
 
         for (Zuordnung z : zuordnungen) {
-            data.add(z.getVeranstaltung().getUnternehmen() + ";" + z.getVeranstaltung().getFachrichtung());
-            data.add(z.getZeitpunkt().toString());
-            data.add("");
+            if (z.getSchuelerList().size() > 0) {
+                data.add(z.getVeranstaltung().getUnternehmen() + ";" + z.getVeranstaltung().getFachrichtung());
+                data.add(z.getZeitpunkt().toString());
+                data.add("");
 
-            data.add("Klasse;Nachname;Vorname;Anwesend?");
-            for (Schueler s : z.getSchuelerList()) {
-                data.add(s.toCSVString());
+                data.add("Klasse;Nachname;Vorname;Anwesend?");
+                for (Schueler s : z.getSchuelerList()) {
+                    data.add(s.toCSVString());
+                }
+                data.add("");
             }
-            data.add("");
         }
         return data;
     }

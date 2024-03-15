@@ -133,11 +133,10 @@ public class Utils {
      * @author Maurice, Jan
      * @param tempSchueler
      */
-    public static double scoreBerechnung(List<Schueler> tempSchueler) throws IOException {
-        List<Schueler> schueler = SchuelerWuensche.auslesen();
+    public static double scoreBerechnung(List<Schueler> tempSchueler, List<Schueler> original) throws IOException {
         double maxScore = 0;
         double wirklicherScore = 0;
-        for (Schueler s : schueler) {
+        for (Schueler s : original) {
             //schuelerMaxPunktzahl nur zur Kontrolle der Wahlen da
             int schuelerMaxPunktzahl = 0;
             int aktuellerSchuelerScore = 0;

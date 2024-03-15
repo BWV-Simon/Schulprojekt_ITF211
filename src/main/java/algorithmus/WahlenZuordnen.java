@@ -64,7 +64,6 @@ public class WahlenZuordnen {
             }
         }
         System.out.println("Ende");
-        Utils.scoreBerechnung(tempSchueler);
         autofillSchueler(schuelerAutofill, veranstaltungenSlots);
         return veranstaltungenSlots;
     }

@@ -4,6 +4,7 @@ import datenmodelle.Schueler;
 import datenmodelle.Veranstaltung;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -169,5 +170,78 @@ public class UtilsTest {
 
         //then
         assertEquals(result.size() ,2);
+    }
+
+    /**
+     * @author Maurice, Jan
+     */
+    @Test
+    public void ermittleWunschquote100Prozent() {
+        //given
+        ArrayList<Schueler> schueler = new ArrayList<>();
+        ArrayList<Schueler> tempSchueler = new ArrayList<>();
+
+        schueler.add(new Schueler("Hans", "Peter", "AAA123", new int[] {1,2,3,4,5,6}));
+        tempSchueler.add(new Schueler("Hans", "Peter", "AAA123", new int[] {1,2,3,4,5,6}));
+        schueler.add(new Schueler("Johan", "Kran", "ABC987", new int[] {2,2,3,4,5,6}));
+        tempSchueler.add(new Schueler("Johan", "Kran", "ABC987", new int[] {2,2,3,4,5,6}));
+        schueler.add(new Schueler("Fred", "Peter", "AAA123", new int[] {1,2,66,4,5,6}));
+        tempSchueler.add(new Schueler("Fred", "Peter", "AAA123", new int[] {1,2,66,4,5,6}));
+
+        try {
+            //When
+            double score = Utils.scoreBerechnung(tempSchueler, schueler);
+            //Then
+            assertEquals(100.0, score, 0);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    /**
+     * @author Maurice, Jan
+     */
+    @Test
+    public void ermittleWunschquote50Prozent() {
+        //given
+        ArrayList<Schueler> schueler = new ArrayList<>();
+        ArrayList<Schueler> tempSchueler = new ArrayList<>();
+
+        schueler.add(new Schueler("Hans", "Peter", "AAA123", new int[] {1,2,3,4,5,6}));
+        tempSchueler.add(new Schueler("Hans", "Peter", "AAA123", new int[] {1,2,3,4,5,6}));
+        schueler.add(new Schueler("Johan", "Kran", "ABC987", new int[] {5552,145,123,8,7,2}));
+        tempSchueler.add(new Schueler("Johan", "Kran", "ABC987", new int[] {2,2,3,4,5,6}));
+
+        try {
+            //When
+            double score = Utils.scoreBerechnung(tempSchueler, schueler);
+            //Then
+            assertEquals(50.0, score, 0);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * @author Maurice, Jan
+     */
+    @Test
+    public void ermittleWunschquote100ProzentLeereWuensche() {
+        //given
+        ArrayList<Schueler> schueler = new ArrayList<>();
+        ArrayList<Schueler> tempSchueler = new ArrayList<>();
+
+        schueler.add(new Schueler("Hans", "Peter", "AAA123", new int[] {1,2,3,4,5,6}));
+        tempSchueler.add(new Schueler("Hans", "Peter", "AAA123", new int[] {1,2,3,4,5,6}));
+        schueler.add(new Schueler("Johan", "Kran", "ABC987", new int[] {0,0,0,0,0,0}));
+        tempSchueler.add(new Schueler("Johan", "Kran", "ABC987", new int[] {2,2,3,4,5,6}));
+
+        try {
+            //When
+            double score = Utils.scoreBerechnung(tempSchueler, schueler);
+            //Then
+            assertEquals(100.0, score, 0);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

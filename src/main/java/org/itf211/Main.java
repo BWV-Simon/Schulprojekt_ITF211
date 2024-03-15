@@ -1,6 +1,7 @@
 package org.itf211;
 
 
+import algorithmus.Utils;
 import algorithmus.WahlenZuordnen;
 import datenEinlesen.DateiKonvertieren;
 import datenEinlesen.SchuelerWuensche;
@@ -20,7 +21,9 @@ Main {
         try {
             List<Veranstaltung> vliste = VorhandeneVeranstaltungen.erstellenVeranstaltungen();
             List<Schueler> sliste = SchuelerWuensche.auslesen();
+            List<Schueler> original = SchuelerWuensche.auslesen();
             HashMap<Veranstaltung,List<Zuordnung>> result = WahlenZuordnen.zuordnungWahlen(sliste,vliste);
+            Utils.scoreBerechnung(sliste, original);
             System.out.println("Ende Main");
 
         } catch (IOException e) {

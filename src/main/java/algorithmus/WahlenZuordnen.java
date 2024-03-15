@@ -11,24 +11,29 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * @author Julia Hemkendreis
+ * @author Julia, Simon, Jan, Maurice
  */
 public class WahlenZuordnen {
 
+    /** Hauptmethode fuer den Algorithmus
+     *  Verteilung der Wahlen mit entsprechender Utilisierung der weiteren Methoden (autofill)
+     * @author Simon, Julia & Jo
+     * @param schuelerWahlen
+     * @param veranstaltungList
+     * @return HashMap<Veranstaltung,List<Zuordnung>>
+     */
     public static HashMap<Veranstaltung,List<Zuordnung>> zuordnungWahlen(List<Schueler> schuelerWahlen, List<Veranstaltung> veranstaltungList) {
         List<Schueler> tempSchueler = new ArrayList<>();
         //Alle moeglichen Veranstaltungsslots zu den teilnehmenden Unternehmen anlegen und zwischenspeichern
         HashMap<Veranstaltung,List<Zuordnung>> veranstaltungenSlots = Utils.ermittleAlleSlotsZuVeranstaltung(veranstaltungList);
         // Liste an Schueler fuer die zufaellige Zuordnung anhand der Schueler ohne Wuensche erstellen
         List<Schueler> schuelerAutofill = Utils.ermittleSchuelerOhneWuensche(schuelerWahlen);
-
         //Liste der Schueler von den Schuelern, die keine Wuensche haben bereinigen
         for (Schueler s : schuelerWahlen) {
             if (!schuelerAutofill.contains(s)) {
                 tempSchueler.add(s);
             }
         }
-        System.out.println("Start");
         // Zuordnung der Schueler nach Wuenschen und zufaellig angeordnet
         for (int i = 0; i < 6; i++) {
             Collections.shuffle(tempSchueler);
@@ -47,13 +52,11 @@ public class WahlenZuordnen {
                                 } else if(x == veranstaltungenSlots.get(v).size() - 1) {
                                         s.setWahl(i, 0);
                                         schuelerAutofill.add(s);
-                                        System.err.println(s.getNachname() + " konnte nicht zugeordnet werden " + i);
                                         break;
                                     }
                                 }
                             } else if(schuelerwunsch == 0) {
                             if(!schuelerAutofill.contains(s)) {
-                                System.out.println(s.getNachname() + " hat keinen Wunsch angegeben " + i);
                                 schuelerAutofill.add(s);
                             }
                             break;
@@ -63,20 +66,23 @@ public class WahlenZuordnen {
             }
         }
         autofillSchueler(schuelerAutofill, veranstaltungenSlots);
-        //TODO: hier wäre der Methodenaufruf
-        checkVeranstaltungskapazitaeten(veranstaltungenSlots);
-        System.out.println("Ende");
         return veranstaltungenSlots;
     }
 
+    /** Methode, die zu einer uebergebenen Zuordnung den entsprechenden Schueler hinzufuegt und den Schuelerwunsch in dem
+     * Wahlslot setzt und den Zeitslot fuer den Schueler zwischenspeichert
+     * @author Simon & Julia
+     * @param zo
+     * @param s
+     * @param wahlSlot
+     * @param schuelerwunsch
+     */
     private static void zuordnenSchueler(Zuordnung zo, Schueler s, int wahlSlot, int schuelerwunsch) {
         zo.setKapazitaet(zo.getKapazitaet() - 1);
         zo.setKapazitaet(zo.getKapazitaet() - 1);
         zo.addSchueler(s);
         s.addStunden(zo.getZeitpunkt());
         s.setWahl(wahlSlot, schuelerwunsch);
-        System.out.println(s.getNachname() + " wurde für " + zo.getZeitpunkt() + " bei " + zo.getVeranstaltung().getUnternehmen() + " für den Wunsch: " + wahlSlot + " zugeordnet.");
-
     }
 
     /** Ueberladene Methode zum Zuordnen von Schuelern via Autofill
@@ -89,8 +95,8 @@ public class WahlenZuordnen {
         zo.setKapazitaet(zo.getKapazitaet() - 1);
         s.addStunden(zo.getZeitpunkt());
         zo.addSchueler(s);
-        System.out.println(s.getNachname() + " wurde für " + zo.getZeitpunkt() + " bei " + zo.getVeranstaltung().getUnternehmen() + " zugeordnet. via Autofill");
     }
+
     /**
      * @author Jan & Maurice
      * Autofill-Behandlung der noch offenen Schuelerslots
@@ -111,9 +117,15 @@ public class WahlenZuordnen {
         }
     }
 
+    /** Methode zur Sicherstellung, dass nur Veranstaltungen, deren Mindestkapazität erfuellt wurde stattfinden
+     * Schueler deren Wunschveranstaltung nicht stattfinden kann werden autofilled
+     * Zuordnungen, die nicht genug Schueler haben,werden nicht mehr beruecksichtigt (Kapazitaet auf 0 gesetzt und
+     * Schueler werden entfernt)
+     * @author Simon, Julia
+     * @param input
+     */
     public static void checkVeranstaltungskapazitaeten(HashMap<Veranstaltung,List<Zuordnung>> input){
         ArrayList<Schueler> schuelerAutoFill = new ArrayList<>();
-
         ArrayList<Zuordnung> zuordnungen = new ArrayList<>();
         for(Veranstaltung v : input.keySet()){
             for (Zuordnung z : input.get(v)){
@@ -136,7 +148,6 @@ public class WahlenZuordnen {
                 zo.getSchuelerList().clear();
             }
         }
-
         autofillSchueler(schuelerAutoFill, input);
     }
 }

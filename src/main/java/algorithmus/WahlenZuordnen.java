@@ -63,6 +63,8 @@ public class WahlenZuordnen {
             }
         }
         autofillSchueler(schuelerAutofill, veranstaltungenSlots);
+        //TODO: hier wäre der Methodenaufruf
+        checkVeranstaltungskapazitaeten(veranstaltungenSlots);
         System.out.println("Ende");
         return veranstaltungenSlots;
     }
@@ -107,5 +109,34 @@ public class WahlenZuordnen {
                 }
             }
         }
+    }
+
+    public static void checkVeranstaltungskapazitaeten(HashMap<Veranstaltung,List<Zuordnung>> input){
+        ArrayList<Schueler> schuelerAutoFill = new ArrayList<>();
+
+        ArrayList<Zuordnung> zuordnungen = new ArrayList<>();
+        for(Veranstaltung v : input.keySet()){
+            for (Zuordnung z : input.get(v)){
+                zuordnungen.add(z);
+            }
+        }
+        HashMap<Zuordnung, Boolean> result = Utils.ueberpruefeAuslastungZuordnungen(zuordnungen);
+        for(Zuordnung zo : result.keySet()){
+            if(!result.get(zo)){
+                for(Schueler s : zo.getSchuelerList()){
+                    s.deleteStunde(zo.getZeitpunkt());
+                    for(int i = 0; i < s.getWahl().length; i++){
+                        if(s.getWahl()[i] == zo.getVeranstaltung().getId()){
+                            s.setWahl(i, 0);
+                            zo.setKapazitaet(0);
+                            schuelerAutoFill.add(s);
+                        }
+                    }
+                }
+                zo.getSchuelerList().clear();
+            }
+        }
+
+        autofillSchueler(schuelerAutoFill, input);
     }
 }

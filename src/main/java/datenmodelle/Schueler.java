@@ -81,6 +81,12 @@ public class Schueler {
         }
     }
 
+    public void deleteStunde(Timeslot_Enum stunde){
+        if(stunden.contains(stunde)){
+            stunden.remove(stunde);
+        }
+    }
+
     /**
      * @return aufbereiteter String zu Testzwecken
      * @author Jo Duras

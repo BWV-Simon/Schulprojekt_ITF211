@@ -1,10 +1,12 @@
 package algorithmus;
 
+import datenEinlesen.SchuelerWuensche;
 import datenmodelle.Schueler;
 import datenmodelle.Timeslot_Enum;
 import datenmodelle.Veranstaltung;
 import datenmodelle.Zuordnung;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
@@ -127,13 +129,12 @@ public class Utils {
         return result;
     }
 
-    //ToDo muss noch ausgibig getestet werden
     /**
      * @author Maurice, Jan
-     * @param schueler
      * @param tempSchueler
      */
-    public static double scoreBerechnung(List<Schueler> schueler, List<Schueler> tempSchueler) {
+    public static double scoreBerechnung(List<Schueler> tempSchueler) throws IOException {
+        List<Schueler> schueler = SchuelerWuensche.auslesen();
         double maxScore = 0;
         double wirklicherScore = 0;
         for (Schueler s : schueler) {
@@ -158,8 +159,6 @@ public class Utils {
                             aktuellerSchuelerScore = aktuellerSchuelerScore + 6-i;
                         }
                     }
-                    System.out.println("Aktueller Score: " + wirklicherScore);
-                    System.out.println("Maximaler Score: " + maxScore);
                     break;
                 }
             }

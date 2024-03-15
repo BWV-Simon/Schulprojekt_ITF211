@@ -5,6 +5,7 @@ import datenmodelle.Timeslot_Enum;
 import datenmodelle.Veranstaltung;
 import datenmodelle.Zuordnung;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public class WahlenZuordnen {
 
-    public static HashMap<Veranstaltung,List<Zuordnung>> zuordnungWahlen(List<Schueler> schuelerWahlen, List<Veranstaltung> veranstaltungList) {
+    public static HashMap<Veranstaltung,List<Zuordnung>> zuordnungWahlen(List<Schueler> schuelerWahlen, List<Veranstaltung> veranstaltungList) throws IOException {
         List<Schueler> tempSchueler = new ArrayList<>();
         //Alle moeglichen Veranstaltungsslots zu den teilnehmenden Unternehmen anlegen und zwischenspeichern
         HashMap<Veranstaltung,List<Zuordnung>> veranstaltungenSlots = Utils.ermittleAlleSlotsZuVeranstaltung(veranstaltungList);
@@ -45,6 +46,7 @@ public class WahlenZuordnen {
                                     zuordnenSchueler(veranstaltungenSlots.get(v).get(x), s, i, schuelerwunsch);
                                     break;
                                 } else if(x == veranstaltungenSlots.get(v).size() - 1) {
+                                        s.setWahl(i,0);
                                         schuelerAutofill.add(s);
                                         System.err.println(s.getNachname() + " konnte nicht zugeordnet werden " + i);
                                         break;
@@ -62,7 +64,7 @@ public class WahlenZuordnen {
             }
         }
         System.out.println("Ende");
-        Utils.scoreBerechnung(schuelerWahlen, tempSchueler);
+        Utils.scoreBerechnung(tempSchueler);
         autofillSchueler(schuelerAutofill, veranstaltungenSlots);
         return veranstaltungenSlots;
     }
@@ -81,10 +83,10 @@ public class WahlenZuordnen {
      * Jan & Maurice
      * @param zo
      * @param s
-     * @param schuelerwunsch
      */
-    private static void zuordnenSchueler(Zuordnung zo, Schueler s, int schuelerwunsch) {
+    private static void zuordnenSchueler(Zuordnung zo, Schueler s) {
         zo.setKapazitaet(zo.getKapazitaet() - 1);
+        zo.addSchueler(s);
         s.addStunden(zo.getZeitpunkt());
         System.out.println(s.getNachname() + " wurde für " + zo.getZeitpunkt() + " bei " + zo.getVeranstaltung().getUnternehmen() + " zugeordnet. via Autofill");
     }
@@ -97,7 +99,7 @@ public class WahlenZuordnen {
             for (Veranstaltung v : veranstaltungenSlots.keySet()) {
                 for (Zuordnung zo : veranstaltungenSlots.get(v)) {
                     if(zo.getKapazitaet()>0 && (!s.getStunden().contains(zo.getZeitpunkt()))){
-                        zuordnenSchueler(zo, s, -1);
+                        zuordnenSchueler(zo, s);
                         break;
                     }
                 }

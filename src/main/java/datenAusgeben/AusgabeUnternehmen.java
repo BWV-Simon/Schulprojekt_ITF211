@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * @author Jo Duras
  */
-public class AusgabeErstellen {
+public class AusgabeUnternehmen {
 
     private static final String AUSGABEZUORDNUNG = "ausgabe/zuordnung";
 
@@ -27,6 +27,12 @@ public class AusgabeErstellen {
      * @throws IOException
      */
     public static void zuordnungErstellen(List<Zuordnung> zuordnungen) throws IOException {
+        List<String> data = ersteleListeFuerAusgabe(zuordnungen);
+        schreibeInDatei(data);
+
+    }
+
+    protected static List<String> ersteleListeFuerAusgabe(List<Zuordnung> zuordnungen) {
         List<String> data = new ArrayList<>();
 
         for (Zuordnung z : zuordnungen) {
@@ -40,7 +46,10 @@ public class AusgabeErstellen {
             }
             data.add("");
         }
-        System.out.println(data);
+        return data;
+    }
+
+    private static void schreibeInDatei(List<String> data) throws IOException {
         Path csvFile = Paths.get(AUSGABEZUORDNUNG + ".csv");
         Files.deleteIfExists(csvFile);
         Files.createFile(csvFile);
@@ -51,6 +60,5 @@ public class AusgabeErstellen {
         }
 
         DateiKonvertieren.csvToExcel(AUSGABEZUORDNUNG + ".csv", AUSGABEZUORDNUNG + ".xlsx");
-
     }
 }

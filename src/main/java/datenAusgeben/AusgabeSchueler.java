@@ -12,6 +12,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -19,7 +21,7 @@ import java.util.List;
  */
 public class AusgabeSchueler {
 
-    private static final String AUSGABESCHUELER = "ausgabe/schuelerListen";
+    private static final String AUSGABESCHUELER = "H:/BOVS/Ausgabe/schuelerlisten";
 
     /**
      * Erstellt die Excel-Listen fuer alle Schueler mit den Veranstaltungen
@@ -51,7 +53,7 @@ public class AusgabeSchueler {
 
             for (Zuordnung z : zuordnungSchueler) {
                 data.add(z.getZeitpunkt().name() + ";" + z.getZeitpunkt().toString()
-                        + ";" + z.getRaumNr()
+                        + ";" //Raumnummer
                         + ";" + z.getVeranstaltung().getUnternehmen()
                         + ";" + z.getVeranstaltung().getFachrichtung());
             }
@@ -87,6 +89,8 @@ public class AusgabeSchueler {
                 }
             }
         }
+        Comparator<Zuordnung> comparator = Comparator.comparing(Zuordnung::getZeitpunkt);
+        Collections.sort(temp, comparator);
         return temp;
     }
 

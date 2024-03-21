@@ -7,6 +7,7 @@ import datenmodelle.Veranstaltung;
 import datenmodelle.Zuordnung;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
@@ -162,7 +163,10 @@ public class Utils {
                 }
             }
         }
-        System.out.println("Aktueller wirklicehr score: " + (wirklicherScore / maxScore) * 100 + "%");
-        return (wirklicherScore / maxScore) * 100;
+        double endScore = (wirklicherScore / maxScore) * 100;
+        DecimalFormat df = new DecimalFormat("#,##");
+        df.applyPattern("#.##");
+        double cuttedScore = Double.parseDouble(df.format(endScore).replace(',','.'));
+        return cuttedScore;
     }
 }

@@ -1,11 +1,9 @@
 package algorithmus;
 
 import datenmodelle.Schueler;
-import datenmodelle.Timeslot_Enum;
 import datenmodelle.Veranstaltung;
 import datenmodelle.Zuordnung;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -100,6 +98,8 @@ public class WahlenZuordnen {
 
     /**
      * @author Jan & Maurice
+     * @param schuelerList
+     * @param veranstaltungenSlots
      * Autofill-Behandlung der noch offenen Schuelerslots
      */
     public static void autofillSchueler(List<Schueler> schuelerList, HashMap<Veranstaltung, List<Zuordnung>> veranstaltungenSlots) {

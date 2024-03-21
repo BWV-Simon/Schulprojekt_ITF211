@@ -40,7 +40,6 @@ public class AusgabeErstellen {
             }
             data.add("");
         }
-        System.out.println(data);
         Path csvFile = Paths.get(AUSGABEZUORDNUNG + ".csv");
         Files.deleteIfExists(csvFile);
         Files.createFile(csvFile);

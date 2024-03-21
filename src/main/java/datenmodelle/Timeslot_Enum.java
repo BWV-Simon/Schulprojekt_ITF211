@@ -1,7 +1,5 @@
 package datenmodelle;
 
-import java.sql.Time;
-
 /**
  * @author Julia Hemkendreis
  */

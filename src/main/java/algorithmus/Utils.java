@@ -1,6 +1,5 @@
 package algorithmus;
 
-import datenEinlesen.SchuelerWuensche;
 import datenmodelle.Schueler;
 import datenmodelle.Timeslot_Enum;
 import datenmodelle.Veranstaltung;
@@ -19,7 +18,7 @@ public class Utils {
 
 
     /**
-     * author Julia
+     * @author Julia
      * @param List<Veranstaltungen> veranstaltungen
      * @return HashMap<Veranstaltung, List<Zuordnung>>
      *     Diese Methode erstellt eine HashMap, bei der zu jedem Unternehmen die Liste aller möglichen Zuordnungen (Zeitslots, Veranstaltung)
@@ -130,9 +129,10 @@ public class Utils {
         return result;
     }
 
-    /**
+    /** Berechnet die Erfolgsquote des Algorithmus
      * @author Maurice, Jan
      * @param tempSchueler
+     * @param original
      */
     public static double scoreBerechnung(List<Schueler> tempSchueler, List<Schueler> original) throws IOException {
         double maxScore = 0;
@@ -141,32 +141,32 @@ public class Utils {
             //schuelerMaxPunktzahl nur zur Kontrolle der Wahlen da
             int schuelerMaxPunktzahl = 0;
             int aktuellerSchuelerScore = 0;
-            for(int i = 0; i < 6 && !(schuelerMaxPunktzahl >= 20) ; i++) {
+            for (int i = 0; i < 6 && !(schuelerMaxPunktzahl >= 20); i++) {
                 //legt die Maximale Punktzahl fest
-                if(s.getWahl()[i] != 0) {
-                    maxScore = maxScore + 6-i;
-                    schuelerMaxPunktzahl = schuelerMaxPunktzahl + 6-i;
+                if (s.getWahl()[i] != 0) {
+                    maxScore = maxScore + 6 - i;
+                    schuelerMaxPunktzahl = schuelerMaxPunktzahl + 6 - i;
                 }
             }
-            for(Schueler ts : tempSchueler) {
-                if(ts.getKlasse().equals(s.getKlasse()) &&
+            for (Schueler ts : tempSchueler) {
+                if (ts.getKlasse().equals(s.getKlasse()) &&
                         ts.getNachname().equals(s.getNachname()) &&
                         ts.getVorname().equals(s.getVorname())) {
-                    for(int i = 0; i < 6 && aktuellerSchuelerScore < schuelerMaxPunktzahl; i++) {
+                    for (int i = 0; i < 6 && aktuellerSchuelerScore < schuelerMaxPunktzahl; i++) {
                         //legt die Maximale Punktzahl fest
-                        if(s.getWahl()[i] == ts.getWahl()[i] && s.getWahl()[i] != 0) {
-                            wirklicherScore = wirklicherScore + 6-i;
-                            aktuellerSchuelerScore = aktuellerSchuelerScore + 6-i;
+                        if (s.getWahl()[i] == ts.getWahl()[i] && s.getWahl()[i] != 0) {
+                            wirklicherScore = wirklicherScore + 6 - i;
+                            aktuellerSchuelerScore = aktuellerSchuelerScore + 6 - i;
                         }
                     }
                     break;
                 }
             }
         }
+        //Ergebnis wird auf 2-Nachkommastellen abgeschnitten
         double endScore = (wirklicherScore / maxScore) * 100;
         DecimalFormat df = new DecimalFormat("#,##");
         df.applyPattern("#.##");
-        double cuttedScore = Double.parseDouble(df.format(endScore).replace(',','.'));
-        return cuttedScore;
+        return Double.parseDouble(df.format(endScore).replace(',','.'));
     }
 }

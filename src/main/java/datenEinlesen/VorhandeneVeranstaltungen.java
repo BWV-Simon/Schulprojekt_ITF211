@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Julia Hemkendreis
+ * @author Julia
  */
 public class VorhandeneVeranstaltungen {
 
-    private static final String pfadExcel = "H:/BOVS/Eingabe/Unternehmen.xlsx";
+    private static final String PFAD_EXCEL = "H:/BOVS/Eingabe/Unternehmen.xlsx";
 
-    private static final String pfadCSV = "eingabe/Unternehmen.csv";
+    private static final String PFAD_CSV = "eingabe/Unternehmen.csv";
 
     /** Diese Methode liest aus der angegebenen Datei (pfadExcel) die enthaltenen Unternehmen aus
      *  und speichert die Zeilen in einer String-Liste
@@ -26,8 +26,8 @@ public class VorhandeneVeranstaltungen {
      * @throws IOException
      */
     private static List<String> auslesenVeranstaltungen() throws IOException {
-        DateiKonvertieren.excelToCSV(pfadExcel, pfadCSV);
-        Path file = Paths.get(pfadCSV);
+        DateiKonvertieren.excelToCSV(PFAD_EXCEL, PFAD_CSV);
+        Path file = Paths.get(PFAD_CSV);
         List<String> data = Files.readAllLines(file, StandardCharsets.ISO_8859_1);
         return data;
     }

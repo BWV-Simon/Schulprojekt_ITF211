@@ -6,8 +6,10 @@ import algorithmus.WahlenZuordnen;
 import datenAusgeben.AusgabeSchueler;
 import datenAusgeben.AusgabeUnternehmen;
 import datenEinlesen.DateiKonvertieren;
+import datenEinlesen.RaumeEinlesen;
 import datenEinlesen.SchuelerWuensche;
 import datenEinlesen.VorhandeneVeranstaltungen;
+import datenmodelle.Raum;
 import datenmodelle.Schueler;
 import datenmodelle.Veranstaltung;
 import datenmodelle.Zuordnung;
@@ -22,9 +24,10 @@ public class Main {
 
         try {
             List<Veranstaltung> vliste = VorhandeneVeranstaltungen.erstellenVeranstaltungen();
+            List<Raum> rliste = RaumeEinlesen.erstellenRaume(vliste.size());
             List<Schueler> original = SchuelerWuensche.auslesen();
             List<Schueler> sliste = SchuelerWuensche.auslesen();
-            HashMap<Veranstaltung, List<Zuordnung>> result = WahlenZuordnen.zuordnungWahlen(sliste, vliste);
+            HashMap<Veranstaltung, List<Zuordnung>> result = WahlenZuordnen.zuordnungWahlen(sliste, vliste, rliste);
             double score = Utils.scoreBerechnung(sliste, original);
             List<Zuordnung> zListe = new ArrayList<>();
             for(Veranstaltung v : result.keySet()) {
@@ -33,8 +36,9 @@ public class Main {
                     zListe.add(z);
                 }
             }
-            AusgabeSchueler.SchuelerListenErstellen(sliste, zListe, score);
+            AusgabeSchueler.schuelerListenErstellen(sliste, zListe, score);
             AusgabeUnternehmen.zuordnungErstellen(zListe);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

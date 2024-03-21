@@ -38,7 +38,7 @@ public class AusgabeUnternehmen {
         for (Zuordnung z : zuordnungen) {
             if (z.getSchuelerList().size() > 0) {
                 data.add(z.getVeranstaltung().getUnternehmen() + ";" + z.getVeranstaltung().getFachrichtung());
-                data.add(z.getZeitpunkt().toString());
+                data.add(z.getZeitpunkt().toString() + ";" + z.getRaumNr().getRaumname());
                 data.add("Klasse;Nachname;Vorname;Anwesend?");
                 for (Schueler s : z.getSchuelerList()) {
                     data.add(s.toCSVString());

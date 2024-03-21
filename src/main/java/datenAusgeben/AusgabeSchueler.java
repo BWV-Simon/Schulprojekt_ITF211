@@ -30,7 +30,7 @@ public class AusgabeSchueler {
      * @param zuordnungen
      * @throws IOException
      */
-    public static void SchuelerListenErstellen(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen, double score) throws IOException {
+    public static void schuelerListenErstellen(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen, double score) throws IOException {
         List<String> data = erstelleListeFuerAusgabe(schuelerListe, zuordnungen, score);
         schreibeInDatei(data);
     }
@@ -57,7 +57,7 @@ public class AusgabeSchueler {
 
             for (Zuordnung z : zuordnungSchueler) {
                 data.add(z.getZeitpunkt().name() + ";" + z.getZeitpunkt().toString()
-                        + ";" //Raumnummer
+                        + ";" + z.getRaumNr()
                         + ";" + z.getVeranstaltung().getUnternehmen()
                         + ";" + z.getVeranstaltung().getFachrichtung());
             }

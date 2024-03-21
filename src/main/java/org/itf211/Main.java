@@ -3,10 +3,12 @@ package org.itf211;
 
 import algorithmus.Utils;
 import algorithmus.WahlenZuordnen;
+import datenAusgeben.AusgabeRaumUndZeitplan;
 import datenAusgeben.AusgabeSchueler;
 import datenAusgeben.AusgabeUnternehmen;
 import datenEinlesen.SchuelerWuensche;
 import datenEinlesen.VorhandeneVeranstaltungen;
+import datenmodelle.Raum;
 import datenmodelle.Schueler;
 import datenmodelle.Veranstaltung;
 import datenmodelle.Zuordnung;
@@ -21,9 +23,10 @@ public class Main {
 
         try {
             List<Veranstaltung> vliste = VorhandeneVeranstaltungen.erstellenVeranstaltungen();
+            List<Raum> rliste = RaumeEinlesen.erstellenRaume();
             List<Schueler> original = SchuelerWuensche.auslesen();
             List<Schueler> sliste = SchuelerWuensche.auslesen();
-            HashMap<Veranstaltung, List<Zuordnung>> result = WahlenZuordnen.zuordnungWahlen(sliste, vliste);
+            HashMap<Veranstaltung, List<Zuordnung>> result = WahlenZuordnen.zuordnungWahlen(sliste, vliste, rliste);
             double score = Utils.scoreBerechnung(sliste, original);
             List<Zuordnung> zListe = new ArrayList<>();
             for(Veranstaltung v : result.keySet()) {
@@ -32,8 +35,10 @@ public class Main {
                     zListe.add(z);
                 }
             }
-            AusgabeSchueler.SchuelerListenErstellen(sliste, zListe, score);
+            AusgabeSchueler.schuelerListenErstellen(sliste, zListe);
             AusgabeUnternehmen.zuordnungErstellen(zListe);
+            AusgabeRaumUndZeitplan.zeitplanListeErstellen(result, score);
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

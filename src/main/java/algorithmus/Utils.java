@@ -1,9 +1,6 @@
 package algorithmus;
 
-import datenmodelle.Schueler;
-import datenmodelle.Timeslot_Enum;
-import datenmodelle.Veranstaltung;
-import datenmodelle.Zuordnung;
+import datenmodelle.*;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -168,5 +165,45 @@ public class Utils {
         DecimalFormat df = new DecimalFormat("#,##");
         df.applyPattern("#.##");
         return Double.parseDouble(df.format(endScore).replace(',','.'));
+    }
+
+    /** Die Methode
+     * @author Julia, Maurice
+     * @param zuordnung
+     * @param raeume
+     */
+    public static void zuteilungRaume(HashMap<Veranstaltung, List<Zuordnung>> zuordnung, List<Raum> raeume) {
+        int i = 0;
+        List<Zuordnung> keineRaume = new ArrayList<>();
+        for(Veranstaltung v : zuordnung.keySet() ) {
+            List<Zuordnung> temp_z = zuordnung.get(v);
+            for(Zuordnung z: temp_z) {
+                 if(z.getSchuelerList().size() > 0) {
+                     for(int x = 0; x < raeume.size(); x++) {
+                         if (i == 0) {
+                             if (z.getSchuelerList().size() < raeume.get(x).getKapzität()) {
+                                 z.setRaumNr(raeume.get(x));
+                                 raeume.get(x).addZeitpunkt(z.getZeitpunkt());
+                                 break;
+                             }
+                         } else if (z.getSchuelerList().size() < raeume.get(x).getKapzität() && (!raeume.get(x).getZeiten().contains(z.getZeitpunkt()))) {
+                             z.setRaumNr(raeume.get(x));
+                             raeume.get(x).addZeitpunkt(z.getZeitpunkt());
+                             break;
+                         }
+                     }
+                     if(z.getRaumNr() == null) {
+                         keineRaume.add(z);
+                     }
+                 }
+            }
+            i++;
+        }
+        for(Zuordnung z : keineRaume) {
+            if(z.getSchuelerList().size() > 0) {
+                Raum dummy = new Raum("Dummy", 20);
+                z.setRaumNr(dummy);
+            }
+        }
     }
 }

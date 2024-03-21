@@ -1,5 +1,6 @@
 package algorithmus;
 
+import datenmodelle.Raum;
 import datenmodelle.Schueler;
 import datenmodelle.Veranstaltung;
 import datenmodelle.Zuordnung;
@@ -21,7 +22,7 @@ public class WahlenZuordnen {
      * @param veranstaltungList
      * @return HashMap<Veranstaltung,List<Zuordnung>>
      */
-    public static HashMap<Veranstaltung,List<Zuordnung>> zuordnungWahlen(List<Schueler> schuelerWahlen, List<Veranstaltung> veranstaltungList) {
+    public static HashMap<Veranstaltung,List<Zuordnung>> zuordnungWahlen(List<Schueler> schuelerWahlen, List<Veranstaltung> veranstaltungList, List<Raum> raumList) {
         List<Schueler> tempSchueler = new ArrayList<>();
         //Alle moeglichen Veranstaltungsslots zu den teilnehmenden Unternehmen anlegen und zwischenspeichern
         HashMap<Veranstaltung,List<Zuordnung>> veranstaltungenSlots = Utils.ermittleAlleSlotsZuVeranstaltung(veranstaltungList);
@@ -73,7 +74,7 @@ public class WahlenZuordnen {
          *     checkVeranstaltungskapazitaeten(veranstaltungenSlots);
          * </code>
          */
-
+        Utils.zuteilungRaume(veranstaltungenSlots, raumList);
         return veranstaltungenSlots;
     }
 
@@ -102,6 +103,12 @@ public class WahlenZuordnen {
         zo.setKapazitaet(zo.getKapazitaet() - 1);
         zo.addSchueler(s);
         s.addStunden(zo.getZeitpunkt());
+        for(int i = 0; i < s.getWahl().length; i++) {
+            if (s.getWahl()[i] == 0) {
+                s.setWahl(i, zo.getVeranstaltung().getId());
+                break;
+            }
+        }
     }
 
     /**

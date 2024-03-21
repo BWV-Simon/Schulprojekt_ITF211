@@ -16,9 +16,9 @@ import java.util.List;
  */
 public class VorhandeneVeranstaltungen {
 
-    private static final String pfadExcel = "H:/BOVS/Eingabe/Unternehmen.xlsx";
+    private static final String PFAD_EXCEL = "H:/BOVS/Eingabe/Unternehmen.xlsx";
 
-    private static final String pfadCSV = "eingabe/Unternehmen.csv";
+    private static final String PFAD_CSV = "eingabe/Unternehmen.csv";
 
     /** Diese Methode liest aus der angegebenen Datei (pfadExcel) die enthaltenen Unternehmen aus
      *  und speichert die Zeilen in einer String-Liste
@@ -27,8 +27,8 @@ public class VorhandeneVeranstaltungen {
      * @throws IOException
      */
     private static List<String> auslesenVeranstaltungen() throws IOException {
-        DateiKonvertieren.excelToCSV(pfadExcel, pfadCSV);
-        Path file = Paths.get(pfadCSV);
+        DateiKonvertieren.excelToCSV(PFAD_EXCEL, PFAD_CSV);
+        Path file = Paths.get(PFAD_CSV);
         List<String> data = Files.readAllLines(file, StandardCharsets.ISO_8859_1);
         return data;
     }
@@ -63,12 +63,18 @@ public class VorhandeneVeranstaltungen {
                 unternehmen_temp.setFachrichtung(data_temp[2]);
                 if (data_temp.length > 3  && !data_temp[3].isBlank()) {
                     unternehmen_temp.setMaxSchueler(Integer.parseInt(data_temp[3]));
+                } else {
+                    unternehmen_temp.setMaxSchueler(20);
                 }
                 if (data_temp.length > 4 && !data_temp[4].isBlank()) {
                     unternehmen_temp.setMaxVeranstaltungen(Integer.parseInt(data_temp[4]));
+                } else {
+                    unternehmen_temp.setMaxVeranstaltungen(5);
                 }
                 if (data_temp.length > 5 && !data_temp[5].isBlank()){
                     unternehmen_temp.setFruehesterBeginn(Timeslot_Enum.valueOf(data_temp[5]));
+                } else {
+                    unternehmen_temp.setFruehesterBeginn(Timeslot_Enum.A);
                 }
                 unternehmen.add(unternehmen_temp);
             }

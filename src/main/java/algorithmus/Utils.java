@@ -1,10 +1,13 @@
 package algorithmus;
 
+import datenEinlesen.SchuelerWuensche;
 import datenmodelle.Schueler;
 import datenmodelle.Timeslot_Enum;
 import datenmodelle.Veranstaltung;
 import datenmodelle.Zuordnung;
 
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
@@ -125,5 +128,45 @@ public class Utils {
             }
         }
         return result;
+    }
+
+    /**
+     * @author Maurice, Jan
+     * @param tempSchueler
+     */
+    public static double scoreBerechnung(List<Schueler> tempSchueler, List<Schueler> original) throws IOException {
+        double maxScore = 0;
+        double wirklicherScore = 0;
+        for (Schueler s : original) {
+            //schuelerMaxPunktzahl nur zur Kontrolle der Wahlen da
+            int schuelerMaxPunktzahl = 0;
+            int aktuellerSchuelerScore = 0;
+            for(int i = 0; i < 6 && !(schuelerMaxPunktzahl >= 20) ; i++) {
+                //legt die Maximale Punktzahl fest
+                if(s.getWahl()[i] != 0) {
+                    maxScore = maxScore + 6-i;
+                    schuelerMaxPunktzahl = schuelerMaxPunktzahl + 6-i;
+                }
+            }
+            for(Schueler ts : tempSchueler) {
+                if(ts.getKlasse().equals(s.getKlasse()) &&
+                        ts.getNachname().equals(s.getNachname()) &&
+                        ts.getVorname().equals(s.getVorname())) {
+                    for(int i = 0; i < 6 && aktuellerSchuelerScore < schuelerMaxPunktzahl; i++) {
+                        //legt die Maximale Punktzahl fest
+                        if(s.getWahl()[i] == ts.getWahl()[i] && s.getWahl()[i] != 0) {
+                            wirklicherScore = wirklicherScore + 6-i;
+                            aktuellerSchuelerScore = aktuellerSchuelerScore + 6-i;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        double endScore = (wirklicherScore / maxScore) * 100;
+        DecimalFormat df = new DecimalFormat("#,##");
+        df.applyPattern("#.##");
+        double cuttedScore = Double.parseDouble(df.format(endScore).replace(',','.'));
+        return cuttedScore;
     }
 }

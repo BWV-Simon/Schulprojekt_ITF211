@@ -25,8 +25,7 @@ public class Main {
             List<Schueler> original = SchuelerWuensche.auslesen();
             List<Schueler> sliste = SchuelerWuensche.auslesen();
             HashMap<Veranstaltung, List<Zuordnung>> result = WahlenZuordnen.zuordnungWahlen(sliste, vliste);
-            Utils.scoreBerechnung(sliste, original);
-            HashMap<Veranstaltung,List<Zuordnung>> result = WahlenZuordnen.zuordnungWahlen(sliste,vliste);
+            double score = Utils.scoreBerechnung(sliste, original);
             List<Zuordnung> zListe = new ArrayList<>();
             for(Veranstaltung v : result.keySet()) {
                 List<Zuordnung> temp = result.get(v);
@@ -34,13 +33,10 @@ public class Main {
                     zListe.add(z);
                 }
             }
-            AusgabeSchueler.SchuelerListenErstellen(sliste, zListe);
+            AusgabeSchueler.SchuelerListenErstellen(sliste, zListe, score);
             AusgabeUnternehmen.zuordnungErstellen(zListe);
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 }

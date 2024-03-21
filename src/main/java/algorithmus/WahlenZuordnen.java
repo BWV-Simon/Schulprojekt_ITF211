@@ -79,6 +79,7 @@ public class WahlenZuordnen {
      */
     private static void zuordnenSchueler(Zuordnung zo, Schueler s, int wahlSlot, int schuelerwunsch) {
         zo.setKapazitaet(zo.getKapazitaet() - 1);
+        zo.setKapazitaet(zo.getKapazitaet() - 1);
         zo.addSchueler(s);
         s.addStunden(zo.getZeitpunkt());
         s.setWahl(wahlSlot, schuelerwunsch);

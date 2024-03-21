@@ -60,5 +60,6 @@ public class AusgabeUnternehmen {
         }
 
         DateiKonvertieren.csvToExcel(AUSGABEZUORDNUNG + ".csv", AUSGABEZUORDNUNG + ".xlsx");
+        Files.deleteIfExists(csvFile);
     }
 }

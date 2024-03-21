@@ -30,8 +30,8 @@ public class AusgabeSchueler {
      * @param zuordnungen
      * @throws IOException
      */
-    public static void SchuelerListenErstellen(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen) throws IOException {
-        List<String> data = erstelleListeFuerAusgabe(schuelerListe, zuordnungen);
+    public static void SchuelerListenErstellen(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen, double score) throws IOException {
+        List<String> data = erstelleListeFuerAusgabe(schuelerListe, zuordnungen, score);
         schreibeInDatei(data);
     }
 
@@ -40,10 +40,14 @@ public class AusgabeSchueler {
      *
      * @param schuelerListe
      * @param zuordnungen
+     * @param score
      * @return LIst<String> fuer Ausgabe
      */
-    protected static List<String> erstelleListeFuerAusgabe(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen) {
+    protected static List<String> erstelleListeFuerAusgabe(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen, double score) {
         List<String> data = new ArrayList<>();
+        data.add("Erfüllungsscore");
+        data.add(String.valueOf(score) + "%");
+        data.add("");
         int i = 1;
         for (Schueler s : schuelerListe) {
             data.add(s.getKlasse());
@@ -111,6 +115,7 @@ public class AusgabeSchueler {
         }
 
         DateiKonvertieren.csvToExcel(AUSGABESCHUELER + ".csv", AUSGABESCHUELER + ".xlsx");
+        Files.deleteIfExists(csvFile);
 
     }
 }

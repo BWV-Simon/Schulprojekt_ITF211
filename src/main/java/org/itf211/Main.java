@@ -6,6 +6,7 @@ import algorithmus.WahlenZuordnen;
 import datenAusgeben.AusgabeRaumUndZeitplan;
 import datenAusgeben.AusgabeSchueler;
 import datenAusgeben.AusgabeUnternehmen;
+import datenEinlesen.RaumeEinlesen;
 import datenEinlesen.SchuelerWuensche;
 import datenEinlesen.VorhandeneVeranstaltungen;
 import datenmodelle.Raum;

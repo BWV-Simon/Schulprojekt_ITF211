@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class AusgabeRaumUndZeitplan {
 
-    private static final String AUSGABE_ZEITPLAN = "ausgabe/plan";
+    private static final String AUSGABE_ZEITPLAN = "H:/BOVS/Ausgabe/plan";
 
     public static void zeitplanListeErstellen(HashMap<Veranstaltung, List<Zuordnung>> veranstaltungMap, double score) throws IOException {
         List<String> data = erstelleZeitUndRaumplanFuerAusgabe(veranstaltungMap, score);

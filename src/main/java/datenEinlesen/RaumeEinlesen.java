@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author  Julia, Maurice
+ * @author  Julia & Maurice
  */
 public class RaumeEinlesen {
 
-    private static final String PFAD_EXCEL = "eingabe/Raeume.xlsx";
+    private static final String PFAD_EXCEL = "H:/BOVS/Eingabe/Raeume.xlsx";
 
-    private static final String PFAD_CSV = "eingabe/Raeume.csv";
+    private static final String PFAD_CSV = "ausgabe/Raeume.csv";
 
     private static List<String> auslesenRaeume() throws IOException {
         DateiKonvertieren.excelToCSV(PFAD_EXCEL, PFAD_CSV);

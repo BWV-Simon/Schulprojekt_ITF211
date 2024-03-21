@@ -3,6 +3,7 @@ package org.itf211;
 
 import algorithmus.Utils;
 import algorithmus.WahlenZuordnen;
+import datenAusgeben.AusgabeRaumUndZeitplan;
 import datenAusgeben.AusgabeSchueler;
 import datenAusgeben.AusgabeUnternehmen;
 import datenEinlesen.DateiKonvertieren;
@@ -36,8 +37,9 @@ public class Main {
                     zListe.add(z);
                 }
             }
-            AusgabeSchueler.schuelerListenErstellen(sliste, zListe, score);
+            AusgabeSchueler.schuelerListenErstellen(sliste, zListe);
             AusgabeUnternehmen.zuordnungErstellen(zListe);
+            AusgabeRaumUndZeitplan.zeitplanListeErstellen(result, score);
 
         } catch (IOException e) {
             throw new RuntimeException(e);

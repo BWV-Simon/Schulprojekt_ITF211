@@ -167,28 +167,35 @@ public class Utils {
         return Double.parseDouble(df.format(endScore).replace(',','.'));
     }
 
+    /** Die Methode
+     * @author Julia, Maurice
+     * @param zuordnung
+     * @param raeume
+     */
     public static void zuteilungRaume(HashMap<Veranstaltung, List<Zuordnung>> zuordnung, List<Raum> raeume) {
         int i = 0;
         List<Zuordnung> keineRaume = new ArrayList<>();
         for(Veranstaltung v : zuordnung.keySet() ) {
             List<Zuordnung> temp_z = zuordnung.get(v);
             for(Zuordnung z: temp_z) {
-                 for(int x = 0; x < raeume.size(); x++) {
-                    if (i == 0) {
-                        if (z.getSchuelerList().size() < raeume.get(x).getKapzität()) {
-                            z.setRaumNr(raeume.get(i));
-                            raeume.get(x).addZeitpunkt(z.getZeitpunkt());
-                            break;
-                        }
-                    } else if (z.getSchuelerList().size() < raeume.get(x).getKapzität() && (!raeume.get(x).getZeiten().contains(z.getZeitpunkt()))) {
-                        z.setRaumNr(raeume.get(i));
-                        raeume.get(x).addZeitpunkt(z.getZeitpunkt());
-                        break;
-                    }
-                }
-                if(z.getRaumNr() == null) {
-                    keineRaume.add(z);
-                }
+                 if(z.getSchuelerList().size() > 0) {
+                     for(int x = 0; x < raeume.size(); x++) {
+                         if (i == 0) {
+                             if (z.getSchuelerList().size() < raeume.get(x).getKapzität()) {
+                                 z.setRaumNr(raeume.get(x));
+                                 raeume.get(x).addZeitpunkt(z.getZeitpunkt());
+                                 break;
+                             }
+                         } else if (z.getSchuelerList().size() < raeume.get(x).getKapzität() && (!raeume.get(x).getZeiten().contains(z.getZeitpunkt()))) {
+                             z.setRaumNr(raeume.get(x));
+                             raeume.get(x).addZeitpunkt(z.getZeitpunkt());
+                             break;
+                         }
+                     }
+                     if(z.getRaumNr() == null) {
+                         keineRaume.add(z);
+                     }
+                 }
             }
             i++;
         }

@@ -49,7 +49,6 @@ public class AusgabeSchuelerTest {
     @Test
     public void erstelleListeFuerAusgabeTest() {
         //Given
-        double score = 100;
         int[] wahl = {1,2,3,4,5,6};
         Schueler s1 = new Schueler("Max", "Mustermann", "ITF211", wahl);
         Schueler s2 = new Schueler("Maxi", "Musterfrau", "ITF211", wahl);
@@ -73,7 +72,7 @@ public class AusgabeSchuelerTest {
         zuordnungen.add(z3);
 
         //When
-        List<String> ergebnis = AusgabeSchueler.erstelleListeFuerAusgabe(schuelerListe, zuordnungen, score);
+        List<String> ergebnis = AusgabeSchueler.erstelleListeFuerAusgabe(schuelerListe, zuordnungen);
 
         //Then
         for (String line : ergebnis) {

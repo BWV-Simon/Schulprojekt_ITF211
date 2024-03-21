@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class AusgabeUnternehmen {
 
-    private static final String AUSGABEZUORDNUNG = "H:/BOVS/Ausgabe/zuordnung";
+    private static final String AUSGABEZUORDNUNG = "ausgabe/zuordnung";
 
     /**
      * Erstellt Anwesenheitslisten fuer die Unternehmen, damit diese ueberpruefen koennne, ob alls Schule anwesend sind
@@ -34,11 +34,11 @@ public class AusgabeUnternehmen {
 
     protected static List<String> ersteleListeFuerAusgabe(List<Zuordnung> zuordnungen) {
         List<String> data = new ArrayList<>();
-
+        data.add("Anwesenheitsliste");
         for (Zuordnung z : zuordnungen) {
             if (z.getSchuelerList().size() > 0) {
-                data.add(z.getVeranstaltung().getUnternehmen() + ";" + z.getVeranstaltung().getFachrichtung());
-                data.add(z.getZeitpunkt().toString() + ";" + z.getRaumNr().getRaumname());
+                data.add(z.getVeranstaltung().getUnternehmen());
+                data.add(z.getZeitpunkt().toString());
                 data.add("Klasse;Nachname;Vorname;Anwesend?");
                 for (Schueler s : z.getSchuelerList()) {
                     data.add(s.toCSVString());

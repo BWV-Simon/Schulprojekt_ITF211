@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class VorhandeneVeranstaltungen {
 
-    private static final String PFAD_EXCEL = "H:/BOVS/Eingabe/Unternehmen.xlsx";
+    private static final String PFAD_EXCEL = "eingabe/Unternehmen.xlsx";
 
     private static final String PFAD_CSV = "eingabe/Unternehmen.csv";
 

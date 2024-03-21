@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class RaumeEinlesen {
 
-    private static final String PFAD_EXCEL = "H:/BOVS/Eingabe/Raeume.xlsx";
+    private static final String PFAD_EXCEL = "eingabe/Raeume.xlsx";
 
     private static final String PFAD_CSV = "eingabe/Raeume.csv";
 

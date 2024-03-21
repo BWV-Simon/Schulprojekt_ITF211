@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class AusgabeSchueler {
 
-    private static final String AUSGABESCHUELER = "H:/BOVS/Ausgabe/schuelerlisten";
+    private static final String AUSGABESCHUELER = "ausgabe/schuelerlisten";
 
     /**
      * Erstellt die Excel-Listen fuer alle Schueler mit den Veranstaltungen
@@ -30,8 +30,8 @@ public class AusgabeSchueler {
      * @param zuordnungen
      * @throws IOException
      */
-    public static void schuelerListenErstellen(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen, double score) throws IOException {
-        List<String> data = erstelleListeFuerAusgabe(schuelerListe, zuordnungen, score);
+    public static void schuelerListenErstellen(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen) throws IOException {
+        List<String> data = erstelleListeFuerAusgabe(schuelerListe, zuordnungen);
         schreibeInDatei(data);
     }
 
@@ -40,14 +40,10 @@ public class AusgabeSchueler {
      *
      * @param schuelerListe
      * @param zuordnungen
-     * @param score
      * @return LIst<String> fuer Ausgabe
      */
-    protected static List<String> erstelleListeFuerAusgabe(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen, double score) {
+    protected static List<String> erstelleListeFuerAusgabe(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen) {
         List<String> data = new ArrayList<>();
-        data.add("Erfüllungsscore");
-        data.add(String.valueOf(score) + "%");
-        data.add("");
         int i = 1;
         for (Schueler s : schuelerListe) {
             data.add(s.getKlasse());
@@ -57,7 +53,7 @@ public class AusgabeSchueler {
 
             for (Zuordnung z : zuordnungSchueler) {
                 data.add(z.getZeitpunkt().name() + ";" + z.getZeitpunkt().toString()
-                        + ";" + z.getRaumNr()
+                        + ";" + z.getRaumNr().getRaumname()
                         + ";" + z.getVeranstaltung().getUnternehmen()
                         + ";" + z.getVeranstaltung().getFachrichtung());
             }

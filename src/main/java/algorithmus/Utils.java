@@ -200,8 +200,10 @@ public class Utils {
             i++;
         }
         for(Zuordnung z : keineRaume) {
-            Raum dummy = new Raum("Dummy", 20);
-            z.setRaumNr(dummy);
+            if(z.getSchuelerList().size() > 0) {
+                Raum dummy = new Raum("Dummy", 20);
+                z.setRaumNr(dummy);
+            }
         }
     }
 }

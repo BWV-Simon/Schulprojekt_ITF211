@@ -18,7 +18,7 @@ public class RaeumeEinlesenTest {
         List<String> mockData = new ArrayList<>();
         mockData.add("Raum;Kapazität");
         mockData.add("Aula;50");
-        List<Raum> raume = RaumeEinlesen.raeumeErstellen(mockData, 5);
-        assertTrue(raume.size() == 5);
+        List<Raum> raume = RaumeEinlesen.raeumeErstellen(mockData);
+        assertTrue(raume.size() == 1);
     }
 }

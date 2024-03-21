@@ -15,15 +15,6 @@ public class Veranstaltung {
     private static int maxVeranstaltungen = 5;
     private int minSchueler = 15;
 
-    public Veranstaltung() {
-
-    }
-    public Veranstaltung(int id, String unternehem, String fachrichtung) {
-        setId(id);
-        setUnternehmen(unternehem);
-        setFachrichtung(fachrichtung);
-    }
-
     public int getId() {
         return id;
     }

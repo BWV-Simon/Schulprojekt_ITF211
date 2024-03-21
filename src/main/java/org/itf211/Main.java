@@ -25,7 +25,7 @@ public class Main {
 
         try {
             List<Veranstaltung> vliste = VorhandeneVeranstaltungen.erstellenVeranstaltungen();
-            List<Raum> rliste = RaumeEinlesen.erstellenRaume(vliste.size());
+            List<Raum> rliste = RaumeEinlesen.erstellenRaume();
             List<Schueler> original = SchuelerWuensche.auslesen();
             List<Schueler> sliste = SchuelerWuensche.auslesen();
             HashMap<Veranstaltung, List<Zuordnung>> result = WahlenZuordnen.zuordnungWahlen(sliste, vliste, rliste);

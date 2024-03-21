@@ -27,12 +27,12 @@ public class RaumeEinlesen {
         return data;
     }
 
-    public static List<Raum> erstellenRaume(int anzahlUnternehmen) throws IOException {
+    public static List<Raum> erstellenRaume() throws IOException {
         List<String> data = auslesenRaeume();
-        return raeumeErstellen(data, anzahlUnternehmen);
+        return raeumeErstellen(data);
     }
 
-    protected static List<Raum> raeumeErstellen(List<String> data, int anzahlUnternehmen) {
+    protected static List<Raum> raeumeErstellen(List<String> data) {
         List<Raum> raeume = new ArrayList<>();
         String[] data_temp;
         for(int i = 1; i < data.size(); i++) {

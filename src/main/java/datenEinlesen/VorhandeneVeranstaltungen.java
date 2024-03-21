@@ -62,12 +62,18 @@ public class VorhandeneVeranstaltungen {
                 unternehmen_temp.setFachrichtung(data_temp[2]);
                 if (data_temp.length > 3  && !data_temp[3].isBlank()) {
                     unternehmen_temp.setMaxSchueler(Integer.parseInt(data_temp[3]));
+                } else {
+                    unternehmen_temp.setMaxSchueler(20);
                 }
                 if (data_temp.length > 4 && !data_temp[4].isBlank()) {
                     unternehmen_temp.setMaxVeranstaltungen(Integer.parseInt(data_temp[4]));
+                } else {
+                    unternehmen_temp.setMaxVeranstaltungen(5);
                 }
                 if (data_temp.length > 5 && !data_temp[5].isBlank()){
                     unternehmen_temp.setFruehesterBeginn(Timeslot_Enum.valueOf(data_temp[5]));
+                } else {
+                    unternehmen_temp.setFruehesterBeginn(Timeslot_Enum.A);
                 }
                 unternehmen.add(unternehmen_temp);
             }

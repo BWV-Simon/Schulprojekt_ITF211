@@ -103,6 +103,12 @@ public class WahlenZuordnen {
         zo.setKapazitaet(zo.getKapazitaet() - 1);
         zo.addSchueler(s);
         s.addStunden(zo.getZeitpunkt());
+        for(int i = 0; i < s.getWahl().length; i++) {
+            if (s.getWahl()[i] == 0) {
+                s.setWahl(i, zo.getVeranstaltung().getId());
+                break;
+            }
+        }
     }
 
     /**

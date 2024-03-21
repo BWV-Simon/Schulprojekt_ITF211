@@ -1,7 +1,7 @@
 package datenmodelle;
 
 /**
- * @author Julia Hemkendreis
+ * @author Julia
  */
 public enum Timeslot_Enum {
     A("08:45-09:30"),

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Jo Duras
+ * @author Jo & Julia
  */
 public class AusgabeUnternehmen {
 
@@ -22,16 +22,20 @@ public class AusgabeUnternehmen {
 
     /**
      * Erstellt Anwesenheitslisten fuer die Unternehmen, damit diese ueberpruefen koennne, ob alls Schule anwesend sind
-     *
+     * @author Jo
      * @param zuordnungen
      * @throws IOException
      */
     public static void zuordnungErstellen(List<Zuordnung> zuordnungen) throws IOException {
         List<String> data = ersteleListeFuerAusgabe(zuordnungen);
         schreibeInDatei(data);
-
     }
 
+    /**
+     *
+     * @author Jo
+     * @param zuordnungen
+     */
     protected static List<String> ersteleListeFuerAusgabe(List<Zuordnung> zuordnungen) {
         List<String> data = new ArrayList<>();
 
@@ -49,6 +53,12 @@ public class AusgabeUnternehmen {
         return data;
     }
 
+    /**
+     *
+     * @author Jo & Julia
+     * @param data
+     * @throws IOException
+     */
     private static void schreibeInDatei(List<String> data) throws IOException {
         Path csvFile = Paths.get(AUSGABEZUORDNUNG + ".csv");
         Files.deleteIfExists(csvFile);
@@ -58,7 +68,6 @@ public class AusgabeUnternehmen {
             line = line + "\n";
             Files.write(csvFile, line.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
         }
-
         DateiKonvertieren.csvToExcel(AUSGABEZUORDNUNG + ".csv", AUSGABEZUORDNUNG + ".xlsx");
         Files.deleteIfExists(csvFile);
     }

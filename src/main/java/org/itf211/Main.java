@@ -5,7 +5,6 @@ import algorithmus.Utils;
 import algorithmus.WahlenZuordnen;
 import datenAusgeben.AusgabeSchueler;
 import datenAusgeben.AusgabeUnternehmen;
-import datenEinlesen.DateiKonvertieren;
 import datenEinlesen.SchuelerWuensche;
 import datenEinlesen.VorhandeneVeranstaltungen;
 import datenmodelle.Schueler;

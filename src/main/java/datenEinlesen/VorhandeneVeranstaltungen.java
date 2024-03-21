@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Julia Hemkendreis
+ * @author Julia & Jo
  */
 public class VorhandeneVeranstaltungen {
 
@@ -22,6 +22,7 @@ public class VorhandeneVeranstaltungen {
 
     /** Diese Methode liest aus der angegebenen Datei (pfadExcel) die enthaltenen Unternehmen aus
      *  und speichert die Zeilen in einer String-Liste
+     * @author Julia
      * @return Eine Liste von Unternehmensobjekten
      * @throws IOException
      */
@@ -34,6 +35,7 @@ public class VorhandeneVeranstaltungen {
 
     /** Diese Methode erstellt für die Zeilen in der Excel-Datei eine entsprechenden Unternehmensobjekte
      * und speichert diese in einer Liste, die für die weitere Verarbeitung zurückgegeben wird.
+     * @author Jo & Julia
      * @return Liste an Unternehmensobjekten
      */
     public static List<Veranstaltung> erstellenVeranstaltungen() throws IOException {
@@ -45,8 +47,7 @@ public class VorhandeneVeranstaltungen {
      * Ausgelagerte Methode fuer Testzwecke
      * EingabeParameter kann durch testdaten ersetzt werden ohne die Verwendung eines Mocking-Frameworks
      * Aufruf von außen bleibt unveraendert
-     *
-     * @author Jo Duras
+     * @author Jo
      * @param data; Daten aus den die Veranstaltungen generiert werden
      * @return Liste der Veranstaltungen
      */
@@ -74,6 +75,4 @@ public class VorhandeneVeranstaltungen {
         }
         return unternehmen;
     }
-
-
 }

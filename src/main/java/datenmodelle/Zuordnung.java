@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Jo Duras & Julia Hemkendreis
+ * @author Jo & Julia
  * Endergebnis des Algorithmus - Struktur der Ausgabe der CSV-Datei
  */
 public class Zuordnung {

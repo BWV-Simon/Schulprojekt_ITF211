@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * @author Julia, Simon, Jan, Maurice
+ * @author Julia, Simon, Jan, Maurice & Jo
  */
 public class WahlenZuordnen {
 
@@ -74,7 +74,6 @@ public class WahlenZuordnen {
          * </code>
          */
 
-
         return veranstaltungenSlots;
     }
 
@@ -95,7 +94,7 @@ public class WahlenZuordnen {
     }
 
     /** Ueberladene Methode zum Zuordnen von Schuelern via Autofill
-     * Jan & Maurice
+     * @author Jan & Maurice
      * @param zo
      * @param s
      */
@@ -131,7 +130,7 @@ public class WahlenZuordnen {
      * Schueler deren Wunschveranstaltung nicht stattfinden kann werden autofilled
      * Zuordnungen, die nicht genug Schueler haben,werden nicht mehr beruecksichtigt (Kapazitaet auf 0 gesetzt und
      * Schueler werden entfernt)
-     * @author Simon, Julia
+     * @author Simon & Julia
      * @param input
      */
     public static void checkVeranstaltungskapazitaeten(HashMap<Veranstaltung,List<Zuordnung>> input){

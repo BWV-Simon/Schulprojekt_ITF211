@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Jo Duras
+ * @author Jo & Julia
  *
  */
 public class SchuelerWuensche {
@@ -19,13 +19,12 @@ public class SchuelerWuensche {
     private static final String pfadExcel = "H:/BOVS/Eingabe/Schuelerwuensche.xlsx";
     private static final String pfadCSV = "eingabe/Schuelerwuensche.csv";
 
-
     /**
      * Auslesen der Schuelerwuensche Datei
      * Generieren von Schueler-Objekten nach den ANgaben in der Datei
      * Array der Schuelerwuensche in Schueler-Objekt wird ebenfalls gefuellt
      * Wenn keine/teilweise Angabe von Wuenschen wird in die Liste eine 0 eingetragen
-     *
+     * @author Jo
      * @return liste aller teilnehmenden Schueler mit den eingetragenen wuenschen
      * @throws IOException
      */
@@ -36,9 +35,13 @@ public class SchuelerWuensche {
         List<String> data = Files.readAllLines(file, StandardCharsets.ISO_8859_1);
 
         return schuelerGenerieren(data);
-
     }
 
+    /**
+     *
+     * @author Jo
+     * @return liste aller teilnehmenden Schueler mit den eingetragenen wuenschen
+     */
     protected static List<Schueler> schuelerGenerieren(List<String> data){
         List<Schueler> schuelerListe = new ArrayList<>();
         boolean titelzeile = true;
@@ -74,10 +77,6 @@ public class SchuelerWuensche {
                 schuelerListe.add(s);
             }
         }
-
         return schuelerListe;
-
     }
-
-
 }

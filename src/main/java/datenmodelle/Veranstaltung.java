@@ -3,7 +3,7 @@ package datenmodelle;
 import java.util.*;
 
 /**
- * @author Julia Hemkendreis & Jo Duras
+ * @author Julia, Jo & Simon
  */
 public class Veranstaltung {
 
@@ -80,18 +80,19 @@ public class Veranstaltung {
     }
 
     /**
-     * @author Simon, Jo, Julia
-     * @return int
-     *
      * Methode ermittelt die maximale Kapazität anhand der maximalen Anzahl an Veranstaltungen
      * und der maximalen Anzahl an Schuelern pro Veranstaltung
+     * @author Simon, Jo & Julia
+     * @return int
+     *
+
      */
     public int ermittleMaxkapazitaet(){
         return this.maxSchueler * this.maxVeranstaltungen;
     }
 
     /** Erstellt eine Liste an möglichen Zeitpunkten/Slots, wo ein Unternehmen eine Veranstaltung anbieten kann
-     * @author Jo, Julia
+     * @author Jo & Julia
      * @return List<Timeslot_Enum> TimeSlotListe (Zeitpunkte)
      */
     public static List<Timeslot_Enum> createTimeSlotListe() {

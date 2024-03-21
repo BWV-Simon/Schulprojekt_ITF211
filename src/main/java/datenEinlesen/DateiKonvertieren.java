@@ -14,14 +14,14 @@ import java.util.EnumSet;
 import java.util.List;
 
 /**
- * @author Jo Duras
+ * @author Jo
  * Klasse zur Konvertierung zwischen Excel und CSV
  * mithilfe von Ice-Blue
  */
 public class DateiKonvertieren {
 
     /**
-     *
+     * @author Jo
      * @param input ; Pfad der Excel-Datei, die konvertiert werden soll
      * @param output ; Pfad der auszugebenen CSV-Datei
      * @throws IOException
@@ -37,7 +37,7 @@ public class DateiKonvertieren {
     }
 
     /**
-     *
+     * @author Jo
      * @param input ; Pfad der CSV-Datei, die kionvertiert werden soll
      * @param output ; Pfad der auszugebenen Excel-Datei
      * @throws IOException
@@ -59,11 +59,11 @@ public class DateiKonvertieren {
         sheet.getAllocatedRange().autoFitColumns();
         sheet.getAllocatedRange().autoFitRows();
         workbook.saveToFile(output, ExcelVersion.Version2013);
-
     }
 
     /**
      * Hilfsmethode für die Ermittlung der Anzahl an Zeilen in der CSV-Datei
+     * @author Jo
      * @param path; Pfad der Datei deren Zeilenlaenge ermittelt werden soll
      * @return Anzahl Zeilen als int Wert
      * @throws IOException
@@ -75,6 +75,7 @@ public class DateiKonvertieren {
 
     /**
      * Hilfsmethode für die Ermittlung der Anzahl an Spalten in der CSV-Datei
+     * @author Jo
      * @param path; Pfad der Datei deren Spaltenlaenge ermittelt werden soll
      * @return Anzahl Spalten als char Wert; erste Spalte = A
      * @throws IOException

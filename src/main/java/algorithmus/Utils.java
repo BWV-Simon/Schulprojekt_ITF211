@@ -12,10 +12,9 @@ import java.util.List;
 import java.util.HashMap;
 
 /**
- * @author Simon, Jo, Julia, Jan, Maurice
+ * @author Simon, Jo, Julia, Jan & Maurice
  */
 public class Utils {
-
 
     /**
      * @author Julia
@@ -39,7 +38,7 @@ public class Utils {
     }
 
     /**
-     * @author Simon, Jo, Julia
+     * @author Simon, Jo & Julia
      * @param schuelerListe
      * @param veranstaltungsListe
      * @return HashMap<Veranstaltung, List<Schueler>>
@@ -66,7 +65,7 @@ public class Utils {
     }
 
     /**
-     * @author Simon, Jo, Julia
+     * @author Simon, Jo & Julia
      * @param schuelerListe
      * @return List<Schueler>
      * Diese Methode prueft alle Schueler und ermittelt jene Schueler, die keine Wuensche haben
@@ -90,7 +89,7 @@ public class Utils {
     }
 
     /**
-     * @author Simon, Jo, Julia
+     * @author Simon, Jo & Julia
      * @param schuelerListe
      * @return
      * Diese Methode ermittelt alle Schueler, weniger als 6 Wuensche geaeussert haben
@@ -110,7 +109,7 @@ public class Utils {
     }
 
     /** Methode, die die Auslastung von Zuordnungen auf die Mindestanzahl an teilnehmenden Schuelern ueberprueft
-     * @author Simon, Julia
+     * @author Simon & Julia
      * @param List<Zuordnung> zuordnungen
      * @return HashMap<Zuordnung, Boolean> result
      * Wenn die Mindestkapazitaet (minSchueler der Veranstaltung der Zuordnung) nicht erfuellt ist,
@@ -130,9 +129,10 @@ public class Utils {
     }
 
     /** Berechnet die Erfolgsquote des Algorithmus
-     * @author Maurice, Jan
+     * @author Maurice & Jan
      * @param tempSchueler
      * @param original
+     * @return double endScore(nach 2 Nachkommastellen abgeschnitten)
      */
     public static double scoreBerechnung(List<Schueler> tempSchueler, List<Schueler> original) throws IOException {
         double maxScore = 0;
@@ -163,7 +163,7 @@ public class Utils {
                 }
             }
         }
-        //Ergebnis wird auf 2-Nachkommastellen abgeschnitten
+        //Ergebnis wird nach 2 Nachkommastellen abgeschnitten
         double endScore = (wirklicherScore / maxScore) * 100;
         DecimalFormat df = new DecimalFormat("#,##");
         df.applyPattern("#.##");

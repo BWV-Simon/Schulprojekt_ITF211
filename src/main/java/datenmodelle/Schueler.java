@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Jan Tochtenhagen, Maurice Hennig, Jo Duras & Julia Hemkendreis
+ * @author Jan, Maurice, Jo, Julia & Simon
  */
 public class Schueler {
     private String vorname;
@@ -88,8 +88,8 @@ public class Schueler {
     }
 
     /**
+     * @author Jo
      * @return aufbereiteter String zu Testzwecken
-     * @author Jo Duras
      */
     @Override
     public String toString() {
@@ -108,8 +108,8 @@ public class Schueler {
     }
 
     /**
-     * @return aufbereiteter String
      * @author Jo
+     * @return aufbereiteter String
      * Gibt die SchuelerInformationen als CSV String aus
      */
     public String toCSVString() {

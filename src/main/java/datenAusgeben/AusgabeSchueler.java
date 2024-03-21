@@ -2,7 +2,6 @@ package datenAusgeben;
 
 import datenEinlesen.DateiKonvertieren;
 import datenmodelle.Schueler;
-import datenmodelle.Veranstaltung;
 import datenmodelle.Zuordnung;
 
 import java.io.IOException;
@@ -17,7 +16,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * @author Jo Duras
+ * @author Jo
  */
 public class AusgabeSchueler {
 
@@ -25,7 +24,7 @@ public class AusgabeSchueler {
 
     /**
      * Erstellt die Excel-Listen fuer alle Schueler mit den Veranstaltungen
-     *
+     * @author Julia & Jo
      * @param schuelerListe
      * @param zuordnungen
      * @throws IOException
@@ -37,7 +36,7 @@ public class AusgabeSchueler {
 
     /**
      * erstellt die Liste fuer die Ausgabe
-     *
+     * @author Julia & Jo
      * @param schuelerListe
      * @param zuordnungen
      * @param score
@@ -78,7 +77,7 @@ public class AusgabeSchueler {
 
     /**
      * Isoliert die Veranstaltungen denen ein Schueler zugeordnet ist
-     *
+     * @author Julia & Jo
      * @param s
      * @param zuordnungen
      * @return List<Zuordnung> Zuordnungen fuer einen spezifischen Schueler
@@ -100,7 +99,7 @@ public class AusgabeSchueler {
 
     /**
      * schreibt die Daten in die Datei
-     *
+     * @author Julia & Jo
      * @param data
      * @throws IOException
      */

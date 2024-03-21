@@ -11,6 +11,7 @@ public enum Timeslot_Enum {
     E("12:25-13:10");
 
     private final String von_bis;
+
     Timeslot_Enum(String von_bis) {
         this.von_bis = von_bis;
     }
@@ -19,5 +20,6 @@ public enum Timeslot_Enum {
     public String toString() {
         return von_bis;
     }
+
 }
 

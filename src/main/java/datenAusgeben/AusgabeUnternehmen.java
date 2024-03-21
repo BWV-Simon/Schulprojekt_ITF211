@@ -16,9 +16,9 @@ import java.util.List;
 /**
  * @author Jo Duras
  */
-public class AusgabeErstellen {
+public class AusgabeUnternehmen {
 
-    private static final String AUSGABEZUORDNUNG = "ausgabe/zuordnung";
+    private static final String AUSGABEZUORDNUNG = "H:/BOVS/Ausgabe/zuordnung";
 
     /**
      * Erstellt Anwesenheitslisten fuer die Unternehmen, damit diese ueberpruefen koennne, ob alls Schule anwesend sind
@@ -27,19 +27,29 @@ public class AusgabeErstellen {
      * @throws IOException
      */
     public static void zuordnungErstellen(List<Zuordnung> zuordnungen) throws IOException {
+        List<String> data = ersteleListeFuerAusgabe(zuordnungen);
+        schreibeInDatei(data);
+
+    }
+
+    protected static List<String> ersteleListeFuerAusgabe(List<Zuordnung> zuordnungen) {
         List<String> data = new ArrayList<>();
 
         for (Zuordnung z : zuordnungen) {
-            data.add(z.getVeranstaltung().getUnternehmen() + ";" + z.getVeranstaltung().getFachrichtung());
-            data.add(z.getZeitpunkt().toString());
-            data.add("");
-
-            data.add("Klasse;Nachname;Vorname;Anwesend?");
-            for (Schueler s : z.getSchuelerList()) {
-                data.add(s.toCSVString());
+            if (z.getSchuelerList().size() > 0) {
+                data.add(z.getVeranstaltung().getUnternehmen() + ";" + z.getVeranstaltung().getFachrichtung());
+                data.add(z.getZeitpunkt().toString());
+                data.add("Klasse;Nachname;Vorname;Anwesend?");
+                for (Schueler s : z.getSchuelerList()) {
+                    data.add(s.toCSVString());
+                }
+                data.add("");
             }
-            data.add("");
         }
+        return data;
+    }
+
+    private static void schreibeInDatei(List<String> data) throws IOException {
         Path csvFile = Paths.get(AUSGABEZUORDNUNG + ".csv");
         Files.deleteIfExists(csvFile);
         Files.createFile(csvFile);
@@ -50,6 +60,5 @@ public class AusgabeErstellen {
         }
 
         DateiKonvertieren.csvToExcel(AUSGABEZUORDNUNG + ".csv", AUSGABEZUORDNUNG + ".xlsx");
-
     }
 }

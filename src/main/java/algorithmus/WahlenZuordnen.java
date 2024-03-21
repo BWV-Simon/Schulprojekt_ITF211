@@ -66,6 +66,15 @@ public class WahlenZuordnen {
             }
         }
         autofillSchueler(schuelerAutofill, veranstaltungenSlots);
+        /**
+         * Code ist ausnahmsweise auskommentiert, da diese Funktion nach Absprache vorerst deaktiviert wurde,
+         * jedoch bei Bedarf verwendet werden kann.
+         * @<code>
+         *     checkVeranstaltungskapazitaeten(veranstaltungenSlots);
+         * </code>
+         */
+
+
         return veranstaltungenSlots;
     }
 

@@ -13,7 +13,7 @@ public class Zuordnung {
     private Timeslot_Enum zeitpunkt;
 
     private List<Schueler> schuelerList = new ArrayList<>();
-    private int raumNr;
+    private String raumNr;
     private int kapazitaet;
 
     public Zuordnung(Timeslot_Enum zeitpunkt, Veranstaltung veranstaltung) {
@@ -50,11 +50,11 @@ public class Zuordnung {
         this.kapazitaet = kapazitaet;
     }
 
-    public int getRaumNr() {
+    public String getRaumNr() {
         return raumNr;
     }
 
-    public void setRaumNr(int raumNr) {
+    public void setRaumNr(String raumNr) {
         this.raumNr = raumNr;
     }
 

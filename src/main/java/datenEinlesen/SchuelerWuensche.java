@@ -3,7 +3,6 @@ package datenEinlesen;
 import datenmodelle.Schueler;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,7 +16,7 @@ import java.util.List;
  */
 public class SchuelerWuensche {
 
-    private static final String pfadExcel = "eingabe/Schuelerwuensche.xlsx";
+    private static final String pfadExcel = "H:/BOVS/Eingabe/Schuelerwuensche.xlsx";
     private static final String pfadCSV = "eingabe/Schuelerwuensche.csv";
 
 

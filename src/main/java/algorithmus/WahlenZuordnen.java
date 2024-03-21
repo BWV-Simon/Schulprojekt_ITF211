@@ -1,7 +1,6 @@
 package algorithmus;
 
 import datenmodelle.Schueler;
-import datenmodelle.Timeslot_Enum;
 import datenmodelle.Veranstaltung;
 import datenmodelle.Zuordnung;
 
@@ -28,6 +27,7 @@ public class WahlenZuordnen {
         HashMap<Veranstaltung,List<Zuordnung>> veranstaltungenSlots = Utils.ermittleAlleSlotsZuVeranstaltung(veranstaltungList);
         // Liste an Schueler fuer die zufaellige Zuordnung anhand der Schueler ohne Wuensche erstellen
         List<Schueler> schuelerAutofill = Utils.ermittleSchuelerOhneWuensche(schuelerWahlen);
+
         //Liste der Schueler von den Schuelern, die keine Wuensche haben bereinigen
         for (Schueler s : schuelerWahlen) {
             if (!schuelerAutofill.contains(s)) {
@@ -89,16 +89,17 @@ public class WahlenZuordnen {
      * Jan & Maurice
      * @param zo
      * @param s
-     * @param schuelerwunsch
      */
-    private static void zuordnenSchueler(Zuordnung zo, Schueler s, int schuelerwunsch) {
+    private static void zuordnenSchueler(Zuordnung zo, Schueler s) {
         zo.setKapazitaet(zo.getKapazitaet() - 1);
-        s.addStunden(zo.getZeitpunkt());
         zo.addSchueler(s);
+        s.addStunden(zo.getZeitpunkt());
     }
 
     /**
      * @author Jan & Maurice
+     * @param schuelerList
+     * @param veranstaltungenSlots
      * Autofill-Behandlung der noch offenen Schuelerslots
      */
     public static void autofillSchueler(List<Schueler> schuelerList, HashMap<Veranstaltung, List<Zuordnung>> veranstaltungenSlots) {
@@ -106,7 +107,7 @@ public class WahlenZuordnen {
             for (Veranstaltung v : veranstaltungenSlots.keySet()) {
                 for (Zuordnung zo : veranstaltungenSlots.get(v)) {
                     if(zo.getKapazitaet()>0 && (!s.getStunden().contains(zo.getZeitpunkt()))){
-                        zuordnenSchueler(zo, s, -1);
+                        zuordnenSchueler(zo, s);
                         break;
                     }
                 }

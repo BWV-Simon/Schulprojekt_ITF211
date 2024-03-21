@@ -22,6 +22,10 @@ public class Zuordnung {
         setKapazitaet(veranstaltung.getMaxSchueler());
     }
 
+    public Zuordnung() {
+
+    }
+
     public Veranstaltung getVeranstaltung() {
         return veranstaltung;
     }
@@ -57,12 +61,13 @@ public class Zuordnung {
     public List<Schueler> getSchuelerList() {
         return schuelerList;
     }
+
     public void setSchuelerList(List<Schueler> schuelerList) {
         this.schuelerList = schuelerList;
     }
 
     public void addSchueler(Schueler schueler) {
-        if(!schuelerList.contains(schueler)) {
+        if (!schuelerList.contains(schueler)) {
             schuelerList.add(schueler);
         }
     }

@@ -75,8 +75,6 @@ public class Veranstaltung {
      * und der maximalen Anzahl an Schuelern pro Veranstaltung
      * @author Simon, Jo & Julia
      * @return int
-     *
-
      */
     public int ermittleMaxkapazitaet(){
         return this.maxSchueler * this.maxVeranstaltungen;
@@ -89,9 +87,9 @@ public class Veranstaltung {
     public static List<Timeslot_Enum> createTimeSlotListe() {
         ArrayList<Timeslot_Enum> timeslots = new ArrayList<>();
         Timeslot_Enum aktuellerSlot = fruehesterBeginn;
-        for(int i = 0; i < maxVeranstaltungen; i++){
+        for(int i = 0; i < maxVeranstaltungen; i++) {
             timeslots.add(aktuellerSlot);
-            switch (aktuellerSlot){
+            switch (aktuellerSlot) {
                 case A :
                     aktuellerSlot = Timeslot_Enum.B;
                     break;

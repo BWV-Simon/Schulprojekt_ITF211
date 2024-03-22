@@ -13,17 +13,31 @@ import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 /**
- * @author Julia, Maurice
+ * @author Julia & Maurice
  */
 public class AusgabeRaumUndZeitplan {
 
     private static final String AUSGABE_ZEITPLAN = "H:/BOVS/Ausgabe/plan";
 
+    /**
+     * @author Julia & Maurice
+     * @param veranstaltungMap
+     * @param score
+     * @throws IOException
+     */
     public static void zeitplanListeErstellen(HashMap<Veranstaltung, List<Zuordnung>> veranstaltungMap, double score) throws IOException {
         List<String> data = erstelleZeitUndRaumplanFuerAusgabe(veranstaltungMap, score);
         schreibeInDatei(data);
     }
 
+    /**
+     * Zeit und Raumplan werden so abgeglichen, dass die Unternehmen an ihren fruestmoeglichen
+     * Zeitpunkten anfangen und nicht mehr als die maximalen Veranstaltungen haben
+     * @author Julia & Maurice
+     * @param zuordnungen
+     * @param score
+     * @return data
+     */
     protected static List<String> erstelleZeitUndRaumplanFuerAusgabe(HashMap<Veranstaltung, List<Zuordnung>> zuordnungen, double score) {
         List<String> data = new ArrayList<>();
         data.add("Organisationsplan");
@@ -57,9 +71,12 @@ public class AusgabeRaumUndZeitplan {
         return data;
     }
 
-
-
-
+    /**
+     * Raum und Zeitplan werden in Ausgabe-Datei geschrieben
+     * @author Julia & Maurice
+     * @param data
+     * @throws IOException
+     */
     private static void schreibeInDatei(List<String> data) throws IOException {
         Path csvFile = Paths.get(AUSGABE_ZEITPLAN + ".csv");
         Files.deleteIfExists(csvFile);
@@ -70,8 +87,5 @@ public class AusgabeRaumUndZeitplan {
         }
         DateiKonvertieren.csvToExcel(AUSGABE_ZEITPLAN + ".csv", AUSGABE_ZEITPLAN + ".xlsx");
         Files.deleteIfExists(csvFile);
-
     }
-
-
 }

@@ -12,7 +12,6 @@ import java.util.List;
 
 /**
  * @author Jo & Julia
- *
  */
 public class SchuelerWuensche {
 
@@ -21,12 +20,12 @@ public class SchuelerWuensche {
 
     /**
      * Auslesen der Schuelerwuensche Datei
-     * Generieren von Schueler-Objekten nach den ANgaben in der Datei
-     * Array der Schuelerwuensche in Schueler-Objekt wird ebenfalls gefuellt
-     * Wenn keine/teilweise Angabe von Wuenschen wird in die Liste eine 0 eingetragen
      * @author Jo
      * @return liste aller teilnehmenden Schueler mit den eingetragenen wuenschen
      * @throws IOException
+     * Generieren von Schueler-Objekten nach den Angaben in der Datei
+     * Array der Schuelerwuensche in Schueler-Objekt wird ebenfalls gefuellt
+     * Wenn keine/teilweise Angaben von Wuenschen wird in die Liste eine 0 eingetragen
      */
     public static List<Schueler> auslesen() throws IOException {
         //Datei auslesen
@@ -38,7 +37,7 @@ public class SchuelerWuensche {
     }
 
     /**
-     *
+     * Generiert ein Schueler-Objekt aus der ausgelesenen Datei
      * @author Jo
      * @return liste aller teilnehmenden Schueler mit den eingetragenen wuenschen
      */

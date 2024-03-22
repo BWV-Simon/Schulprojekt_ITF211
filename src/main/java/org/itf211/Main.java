@@ -1,6 +1,5 @@
 package org.itf211;
 
-
 import algorithmus.Utils;
 import algorithmus.WahlenZuordnen;
 import datenAusgeben.AusgabeRaumUndZeitplan;

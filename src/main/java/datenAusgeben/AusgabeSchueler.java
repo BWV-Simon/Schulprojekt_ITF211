@@ -35,7 +35,7 @@ public class AusgabeSchueler {
     }
 
     /**
-     * erstellt die Liste fuer die Ausgabe
+     * Erstellt die Liste fuer die Ausgabe
      * @author Julia & Jo
      * @param schuelerListe
      * @param zuordnungen
@@ -111,6 +111,5 @@ public class AusgabeSchueler {
 
         DateiKonvertieren.csvToExcel(AUSGABESCHUELER + ".csv", AUSGABESCHUELER + ".xlsx");
         Files.deleteIfExists(csvFile);
-
     }
 }

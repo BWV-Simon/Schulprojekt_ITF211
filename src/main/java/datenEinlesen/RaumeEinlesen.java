@@ -2,7 +2,6 @@ package datenEinlesen;
 
 import datenmodelle.Raum;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author  Julia & Maurice
+ * @author Julia & Maurice
  */
 public class RaumeEinlesen {
 
@@ -32,6 +31,12 @@ public class RaumeEinlesen {
         return raeumeErstellen(data);
     }
 
+    /**
+     * Raeume werden erstellt und in ArrayList gespeichert und zurueckgegeben
+     * @author Julia & Maurice
+     * @param data
+     * @return raeume
+     */
     protected static List<Raum> raeumeErstellen(List<String> data) {
         List<Raum> raeume = new ArrayList<>();
         String[] data_temp;

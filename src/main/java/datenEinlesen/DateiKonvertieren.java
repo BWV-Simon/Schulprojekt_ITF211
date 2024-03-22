@@ -21,13 +21,14 @@ import java.util.List;
 public class DateiKonvertieren {
 
     /**
-     * @author Jo
-     * @param input ; Pfad der Excel-Datei, die konvertiert werden soll
+     * @param input  ; Pfad der Excel-Datei, die konvertiert werden soll
      * @param output ; Pfad der auszugebenen CSV-Datei
      * @throws IOException
+     * @author Jo
      */
-    public static void excelToCSV(String input, String output) throws IOException{
+    public static void excelToCSV(String input, String output) throws IOException {
         Workbook workbook = new Workbook();
+        workbook.setDefaultCharset(StandardCharsets.ISO_8859_1);
         workbook.loadFromFile(input);
         workbook.calculateAllValue();
         //erstes Sheet der Excel-Datei
@@ -37,12 +38,12 @@ public class DateiKonvertieren {
     }
 
     /**
-     * @author Jo
-     * @param input ; Pfad der CSV-Datei, die kionvertiert werden soll
+     * @param input  ; Pfad der CSV-Datei, die kionvertiert werden soll
      * @param output ; Pfad der auszugebenen Excel-Datei
      * @throws IOException
+     * @author Jo
      */
-    public static void csvToExcel(String input, String output) throws IOException{
+    public static void csvToExcel(String input, String output) throws IOException {
         Workbook workbook = new Workbook();
         workbook.loadFromFile(input, ";");
         Worksheet sheet = workbook.getWorksheets().get(0);
@@ -63,10 +64,11 @@ public class DateiKonvertieren {
 
     /**
      * Hilfsmethode für die Ermittlung der Anzahl an Zeilen in der CSV-Datei
-     * @author Jo
+     *
      * @param path; Pfad der Datei deren Zeilenlaenge ermittelt werden soll
      * @return Anzahl Zeilen als int Wert
      * @throws IOException
+     * @author Jo
      */
     private static int numberofLines(String path) throws IOException {
         Path file = Paths.get(path);
@@ -75,12 +77,13 @@ public class DateiKonvertieren {
 
     /**
      * Hilfsmethode für die Ermittlung der Anzahl an Spalten in der CSV-Datei
-     * @author Jo
+     *
      * @param path; Pfad der Datei deren Spaltenlaenge ermittelt werden soll
      * @return Anzahl Spalten als char Wert; erste Spalte = A
      * @throws IOException
+     * @author Jo
      */
-    private static char numberOfCollumns(String path) throws IOException{
+    private static char numberOfCollumns(String path) throws IOException {
         Path file = Paths.get(path);
         List<String> data = Files.readAllLines(file);
         //Typecasting von int auf char; 65 == A

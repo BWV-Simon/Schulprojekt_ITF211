@@ -45,6 +45,7 @@ public class DateiKonvertieren {
      */
     public static void csvToExcel(String input, String output) throws IOException {
         Workbook workbook = new Workbook();
+        workbook.setDefaultCharset(StandardCharsets.ISO_8859_1);
         workbook.loadFromFile(input, ";");
         Worksheet sheet = workbook.getWorksheets().get(0);
 
@@ -72,7 +73,7 @@ public class DateiKonvertieren {
      */
     private static int numberofLines(String path) throws IOException {
         Path file = Paths.get(path);
-        return Files.readAllLines(file).size();
+        return Files.readAllLines(file, StandardCharsets.ISO_8859_1).size();
     }
 
     /**
@@ -85,7 +86,7 @@ public class DateiKonvertieren {
      */
     private static char numberOfCollumns(String path) throws IOException {
         Path file = Paths.get(path);
-        List<String> data = Files.readAllLines(file);
+        List<String> data = Files.readAllLines(file, StandardCharsets.ISO_8859_1);
         //Typecasting von int auf char; 65 == A
         return (char) (data.get(0).split(";").length + 64);
     }

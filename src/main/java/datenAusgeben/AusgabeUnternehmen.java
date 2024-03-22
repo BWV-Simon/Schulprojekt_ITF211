@@ -32,7 +32,6 @@ public class AusgabeUnternehmen {
     }
 
     /**
-     *
      * @author Jo
      * @param zuordnungen
      */
@@ -54,7 +53,6 @@ public class AusgabeUnternehmen {
     }
 
     /**
-     *
      * @author Jo & Julia
      * @param data
      * @throws IOException

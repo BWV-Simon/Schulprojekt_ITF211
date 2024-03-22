@@ -27,8 +27,9 @@ public class DateiKonvertieren {
      * @param output ; Pfad der auszugebenen CSV-Datei
      * @throws IOException
      */
-    public static void excelToCSV(String input, String output) throws IOException{
+    public static void excelToCSV(String input, String output) throws IOException {
         Workbook workbook = new Workbook();
+        workbook.setDefaultCharset(StandardCharsets.ISO_8859_1);
         workbook.loadFromFile(input);
         workbook.calculateAllValue();
         //erstes Sheet der Excel-Datei
@@ -38,14 +39,14 @@ public class DateiKonvertieren {
     }
 
     /**
-     * Konvertiert von csv zu xlsx
      * @author Jo
      * @param input ; Pfad der CSV-Datei, die kionvertiert werden soll
      * @param output ; Pfad der auszugebenen Excel-Datei
      * @throws IOException
      */
-    public static void csvToExcel(String input, String output) throws IOException{
+    public static void csvToExcel(String input, String output) throws IOException {
         Workbook workbook = new Workbook();
+        workbook.setDefaultCharset(StandardCharsets.ISO_8859_1);
         workbook.loadFromFile(input, ";");
         Worksheet sheet = workbook.getWorksheets().get(0);
 
@@ -72,19 +73,20 @@ public class DateiKonvertieren {
      */
     private static int numberofLines(String path) throws IOException {
         Path file = Paths.get(path);
-        return Files.readAllLines(file).size();
+        return Files.readAllLines(file, StandardCharsets.ISO_8859_1).size();
     }
 
     /**
      * Hilfsmethode für die Ermittlung der Anzahl an Spalten in der CSV-Datei
-     * @author Jo
+     *
      * @param path; Pfad der Datei deren Spaltenlaenge ermittelt werden soll
      * @return Anzahl Spalten als char Wert; erste Spalte = A
      * @throws IOException
+     * @author Jo
      */
-    private static char numberOfCollumns(String path) throws IOException{
+    private static char numberOfCollumns(String path) throws IOException {
         Path file = Paths.get(path);
-        List<String> data = Files.readAllLines(file);
+        List<String> data = Files.readAllLines(file, StandardCharsets.ISO_8859_1);
         //Typecasting von int auf char; 65 == A
         return (char) (data.get(0).split(";").length + 64);
     }

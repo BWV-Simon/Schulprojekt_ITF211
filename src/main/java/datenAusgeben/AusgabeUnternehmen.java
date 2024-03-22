@@ -21,7 +21,7 @@ public class AusgabeUnternehmen {
     private static final String AUSGABEZUORDNUNG = "H:/BOVS/Ausgabe/zuordnung";
 
     /**
-     * Erstellt Anwesenheitslisten fuer die Unternehmen, damit diese ueberpruefen koennen, ob alle Schueler anwesend sind
+     * Erstellt Anwesenheitslisten fuer die Unternehmen, damit diese ueberpruefen koennne, ob alls Schule anwesend sind
      * @author Jo
      * @param zuordnungen
      * @throws IOException
@@ -64,7 +64,7 @@ public class AusgabeUnternehmen {
 
         for (String line : data) {
             line = line + "\n";
-            Files.write(csvFile, line.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+            Files.write(csvFile, line.getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
         }
         DateiKonvertieren.csvToExcel(AUSGABEZUORDNUNG + ".csv", AUSGABEZUORDNUNG + ".xlsx");
         Files.deleteIfExists(csvFile);

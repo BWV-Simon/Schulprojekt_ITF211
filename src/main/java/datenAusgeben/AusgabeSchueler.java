@@ -24,10 +24,11 @@ public class AusgabeSchueler {
 
     /**
      * Erstellt die Excel-Listen fuer alle Schueler mit den Veranstaltungen
-     * @author Julia & Jo
+     *
      * @param schuelerListe
      * @param zuordnungen
      * @throws IOException
+     * @author Julia & Jo
      */
     public static void schuelerListenErstellen(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen) throws IOException {
         List<String> data = erstelleListeFuerAusgabe(schuelerListe, zuordnungen);
@@ -35,7 +36,7 @@ public class AusgabeSchueler {
     }
 
     /**
-     * Erstellt die Liste fuer die Ausgabe
+     * erstellt die Liste fuer die Ausgabe
      * @author Julia & Jo
      * @param schuelerListe
      * @param zuordnungen
@@ -106,10 +107,11 @@ public class AusgabeSchueler {
 
         for (String line : data) {
             line = line + "\n";
-            Files.write(csvFile, line.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+            Files.write(csvFile, line.getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
         }
 
         DateiKonvertieren.csvToExcel(AUSGABESCHUELER + ".csv", AUSGABESCHUELER + ".xlsx");
         Files.deleteIfExists(csvFile);
+
     }
 }

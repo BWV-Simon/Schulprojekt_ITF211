@@ -24,11 +24,10 @@ public class AusgabeSchueler {
 
     /**
      * Erstellt die Excel-Listen fuer alle Schueler mit den Veranstaltungen
-     *
+     * @author Julia & Jo
      * @param schuelerListe
      * @param zuordnungen
      * @throws IOException
-     * @author Julia & Jo
      */
     public static void schuelerListenErstellen(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen) throws IOException {
         List<String> data = erstelleListeFuerAusgabe(schuelerListe, zuordnungen);
@@ -37,11 +36,10 @@ public class AusgabeSchueler {
 
     /**
      * erstellt die Liste fuer die Ausgabe
-     *
+     * @author Julia & Jo
      * @param schuelerListe
      * @param zuordnungen
      * @return LIst<String> fuer Ausgabe
-     * @author Julia & Jo
      */
     protected static List<String> erstelleListeFuerAusgabe(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen) {
         List<String> data = new ArrayList<>();
@@ -75,11 +73,10 @@ public class AusgabeSchueler {
 
     /**
      * Isoliert die Veranstaltungen denen ein Schueler zugeordnet ist
-     *
+     * @author Julia & Jo
      * @param s
      * @param zuordnungen
      * @return List<Zuordnung> Zuordnungen fuer einen spezifischen Schueler
-     * @author Julia & Jo
      */
     protected static List<Zuordnung> getVeranstaltungFuerSchueler(Schueler s, List<Zuordnung> zuordnungen) {
         List<Zuordnung> temp = new ArrayList<>();
@@ -98,10 +95,9 @@ public class AusgabeSchueler {
 
     /**
      * schreibt die Daten in die Datei
-     *
+     * @author Julia & Jo
      * @param data
      * @throws IOException
-     * @author Julia & Jo
      */
     private static void schreibeInDatei(List<String> data) throws IOException {
         Path csvFile = Paths.get(AUSGABESCHUELER + ".csv");
@@ -110,7 +106,7 @@ public class AusgabeSchueler {
 
         for (String line : data) {
             line = line + "\n";
-            Files.write(csvFile, line.getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
+            Files.write(csvFile, line.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
         }
 
         DateiKonvertieren.csvToExcel(AUSGABESCHUELER + ".csv", AUSGABESCHUELER + ".xlsx");

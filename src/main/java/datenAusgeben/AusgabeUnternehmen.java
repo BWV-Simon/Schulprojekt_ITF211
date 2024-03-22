@@ -21,7 +21,7 @@ public class AusgabeUnternehmen {
     private static final String AUSGABEZUORDNUNG = "H:/BOVS/Ausgabe/zuordnung";
 
     /**
-     * Erstellt Anwesenheitslisten fuer die Unternehmen, damit diese ueberpruefen koennne, ob alls Schule anwesend sind
+     * Erstellt Anwesenheitslisten fuer die Unternehmen, damit diese ueberpruefen koennen, ob alle Schueler anwesend sind
      * @author Jo
      * @param zuordnungen
      * @throws IOException

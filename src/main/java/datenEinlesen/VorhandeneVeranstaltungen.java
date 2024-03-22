@@ -23,7 +23,7 @@ public class VorhandeneVeranstaltungen {
     /** Diese Methode liest aus der angegebenen Datei (pfadExcel) die enthaltenen Unternehmen aus
      *  und speichert die Zeilen in einer String-Liste
      * @author Julia
-     * @return Eine Liste von Unternehmensobjekten
+     * @return Eine Liste von Unternehmens-Objekten
      * @throws IOException
      */
     private static List<String> auslesenVeranstaltungen() throws IOException {
@@ -33,10 +33,11 @@ public class VorhandeneVeranstaltungen {
         return data;
     }
 
-    /** Diese Methode erstellt für die Zeilen in der Excel-Datei eine entsprechenden Unternehmensobjekte
-     * und speichert diese in einer Liste, die für die weitere Verarbeitung zurückgegeben wird.
+    /** Diese Methode erstellt für die Zeilen in der Excel-Datei eine entsprechenden Unternehmens-Objekte
+     * und speichert diese in einer Liste, die für die weitere Verarbeitung zurückgegeben wird
      * @author Jo & Julia
      * @return Liste an Unternehmensobjekten
+     * @throws IOException
      */
     public static List<Veranstaltung> erstellenVeranstaltungen() throws IOException {
         List<String> data = auslesenVeranstaltungen();
@@ -45,11 +46,12 @@ public class VorhandeneVeranstaltungen {
 
     /**
      * Ausgelagerte Methode fuer Testzwecke
-     * EingabeParameter kann durch testdaten ersetzt werden ohne die Verwendung eines Mocking-Frameworks
-     * Aufruf von außen bleibt unveraendert
+
      * @author Jo
      * @param data; Daten aus den die Veranstaltungen generiert werden
      * @return Liste der Veranstaltungen
+     * EingabeParameter kann durch testdaten ersetzt werden ohne die Verwendung eines Mocking-Frameworks
+     * Aufruf von außen bleibt unveraendert
      */
     protected static List<Veranstaltung> veranstaltungenGenerieren(List<String> data) {
         List<Veranstaltung> unternehmen = new ArrayList<>();

@@ -21,6 +21,7 @@ import java.util.List;
 public class DateiKonvertieren {
 
     /**
+     * Konvertiert von xlsx zu csv
      * @author Jo
      * @param input ; Pfad der Excel-Datei, die konvertiert werden soll
      * @param output ; Pfad der auszugebenen CSV-Datei
@@ -37,6 +38,7 @@ public class DateiKonvertieren {
     }
 
     /**
+     * Konvertiert von csv zu xlsx
      * @author Jo
      * @param input ; Pfad der CSV-Datei, die kionvertiert werden soll
      * @param output ; Pfad der auszugebenen Excel-Datei

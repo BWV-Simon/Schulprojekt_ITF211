@@ -11,7 +11,6 @@ public class Zuordnung {
 
     private Veranstaltung veranstaltung;
     private Timeslot_Enum zeitpunkt;
-
     private List<Schueler> schuelerList = new ArrayList<>();
     private Raum raum;
     private int kapazitaet;

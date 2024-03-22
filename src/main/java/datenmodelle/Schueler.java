@@ -81,8 +81,8 @@ public class Schueler {
         }
     }
 
-    public void deleteStunde(Timeslot_Enum stunde){
-        if(stunden.contains(stunde)){
+    public void deleteStunde(Timeslot_Enum stunde) {
+        if(stunden.contains(stunde)) {
             stunden.remove(stunde);
         }
     }
@@ -108,14 +108,13 @@ public class Schueler {
     }
 
     /**
+     * Gibt die SchuelerInformationen als CSV String aus
      * @author Jo
      * @return aufbereiteter String
-     * Gibt die SchuelerInformationen als CSV String aus
      */
     public String toCSVString() {
         return klasse + ";" +
                 nachname + ";" +
                 vorname + ";";
     }
-
 }

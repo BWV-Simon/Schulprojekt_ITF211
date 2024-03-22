@@ -14,11 +14,11 @@ import java.util.HashMap;
 public class Utils {
 
     /**
+     * Diese Methode erstellt eine HashMap, bei der zu jedem Unternehmen,
+     * die Liste aller moeglichen Zuordnungen (Zeitslots, Veranstaltung) gespeichert werden
      * @author Julia
      * @param List<Veranstaltungen> veranstaltungen
      * @return HashMap<Veranstaltung, List<Zuordnung>>
-     *     Diese Methode erstellt eine HashMap, bei der zu jedem Unternehmen die Liste aller möglichen Zuordnungen (Zeitslots, Veranstaltung)
-     *     gespeichert werden
      */
     public static HashMap<Veranstaltung, List<Zuordnung>> ermittleAlleSlotsZuVeranstaltung(List<Veranstaltung> veranstaltungen) {
         HashMap<Veranstaltung, List<Zuordnung>> result = new HashMap<>();
@@ -35,13 +35,12 @@ public class Utils {
     }
 
     /**
+     * Diese Methode zaehlt, wie viele Schueler sich die Teilnahme an einer bestimmten Veranstaltung gewuenscht
+     * haben Schuelerwuensche, bei denen die maximale Kapazitaet erreicht wurde, werden ignoriert
      * @author Simon, Jo & Julia
      * @param schuelerListe
      * @param veranstaltungsListe
      * @return HashMap<Veranstaltung, List<Schueler>>
-     *
-     *     diese Methode zählt, wie viele Schueler sich die Teilnahme an einer bestimmten Veranstaltung gewünscht haben
-     *     Schuelerwuensche, bei denen die maximale Kapazität erreicht wurde, werden ignoriert
      */
     public static HashMap<Veranstaltung, List<Schueler>> ermittleSchuelerZuVeranstaltung(List<Schueler> schuelerListe, List<Veranstaltung> veranstaltungsListe){
         HashMap<Veranstaltung, List<Schueler>> resultMap = new HashMap<>();
@@ -62,10 +61,10 @@ public class Utils {
     }
 
     /**
+     * Diese Methode prueft alle Schueler und ermittelt jene Schueler, die keine Wuensche haben
      * @author Simon, Jo & Julia
      * @param schuelerListe
      * @return List<Schueler>
-     * Diese Methode prueft alle Schueler und ermittelt jene Schueler, die keine Wuensche haben
      */
     public static List<Schueler> ermittleSchuelerOhneWuensche(List<Schueler> schuelerListe){
         boolean wunschGefunden = false;
@@ -86,10 +85,10 @@ public class Utils {
     }
 
     /**
+     * Diese Methode ermittelt alle Schueler, weniger als 6 Wuensche geaeussert haben
      * @author Simon, Jo & Julia
      * @param schuelerListe
      * @return
-     * Diese Methode ermittelt alle Schueler, weniger als 6 Wuensche geaeussert haben
      */
     public static List<Schueler> ermittleSchuelerMitTeilwuenschen(List<Schueler> schuelerListe){
         ArrayList<Schueler> result = new ArrayList<>();
@@ -111,7 +110,7 @@ public class Utils {
      * @return HashMap<Zuordnung, Boolean> result
      * Wenn die Mindestkapazitaet (minSchueler der Veranstaltung der Zuordnung) nicht erfuellt ist,
      * wird false gesetzt.
-     * Wenn die Mindestkapazität erfuellt ist, wird true gesetzt.
+     * Wenn die Mindestkapazitaet erfuellt ist, wird true gesetzt.
      */
     public static HashMap<Zuordnung, Boolean> ueberpruefeAuslastungZuordnungen(List<Zuordnung> zuordnungen) {
         HashMap<Zuordnung, Boolean> result = new HashMap<>();
@@ -130,6 +129,7 @@ public class Utils {
      * @param tempSchueler
      * @param original
      * @return double endScore(nach 2 Nachkommastellen abgeschnitten)
+     * @throws IOException
      */
     public static double scoreBerechnung(List<Schueler> tempSchueler, List<Schueler> original) throws IOException {
         double maxScore = 0;
@@ -167,7 +167,7 @@ public class Utils {
         return Double.parseDouble(df.format(endScore).replace(',','.'));
     }
 
-    /** Die Methode
+    /** Die Methode teilt die Raeume zu den Veranstaltungen zu
      * @author Julia, Maurice
      * @param zuordnung
      * @param raeume

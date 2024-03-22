@@ -22,9 +22,10 @@ public class AusgabeUnternehmen {
 
     /**
      * Erstellt Anwesenheitslisten fuer die Unternehmen, damit diese ueberpruefen koennne, ob alls Schule anwesend sind
-     * @author Jo
+     *
      * @param zuordnungen
      * @throws IOException
+     * @author Jo
      */
     public static void zuordnungErstellen(List<Zuordnung> zuordnungen) throws IOException {
         List<String> data = ersteleListeFuerAusgabe(zuordnungen);
@@ -32,9 +33,8 @@ public class AusgabeUnternehmen {
     }
 
     /**
-     *
-     * @author Jo
      * @param zuordnungen
+     * @author Jo
      */
     protected static List<String> ersteleListeFuerAusgabe(List<Zuordnung> zuordnungen) {
         List<String> data = new ArrayList<>();
@@ -54,10 +54,9 @@ public class AusgabeUnternehmen {
     }
 
     /**
-     *
-     * @author Jo & Julia
      * @param data
      * @throws IOException
+     * @author Jo & Julia
      */
     private static void schreibeInDatei(List<String> data) throws IOException {
         Path csvFile = Paths.get(AUSGABEZUORDNUNG + ".csv");
@@ -66,7 +65,7 @@ public class AusgabeUnternehmen {
 
         for (String line : data) {
             line = line + "\n";
-            Files.write(csvFile, line.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
+            Files.write(csvFile, line.getBytes(StandardCharsets.ISO_8859_1), StandardOpenOption.APPEND);
         }
         DateiKonvertieren.csvToExcel(AUSGABEZUORDNUNG + ".csv", AUSGABEZUORDNUNG + ".xlsx");
         Files.deleteIfExists(csvFile);

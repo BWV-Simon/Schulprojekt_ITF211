@@ -62,9 +62,9 @@ public class VorhandeneVeranstaltungen {
      */
     protected static List<Veranstaltung> veranstaltungenGenerieren(List<String> data) {
         List<Veranstaltung> unternehmen = new ArrayList<>();
-        String[] data_temp;
         for (int i = 1; i < data.size(); i++) {
             Veranstaltung unternehmen_temp = new Veranstaltung();
+            String[] data_temp;
             data_temp = data.get(i).split(";");
             if (!data_temp[0].isBlank()) {
                 unternehmen_temp.setId(Integer.parseInt(data_temp[0]));

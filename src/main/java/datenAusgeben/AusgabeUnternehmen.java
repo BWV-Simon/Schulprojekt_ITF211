@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class AusgabeUnternehmen {
 
-    private static final String AUSGABEZUORDNUNG = "./Ausgabe/anwesenheitsliste";
+    private static final String AUSGABEZUORDNUNG = "./Ausgabe/zuordnung";
 
     /**
      * Erstellt Anwesenheitslisten fuer die Unternehmen, damit diese ueberpruefen koennne, ob alls Schule anwesend sind
@@ -32,6 +32,7 @@ public class AusgabeUnternehmen {
     }
 
     /**
+     *
      * @author Jo
      * @param zuordnungen
      */
@@ -53,6 +54,7 @@ public class AusgabeUnternehmen {
     }
 
     /**
+     *
      * @author Jo & Julia
      * @param data
      * @throws IOException

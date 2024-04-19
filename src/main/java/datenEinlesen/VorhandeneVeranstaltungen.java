@@ -18,13 +18,15 @@ public class VorhandeneVeranstaltungen {
 
     private static final String PFAD_EXCEL = "./Eingabe/Unternehmen.xlsx";
 
-    private static final String PFAD_CSV = "./ingabe/Unternehmen.csv";
+    private static final String PFAD_CSV = "./Eingabe/Unternehmen.csv";
 
-    /** Diese Methode liest aus der angegebenen Datei (pfadExcel) die enthaltenen Unternehmen aus
-     *  und speichert die Zeilen in einer String-Liste
-     * @author Julia
+    /**
+     * Diese Methode liest aus der angegebenen Datei (pfadExcel) die enthaltenen Unternehmen aus
+     * und speichert die Zeilen in einer String-Liste
+     *
      * @return Eine Liste von Unternehmens-Objekten
      * @throws IOException
+     * @author Julia
      */
     private static List<String> auslesenVeranstaltungen() throws IOException {
         DateiKonvertieren.excelToCSV(PFAD_EXCEL, PFAD_CSV);
@@ -33,36 +35,42 @@ public class VorhandeneVeranstaltungen {
         return data;
     }
 
-    /** Diese Methode erstellt für die Zeilen in der Excel-Datei eine entsprechenden Unternehmens-Objekte
+    /**
+     * Diese Methode erstellt für die Zeilen in der Excel-Datei eine entsprechenden Unternehmens-Objekte
      * und speichert diese in einer Liste, die für die weitere Verarbeitung zurückgegeben wird
-     * @author Jo & Julia
+     *
      * @return Liste an Unternehmensobjekten
      * @throws IOException
+     * @author Jo & Julia
      */
     public static List<Veranstaltung> erstellenVeranstaltungen() throws IOException {
         List<String> data = auslesenVeranstaltungen();
+
+        Files.deleteIfExists(Paths.get(PFAD_CSV));
+
         return veranstaltungenGenerieren(data);
     }
 
     /**
      * Ausgelagerte Methode fuer Testzwecke
-     * @author Jo
+     *
      * @param data; Daten aus den die Veranstaltungen generiert werden
      * @return Liste der Veranstaltungen
      * EingabeParameter kann durch testdaten ersetzt werden ohne die Verwendung eines Mocking-Frameworks
      * Aufruf von außen bleibt unveraendert
+     * @author Jo
      */
     protected static List<Veranstaltung> veranstaltungenGenerieren(List<String> data) {
         List<Veranstaltung> unternehmen = new ArrayList<>();
-        String[] data_temp;
         for (int i = 1; i < data.size(); i++) {
             Veranstaltung unternehmen_temp = new Veranstaltung();
+            String[] data_temp;
             data_temp = data.get(i).split(";");
-            if(!data_temp[0].isBlank()) {
+            if (!data_temp[0].isBlank()) {
                 unternehmen_temp.setId(Integer.parseInt(data_temp[0]));
                 unternehmen_temp.setUnternehmen(data_temp[1]);
                 unternehmen_temp.setFachrichtung(data_temp[2]);
-                if (data_temp.length > 3  && !data_temp[3].isBlank()) {
+                if (data_temp.length > 3 && !data_temp[3].isBlank()) {
                     unternehmen_temp.setMaxSchueler(Integer.parseInt(data_temp[3]));
                 } else {
                     unternehmen_temp.setMaxSchueler(20);
@@ -72,7 +80,7 @@ public class VorhandeneVeranstaltungen {
                 } else {
                     unternehmen_temp.setMaxVeranstaltungen(5);
                 }
-                if (data_temp.length > 5 && !data_temp[5].isBlank()){
+                if (data_temp.length > 5 && !data_temp[5].isBlank()) {
                     unternehmen_temp.setFruehesterBeginn(Timeslot_Enum.valueOf(data_temp[5]));
                 } else {
                     unternehmen_temp.setFruehesterBeginn(Timeslot_Enum.A);

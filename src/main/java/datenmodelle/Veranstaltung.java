@@ -10,9 +10,9 @@ public class Veranstaltung {
     private int id;
     private String unternehmen;
     private String fachrichtung;
-    private static Timeslot_Enum fruehesterBeginn = Timeslot_Enum.A;
+    private Timeslot_Enum fruehesterBeginn = Timeslot_Enum.A;
     private int maxSchueler = 20 ;
-    private static int maxVeranstaltungen = 5;
+    private int maxVeranstaltungen = 5;
     private int minSchueler = 15;
 
     public int getId() {
@@ -84,7 +84,7 @@ public class Veranstaltung {
      * @author Jo & Julia
      * @return List<Timeslot_Enum> TimeSlotListe (Zeitpunkte)
      */
-    public static List<Timeslot_Enum> createTimeSlotListe() {
+    public List<Timeslot_Enum> createTimeSlotListe() {
         ArrayList<Timeslot_Enum> timeslots = new ArrayList<>();
         Timeslot_Enum aktuellerSlot = fruehesterBeginn;
         for(int i = 0; i < maxVeranstaltungen; i++) {

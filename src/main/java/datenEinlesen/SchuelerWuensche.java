@@ -16,35 +16,38 @@ import java.util.List;
 public class SchuelerWuensche {
 
     private static final String pfadExcel = "./Eingabe/Schuelerwuensche.xlsx";
-    private static final String pfadCSV = "./Eingabe/Schuelerwuensche.csv";
+    private static final String PFADCSV = "./Eingabe/Schuelerwuensche.csv";
 
     /**
      * Auslesen der Schuelerwuensche Datei
-     * @author Jo
+     *
      * @return liste aller teilnehmenden Schueler mit den eingetragenen wuenschen
-     * @throws IOException
-     * Generieren von Schueler-Objekten nach den Angaben in der Datei
-     * Array der Schuelerwuensche in Schueler-Objekt wird ebenfalls gefuellt
-     * Wenn keine/teilweise Angaben von Wuenschen wird in die Liste eine 0 eingetragen
+     * @throws IOException Generieren von Schueler-Objekten nach den Angaben in der Datei
+     *                     Array der Schuelerwuensche in Schueler-Objekt wird ebenfalls gefuellt
+     *                     Wenn keine/teilweise Angaben von Wuenschen wird in die Liste eine 0 eingetragen
+     * @author Jo
      */
     public static List<Schueler> auslesen() throws IOException {
         //Datei auslesen
-        DateiKonvertieren.excelToCSV(pfadExcel, pfadCSV);
-        Path file = Paths.get(pfadCSV);
+        DateiKonvertieren.excelToCSV(pfadExcel, PFADCSV);
+        Path file = Paths.get(PFADCSV);
         List<String> data = Files.readAllLines(file, StandardCharsets.ISO_8859_1);
+
+        Files.deleteIfExists(file);
 
         return schuelerGenerieren(data);
     }
 
     /**
      * Generiert ein Schueler-Objekt aus der ausgelesenen Datei
-     * @author Jo
+     *
      * @return liste aller teilnehmenden Schueler mit den eingetragenen wuenschen
+     * @author Jo
      */
-    protected static List<Schueler> schuelerGenerieren(List<String> data){
+    protected static List<Schueler> schuelerGenerieren(List<String> data) {
         List<Schueler> schuelerListe = new ArrayList<>();
         boolean titelzeile = true;
-        for(String line : data) {
+        for (String line : data) {
             //erste Zeile ueberspringen, da Titelzeile im Dokument
             if (titelzeile) {
                 titelzeile = false;

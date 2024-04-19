@@ -46,7 +46,6 @@ public class VorhandeneVeranstaltungen {
 
     /**
      * Ausgelagerte Methode fuer Testzwecke
-
      * @author Jo
      * @param data; Daten aus den die Veranstaltungen generiert werden
      * @return Liste der Veranstaltungen

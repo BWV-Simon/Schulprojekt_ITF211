@@ -26,6 +26,7 @@ public class Main {
             List<Raum> rliste = RaumeEinlesen.erstellenRaume();
             List<Schueler> original = SchuelerWuensche.auslesen();
             List<Schueler> sliste = SchuelerWuensche.auslesen();
+            System.out.println("Ordne zu! (?_?)");
             HashMap<Veranstaltung, List<Zuordnung>> result = WahlenZuordnen.zuordnungWahlen(sliste, vliste, rliste);
             double score = Utils.scoreBerechnung(sliste, original);
             List<Zuordnung> zListe = new ArrayList<>();
@@ -35,10 +36,11 @@ public class Main {
                     zListe.add(z);
                 }
             }
+            System.out.println("Muss schreiben... >-<");
             AusgabeSchueler.schuelerListenErstellen(sliste, zListe);
             AusgabeUnternehmen.zuordnungErstellen(zListe);
             AusgabeRaumUndZeitplan.zeitplanListeErstellen(result, score);
-
+            System.out.println("Endlich fertig! (T_T)");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

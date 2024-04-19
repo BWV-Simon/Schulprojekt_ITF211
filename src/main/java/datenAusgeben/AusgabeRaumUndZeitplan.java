@@ -1,9 +1,11 @@
 package datenAusgeben;
 
 import datenEinlesen.DateiKonvertieren;
+import datenmodelle.Timeslot_Enum;
 import datenmodelle.Veranstaltung;
 import datenmodelle.Zuordnung;
 
+import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -17,7 +19,7 @@ import java.util.*;
  */
 public class AusgabeRaumUndZeitplan {
 
-    private static final String AUSGABE_ZEITPLAN = "H:/BOVS/Ausgabe/plan";
+    private static final String AUSGABE_ZEITPLAN = "./Ausgabe/plan";
 
     /**
      * @author Julia & Maurice
@@ -40,6 +42,13 @@ public class AusgabeRaumUndZeitplan {
      */
     protected static List<String> erstelleZeitUndRaumplanFuerAusgabe(HashMap<Veranstaltung, List<Zuordnung>> zuordnungen, double score) {
         List<String> data = new ArrayList<>();
+        List<Timeslot_Enum> zeiten = new ArrayList<>();
+        zeiten.add(Timeslot_Enum.A);
+        zeiten.add(Timeslot_Enum.B);
+        zeiten.add(Timeslot_Enum.C);
+        zeiten.add(Timeslot_Enum.D);
+        zeiten.add(Timeslot_Enum.E);
+
         data.add("Organisationsplan");
         data.add("Begrüßung:" + ";" + "08:30-08:45");
         data.add("Abschluss:" + ";" + "13:10-13:20");
@@ -55,14 +64,14 @@ public class AusgabeRaumUndZeitplan {
             String temp = v.getUnternehmen();
             temp += ";";
             List<Zuordnung> zuordnungList = zuordnungen.get(v);
-            Comparator<Zuordnung> comparator = Comparator.comparing(Zuordnung::getZeitpunkt);
-            Collections.sort(zuordnungList, comparator);
             for (Zuordnung z : zuordnungList) {
-                if (z.getSchuelerList().size() > 0) {
-                    temp += z.getRaumNr().getRaumname();
-                    temp += ";";
-                } else {
-                    temp += ";";
+                for(Timeslot_Enum e : zeiten) {
+                    if(z.getZeitpunkt() == e) {
+                        if (z.getSchuelerList().size() > 0) {
+                            temp += z.getRaumNr().getRaumname();
+                        }
+                        temp += ";";
+                    }
                 }
             }
             data.add(temp);

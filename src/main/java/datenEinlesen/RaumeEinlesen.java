@@ -15,9 +15,9 @@ import java.util.List;
  */
 public class RaumeEinlesen {
 
-    private static final String PFAD_EXCEL = "H:/BOVS/Eingabe/Raeume.xlsx";
+    private static final String PFAD_EXCEL = "./Eingabe/Raeume.xlsx";
 
-    private static final String PFAD_CSV = "ausgabe/Raeume.csv";
+    private static final String PFAD_CSV = "./Eingabe/Raeume.csv";
 
     private static List<String> auslesenRaeume() throws IOException {
         DateiKonvertieren.excelToCSV(PFAD_EXCEL, PFAD_CSV);

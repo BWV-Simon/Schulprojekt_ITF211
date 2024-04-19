@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class SchuelerWuensche {
 
-    private static final String pfadExcel = "H:/BOVS/Eingabe/Schuelerwuensche.xlsx";
-    private static final String pfadCSV = "eingabe/Schuelerwuensche.csv";
+    private static final String pfadExcel = "./Eingabe/Schuelerwuensche.xlsx";
+    private static final String pfadCSV = "./Eingabe/Schuelerwuensche.csv";
 
     /**
      * Auslesen der Schuelerwuensche Datei

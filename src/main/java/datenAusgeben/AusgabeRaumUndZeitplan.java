@@ -44,7 +44,7 @@ public class AusgabeRaumUndZeitplan {
     protected static List<String> erstelleZeitUndRaumplanFuerAusgabe(HashMap<Veranstaltung, List<Zuordnung>> zuordnungen, double score) {
         List<String> data = new ArrayList<>();
         List<Timeslot_Enum> zeiten = new ArrayList<>();
-        boolean istGesetzt = false;
+        boolean istGesetzt;
         zeiten.add(Timeslot_Enum.A);
         zeiten.add(Timeslot_Enum.B);
         zeiten.add(Timeslot_Enum.C);
@@ -68,10 +68,9 @@ public class AusgabeRaumUndZeitplan {
             Comparator<Zuordnung> comparator = Comparator.comparing(Zuordnung::getZeitpunkt);
             List<Zuordnung> zuordnungList = zuordnungen.get(v);
             Collections.sort(zuordnungList, comparator);
-            for (Zuordnung z : zuordnungList) {
+            for (Timeslot_Enum e : zeiten) {
                 istGesetzt = false;
-                for (Timeslot_Enum e : zeiten) {
-
+                for (Zuordnung z : zuordnungList) {
                     if (z.getZeitpunkt() == e) {
                         if (z.getSchuelerList().size() > 0) {
                             temp += z.getRaumNr().getRaumname();

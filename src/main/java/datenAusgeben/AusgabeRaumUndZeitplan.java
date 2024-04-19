@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class AusgabeRaumUndZeitplan {
 
-    private static final String AUSGABE_ZEITPLAN = "H:/BOVS/Ausgabe/plan";
+    private static final String AUSGABE_ZEITPLAN = "./Ausgabe/raum_und_zeitplan";
 
     /**
      * @author Julia & Maurice

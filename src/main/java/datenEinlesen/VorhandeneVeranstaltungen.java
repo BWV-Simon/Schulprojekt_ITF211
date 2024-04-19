@@ -16,9 +16,9 @@ import java.util.List;
  */
 public class VorhandeneVeranstaltungen {
 
-    private static final String PFAD_EXCEL = "H:/BOVS/Eingabe/Unternehmen.xlsx";
+    private static final String PFAD_EXCEL = "./Eingabe/Unternehmen.xlsx";
 
-    private static final String PFAD_CSV = "eingabe/Unternehmen.csv";
+    private static final String PFAD_CSV = "./ingabe/Unternehmen.csv";
 
     /** Diese Methode liest aus der angegebenen Datei (pfadExcel) die enthaltenen Unternehmen aus
      *  und speichert die Zeilen in einer String-Liste

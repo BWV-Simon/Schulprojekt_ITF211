@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class AusgabeSchueler {
 
-    private static final String AUSGABESCHUELER = "H:/BOVS/Ausgabe/schuelerlisten";
+    private static final String AUSGABESCHUELER = "./Ausgabe/schuelerlisten";
 
     /**
      * Erstellt die Excel-Listen fuer alle Schueler mit den Veranstaltungen

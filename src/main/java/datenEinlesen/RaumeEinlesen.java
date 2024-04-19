@@ -28,22 +28,24 @@ public class RaumeEinlesen {
 
     public static List<Raum> erstellenRaume() throws IOException {
         List<String> data = auslesenRaeume();
+        Files.deleteIfExists(Paths.get(PFAD_CSV));
         return raeumeErstellen(data);
     }
 
     /**
      * Raeume werden erstellt und in ArrayList gespeichert und zurueckgegeben
-     * @author Julia & Maurice
+     *
      * @param data
      * @return raeume
+     * @author Julia & Maurice
      */
     protected static List<Raum> raeumeErstellen(List<String> data) {
         List<Raum> raeume = new ArrayList<>();
         String[] data_temp;
-        for(int i = 1; i < data.size(); i++) {
+        for (int i = 1; i < data.size(); i++) {
             Raum raum_temp = new Raum();
             data_temp = data.get(i).split(";");
-            if(!data_temp[0].isBlank()) {
+            if (!data_temp[0].isBlank()) {
                 raum_temp.setRaumname(data_temp[0]);
                 raum_temp.setKapzität(Integer.parseInt(data_temp[1]));
             }

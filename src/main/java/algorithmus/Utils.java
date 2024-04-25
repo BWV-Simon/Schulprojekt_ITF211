@@ -124,6 +124,14 @@ public class Utils {
         return result;
     }
 
+    public static Boolean ueberpruefeAuslastungZuordnungen(Zuordnung zo) {
+        Boolean result = true;
+            if(zo.getSchuelerList().size() < zo.getVeranstaltung().getMinSchueler()) {
+                result = false;
+            }
+        return result;
+    }
+
     /** Berechnet die Erfolgsquote des Algorithmus
      * @author Maurice & Jan
      * @param tempSchueler

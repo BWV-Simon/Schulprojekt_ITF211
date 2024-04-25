@@ -74,6 +74,7 @@ public class WahlenZuordnen {
          *     checkVeranstaltungskapazitaeten(veranstaltungenSlots);
          * </code>
          */
+        checkVeranstaltungskapazitaeten(veranstaltungenSlots);
         Utils.zuteilungRaume(veranstaltungenSlots, raumList);
         return veranstaltungenSlots;
     }
@@ -133,6 +134,20 @@ public class WahlenZuordnen {
         }
     }
 
+    public static void autofillSchueler(Schueler s, HashMap<Veranstaltung, List<Zuordnung>> veranstaltungenSlots) {
+            for (Veranstaltung v : veranstaltungenSlots.keySet()) {
+                for (Zuordnung zo : veranstaltungenSlots.get(v)) {
+                    if(zo.getKapazitaet()>0 && (!s.getStunden().contains(zo.getZeitpunkt()))){
+                        zuordnenSchueler(zo, s);
+                        break;
+                    }
+                }
+                if(s.getStunden().size()>=5){
+                    break;
+                }
+            }
+    }
+
     /** Methode zur Sicherstellung, dass nur Veranstaltungen, deren Mindestkapazität erfuellt wurde stattfinden
      * Schueler deren Wunschveranstaltung nicht stattfinden kann werden autofilled
      * Zuordnungen, die nicht genug Schueler haben,werden nicht mehr beruecksichtigt (Kapazitaet auf 0 gesetzt und
@@ -142,28 +157,27 @@ public class WahlenZuordnen {
      */
     public static void checkVeranstaltungskapazitaeten(HashMap<Veranstaltung,List<Zuordnung>> input){
         ArrayList<Schueler> schuelerAutoFill = new ArrayList<>();
-        ArrayList<Zuordnung> zuordnungen = new ArrayList<>();
         for(Veranstaltung v : input.keySet()){
-            for (Zuordnung z : input.get(v)){
-                zuordnungen.add(z);
-            }
-        }
-        HashMap<Zuordnung, Boolean> result = Utils.ueberpruefeAuslastungZuordnungen(zuordnungen);
-        for(Zuordnung zo : result.keySet()){
-            if(!result.get(zo)){
-                for(Schueler s : zo.getSchuelerList()){
-                    s.deleteStunde(zo.getZeitpunkt());
-                    for(int i = 0; i < s.getWahl().length; i++){
-                        if(s.getWahl()[i] == zo.getVeranstaltung().getId()){
-                            s.setWahl(i, 0);
-                            zo.setKapazitaet(0);
-                            schuelerAutoFill.add(s);
+            for (Zuordnung zo : input.get(v)){
+                Boolean result = Utils.ueberpruefeAuslastungZuordnungen(zo);
+                if(!result){
+                    for(Schueler s : zo.getSchuelerList()){
+                        s.deleteStunde(zo.getZeitpunkt());
+                        for(int i = 0; i < s.getWahl().length; i++){
+                            if(s.getWahl()[i] == zo.getVeranstaltung().getId()){
+                                s.setWahl(i, 0);
+                                if(!schuelerAutoFill.contains(s)) {
+                                    schuelerAutoFill.add(s);
+                                }
+                            }
                         }
                     }
+                    autofillSchueler(schuelerAutoFill, input);
+                    schuelerAutoFill.clear();
+                    zo.getSchuelerList().clear();
+                    zo.setKapazitaet(0);
                 }
-                zo.getSchuelerList().clear();
             }
         }
-        autofillSchueler(schuelerAutoFill, input);
     }
 }

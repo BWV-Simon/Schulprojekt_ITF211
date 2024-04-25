@@ -2,6 +2,7 @@ package datenAusgeben;
 
 import datenEinlesen.DateiKonvertieren;
 import datenmodelle.Schueler;
+import datenmodelle.Timeslot_Enum;
 import datenmodelle.Zuordnung;
 
 import java.io.IOException;
@@ -44,20 +45,34 @@ public class AusgabeSchueler {
      */
     protected static List<String> erstelleListeFuerAusgabe(List<Schueler> schuelerListe, List<Zuordnung> zuordnungen) {
         List<String> data = new ArrayList<>();
+        List<Timeslot_Enum> zeiten = new ArrayList<>();
+        boolean istGesetzt;
+        zeiten.add(Timeslot_Enum.A);
+        zeiten.add(Timeslot_Enum.B);
+        zeiten.add(Timeslot_Enum.C);
+        zeiten.add(Timeslot_Enum.D);
+        zeiten.add(Timeslot_Enum.E);
         int i = 1;
         for (Schueler s : schuelerListe) {
             data.add(s.getKlasse());
             data.add(s.getNachname() + ", " + s.getVorname());
             data.add(";Zeit;Raum;Veranstaltung;;");
             List<Zuordnung> zuordnungSchueler = getVeranstaltungFuerSchueler(s, zuordnungen);
-
-            for (Zuordnung z : zuordnungSchueler) {
-                data.add(z.getZeitpunkt().name() + ";" + z.getZeitpunkt().toString()
-                        + ";" + z.getRaumNr().getRaumname()
-                        + ";" + z.getVeranstaltung().getUnternehmen()
-                        + ";" + z.getVeranstaltung().getFachrichtung());
+            for(Timeslot_Enum t : zeiten) {
+                istGesetzt = false;
+                for(Zuordnung z : zuordnungSchueler) {
+                    if(z.getZeitpunkt() == t) {
+                        data.add(z.getZeitpunkt().name() + ";" + z.getZeitpunkt().toString()
+                                + ";" + z.getRaumNr().getRaumname()
+                                + ";" + z.getVeranstaltung().getUnternehmen()
+                                + ";" + z.getVeranstaltung().getFachrichtung());
+                        istGesetzt = true;
+                    }
+                }
+                if (!istGesetzt) {
+                    data.add(t.name() + ";" + t);
+                }
             }
-
             if (i == 4) {
                 data.add("");
                 data.add("");
